@@ -18,21 +18,21 @@ const Onboarding = () => {
 
   const slides = [
     {
-      icon: Hand,
-      title: 'Pay with Your Palm',
-      description: 'No phone required. Just show your palm at any PalmPe device and pay instantly.',
+      icon: Zap,
+      title: 'Pay at PalmPe Devices',
+      description: 'Visit any PalmPe device for secure palm authentication. No phone capture, hardware-level security only.',
       color: '#586BFF'
     },
     {
       icon: Shield,
       title: 'Military-Grade Security',
-      description: 'Your biometric data stays with you. SE/TEE encryption with decentralized consent logging.',
+      description: 'Your biometric data never leaves the device. SE/TEE encryption with decentralized consent logging.',
       color: '#9B62FF'
     },
     {
-      icon: Zap,
-      title: 'Instant & Seamless',
-      description: 'Triple-hash authentication. Liveness detection. UPI-compliant. India\'s first palm-vein payment wallet.',
+      icon: CheckCircle2,
+      title: 'Full UPI Wallet',
+      description: 'Send money, pay bills, recharge, and more. All features work without palm registration.',
       color: '#64E8FF'
     }
   ];
