@@ -126,6 +126,7 @@ function App() {
             <Route path="/dispute" element={<DisputeCenter />} />
             <Route path="/send" element={<SendMoney />} />
             <Route path="/transfer" element={<SendMoney />} />
+            <Route path="/language" element={<LanguageSelector />} />
             
             {/* Service Routes - Top 8 Priority */}
             <Route path="/service/mobile" element={<MobileRecharge />} />
