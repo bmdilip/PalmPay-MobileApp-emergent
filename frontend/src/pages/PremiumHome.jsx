@@ -285,22 +285,28 @@ const PremiumHome = () => {
         </div>
       </div>
 
-      {/* Recent Transactions */}
+      {/* Recent Transactions - Enhanced Cards */}
       <div className="px-5 mb-6">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-bold text-gray-800">Recent Transactions</h3>
           <button 
             onClick={() => navigate('/history')}
-            className="text-sm font-semibold text-[#586BFF] flex items-center gap-1"
+            className="text-sm font-semibold text-[#586BFF] flex items-center gap-1 hover:gap-2 transition-all"
           >
             View All <ChevronRight className="w-4 h-4" />
           </button>
         </div>
-        <Card className="border-0 shadow-md divide-y divide-gray-100">
-          {mockTransactions.slice(0, 4).map((transaction) => (
-            <div key={transaction.id} className="p-4 flex items-center justify-between hover:bg-gray-50 transition-colors cursor-pointer">
+        <Card className="border-0 shadow-lg divide-y divide-gray-100 overflow-hidden">
+          {mockTransactions.slice(0, 4).map((transaction, index) => (
+            <div 
+              key={transaction.id} 
+              className="p-4 flex items-center justify-between hover:bg-gradient-to-r hover:from-gray-50 hover:to-transparent transition-all duration-300 cursor-pointer group"
+              style={{
+                animation: `fadeIn 0.5s ease-out ${index * 0.1}s backwards`
+              }}
+            >
               <div className="flex items-center gap-3">
-                <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${
+                <div className={`w-11 h-11 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 ${
                   transaction.type === 'received' ? 'bg-green-50' : 'bg-blue-50'
                 }`}>
                   {transaction.type === 'received' ? 
@@ -309,7 +315,7 @@ const PremiumHome = () => {
                   }
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-800 text-sm">{transaction.recipient}</p>
+                  <p className="font-semibold text-gray-800 text-sm group-hover:text-gray-900 transition-colors">{transaction.recipient}</p>
                   <p className="text-xs text-gray-500">{transaction.date} • {transaction.time}</p>
                 </div>
               </div>
@@ -326,25 +332,61 @@ const PremiumHome = () => {
         </Card>
       </div>
 
-      {/* Refer & Earn Banner */}
+      {/* Refer & Earn Banner - Premium 3D Card */}
       <div className="px-5 mb-6">
-        <Card className="bg-gradient-to-br from-purple-500 to-purple-600 border-0 p-5 shadow-lg text-white overflow-hidden relative">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -translate-y-12 translate-x-12"></div>
+        <Card 
+          className="bg-gradient-to-br from-purple-500 via-purple-600 to-purple-700 border-0 p-5 shadow-xl text-white overflow-hidden relative cursor-pointer hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300"
+          onClick={() => navigate('/referral')}
+        >
+          <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16 animate-pulse"></div>
+          <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-12 -translate-x-12"></div>
           <div className="relative z-10 flex items-center justify-between">
             <div>
-              <div className="flex items-center gap-2 mb-1">
-                <Users className="w-5 h-5" />
+              <div className="flex items-center gap-2 mb-2">
+                <Users className="w-5 h-5 animate-bounce" />
                 <span className="text-xs font-bold uppercase tracking-wide">Refer & Earn</span>
               </div>
-              <p className="text-sm mb-1">Invite friends and earn ₹100</p>
+              <p className="text-sm mb-1 font-semibold">Invite friends and earn ₹100</p>
               <p className="text-xs text-white/80">For each successful referral</p>
             </div>
-            <Button className="bg-white text-purple-600 hover:bg-white/90 font-semibold text-sm px-4 h-9 shadow-lg">
+            <Button className="bg-white text-purple-600 hover:bg-white/90 font-semibold text-sm px-4 h-9 shadow-lg transform hover:scale-110 transition-all">
               Invite
             </Button>
           </div>
         </Card>
       </div>
+
+      {/* CSS Animations */}
+      <style jsx>{`
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes pulse {
+          0%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.5;
+          }
+        }
+      `}</style>
     </div>
   );
 };
