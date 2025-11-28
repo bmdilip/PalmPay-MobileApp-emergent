@@ -203,12 +203,13 @@ function App() {
             <Route path="/scan" element={<Palm2QR />} />
             <Route path="/cashback-rewards" element={<CashbackRewards />} />
             <Route path="/add-money" element={<QuickWallet />} />
-          </Routes>
-          <BottomNavigation />
-        </div>
-        <Toaster />
-        </div>
-      </BrowserRouter>
+            </Routes>
+            <BottomNavigation />
+          </div>
+          <Toaster />
+          </div>
+        </BrowserRouter>
+      </WalletProvider>
     </LanguageProvider>
   );
 }
