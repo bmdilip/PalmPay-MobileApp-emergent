@@ -252,6 +252,81 @@ export const translations = {
     palmStatus: 'പാം സ്ഥിതി',
     palmRegistered: 'പാം രജിസ്റ്റർ ചെയ്തു',
     palmNotRegistered: 'പാം രജിസ്റ്റർ ചെയ്തിട്ടില്ല',
+  },
+  
+  bn: {
+    // Navigation (Bengali)
+    home: 'হোম',
+    services: 'সেবা',
+    transfer: 'স্থানান্তর',
+    history: 'ইতিহাস',
+    profile: 'প্রোফাইল',
+    welcome: 'ফিরে আসায় স্বাগতম',
+    balance: 'ব্যালেন্স',
+    send: 'পাঠান',
+    pay: 'পরিশোধ করুন',
+    mobileRecharge: 'মোবাইল রিচার্জ',
+    palmStatus: 'পাম স্ট্যাটাস',
+  },
+  
+  mr: {
+    // Navigation (Marathi)
+    home: 'मुख्यपृष्ठ',
+    services: 'सेवा',
+    transfer: 'हस्तांतरण',
+    history: 'इतिहास',
+    profile: 'प्रोफाइल',
+    welcome: 'परत आपले स्वागत आहे',
+    balance: 'शिल्लक',
+    send: 'पाठवा',
+    pay: 'भरा',
+    mobileRecharge: 'मोबाइल रिचार्ज',
+    palmStatus: 'पाम स्थिती',
+  },
+  
+  gu: {
+    // Navigation (Gujarati)
+    home: 'હોમ',
+    services: 'સેવાઓ',
+    transfer: 'ટ્રાન્સફર',
+    history: 'ઇતિહાસ',
+    profile: 'પ્રોફાઇલ',
+    welcome: 'પાછા આવ્યા છો',
+    balance: 'બેલેન્સ',
+    send: 'મોકલો',
+    pay: 'ચૂકવણી',
+    mobileRecharge: 'મોબાઇલ રિચાર્જ',
+    palmStatus: 'પામ સ્થિતિ',
+  },
+  
+  pa: {
+    // Navigation (Punjabi)
+    home: 'ਘਰ',
+    services: 'ਸੇਵਾਵਾਂ',
+    transfer: 'ਟਰਾਂਸਫਰ',
+    history: 'ਇਤਿਹਾਸ',
+    profile: 'ਪ੍ਰੋਫਾਈਲ',
+    welcome: 'ਵਾਪਸ ਆਉਣ ਲਈ ਧੰਨਵਾਦ',
+    balance: 'ਬਕਾਇਆ',
+    send: 'ਭੇਜੋ',
+    pay: 'ਭੁਗਤਾਨ',
+    mobileRecharge: 'ਮੋਬਾਈਲ ਰੀਚਾਰਜ',
+    palmStatus: 'ਪਾਮ ਸਥਿਤੀ',
+  },
+  
+  ur: {
+    // Navigation (Urdu - RTL)
+    home: 'ہوم',
+    services: 'خدمات',
+    transfer: 'منتقلی',
+    history: 'تاریخ',
+    profile: 'پروفائل',
+    welcome: 'واپس آئے',
+    balance: 'بیلنس',
+    send: 'بھیجیں',
+    pay: 'ادائیگی',
+    mobileRecharge: 'موبائل ریچارج',
+    palmStatus: 'پام حالت',
   }
 };
 
