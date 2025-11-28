@@ -103,7 +103,7 @@ function App() {
             <Route path="/rewards" element={<Rewards />} />
             <Route path="/support" element={<Support />} />
             
-            {/* Service Routes */}
+            {/* Service Routes - Top 8 Priority */}
             <Route path="/service/mobile" element={<MobileRecharge />} />
             <Route path="/service/electricity" element={<ElectricityBill />} />
             <Route path="/service/dth" element={<DTHRecharge />} />
@@ -113,6 +113,24 @@ function App() {
             <Route path="/service/water" element={<WaterBill />} />
             <Route path="/service/fastag" element={<FASTagRecharge />} />
             <Route path="/service/insurance" element={<Insurance />} />
+            
+            {/* Service Routes - Travel */}
+            <Route path="/service/flights" element={<FlightBooking />} />
+            <Route path="/service/hotels" element={<HotelBooking />} />
+            <Route path="/service/trains" element={<ComingSoon />} />
+            <Route path="/service/bus" element={<ComingSoon />} />
+            <Route path="/service/cab" element={<ComingSoon />} />
+            
+            {/* Service Routes - Others (Coming Soon) */}
+            <Route path="/service/datacard" element={<ComingSoon />} />
+            <Route path="/service/landline" element={<ComingSoon />} />
+            <Route path="/service/housing" element={<ComingSoon />} />
+            <Route path="/service/mutual" element={<ComingSoon />} />
+            <Route path="/service/gold" element={<ComingSoon />} />
+            <Route path="/service/loan" element={<ComingSoon />} />
+            <Route path="/service/education" element={<ComingSoon />} />
+            <Route path="/service/health" element={<ComingSoon />} />
+            <Route path="/service/cable" element={<ComingSoon />} />
           </Routes>
           <BottomNavigation />
         </div>
