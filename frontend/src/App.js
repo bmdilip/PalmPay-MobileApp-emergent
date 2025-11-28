@@ -32,8 +32,8 @@ const BottomNavigation = () => {
   ];
 
   return (
-    <div className=\"fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50\">
-      <div className=\"max-w-md mx-auto flex items-center justify-around py-2\">
+    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50">
+      <div className="max-w-md mx-auto flex items-center justify-around py-2">
         {navItems.map((item) => {
           const isActive = location.pathname === item.path;
           return (
