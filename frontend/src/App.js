@@ -27,6 +27,7 @@ import CirclePay from "./pages/CirclePay";
 import ReferralProgram from "./pages/ReferralProgram";
 import DisputeCenter from "./pages/DisputeCenter";
 import SendMoney from "./pages/SendMoney";
+import LanguageSelector from "./pages/LanguageSelector";
 import { Toaster } from "./components/ui/toaster";
 import { Home as HomeIcon, Grid3x3, ArrowLeftRight, Clock, User } from "lucide-react";
 
