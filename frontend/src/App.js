@@ -109,6 +109,11 @@ function App() {
             <Route path="/rewards" element={<Rewards />} />
             <Route path="/support" element={<Support />} />
             <Route path="/device-center" element={<DeviceCenter />} />
+            <Route path="/limit-settings" element={<LimitSettings />} />
+            <Route path="/wallet" element={<DigitalWallet />} />
+            <Route path="/collect" element={<CollectRequest />} />
+            <Route path="/circlepay" element={<CirclePay />} />
+            <Route path="/referral" element={<ReferralProgram />} />
             
             {/* Service Routes - Top 8 Priority */}
             <Route path="/service/mobile" element={<MobileRecharge />} />
