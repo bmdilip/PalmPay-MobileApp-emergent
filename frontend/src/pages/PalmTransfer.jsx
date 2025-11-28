@@ -126,9 +126,8 @@ const PalmTransfer = () => {
                       <div className="flex items-center gap-2">
                         <p className="font-medium text-gray-800">{contact.name}</p>
                         {contact.hasPalmId && (
-                          <div className="flex items-center gap-1 bg-[#586BFF]/10 px-2 py-0.5 rounded-full">
-                            <Hand className="w-3 h-3 text-[#586BFF]" />
-                            <span className="text-xs text-[#586BFF] font-medium">Palm</span>
+                          <div className="bg-[#586BFF]/10 px-2 py-0.5 rounded-full border border-[#586BFF]/30">
+                            <span className="text-xs text-[#586BFF] font-medium">PalmPay</span>
                           </div>
                         )}
                       </div>
