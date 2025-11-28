@@ -36,7 +36,9 @@ import Logo from '../components/Logo';
 const PremiumHome = () => {
   const [showBalance, setShowBalance] = useState(true);
   const [scrolled, setScrolled] = useState(false);
+  const [showWalletSelector, setShowWalletSelector] = useState(false);
   const navigate = useNavigate();
+  const { selectedWallet, wallets, switchWallet, getTotalBalance } = useWallet();
 
   useEffect(() => {
     const handleScroll = () => {
