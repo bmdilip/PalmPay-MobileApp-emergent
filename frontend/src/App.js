@@ -4,7 +4,9 @@ import { BrowserRouter, Routes, Route, useNavigate, useLocation } from "react-ro
 import Onboarding from "./pages/Onboarding";
 import PalmRegister from "./pages/PalmRegister";
 import PalmHome from "./pages/PalmHome";
+import PremiumHome from "./pages/PremiumHome";
 import Services from "./pages/Services";
+import PremiumServices from "./pages/PremiumServices";
 import Palm2QR from "./pages/Palm2QR";
 import POSMode from "./pages/POSMode";
 import PalmTransfer from "./pages/PalmTransfer";
