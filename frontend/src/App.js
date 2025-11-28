@@ -79,6 +79,8 @@ function App() {
             <Route path="/device-locator" element={<DeviceLocator />} />
             <Route path="/device-enrollment" element={<DeviceEnrollment />} />
             <Route path="/receipt/:receiptId" element={<ReceiptViewer />} />
+            <Route path="/quick-wallet" element={<QuickWallet />} />
+            <Route path="/security-center" element={<SecurityCenter />} />
           </Routes>
           <BottomNavigation />
         </div>
