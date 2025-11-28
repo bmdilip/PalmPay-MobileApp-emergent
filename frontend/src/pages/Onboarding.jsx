@@ -52,7 +52,7 @@ const Onboarding = () => {
       <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12">
         {/* Logo */}
         <div className="mb-12 flex flex-col items-center">
-          <Logo size="xl" className="mb-4" />
+          <Logo size="xl" withGlow={true} className="mb-4" />
           <p className="text-[#64E8FF] text-sm tracking-widest">YOUR PALM. YOUR WALLET.</p>
         </div>
 
