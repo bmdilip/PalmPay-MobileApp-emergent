@@ -36,7 +36,10 @@ const DeviceCenter = () => {
       location: 'MG Road Metro Station, Bangalore',
       pairedDate: '15 Jan 2025',
       merchantName: 'Not assigned',
-      batteryLevel: 85
+      batteryLevel: 85,
+      healthScore: 95,
+      transactions: 234,
+      offlineCapable: true
     },
     {
       id: 'device-002',
@@ -49,7 +52,26 @@ const DeviceCenter = () => {
       location: 'Cafe Coffee Day, Koramangala',
       pairedDate: '20 Jan 2025',
       merchantName: 'Cafe Coffee Day',
-      batteryLevel: 92
+      batteryLevel: 92,
+      healthScore: 98,
+      transactions: 567,
+      offlineCapable: true
+    },
+    {
+      id: 'device-003',
+      name: 'PalmPe Mini - Home',
+      type: 'personal',
+      status: 'offline',
+      lastSeen: '2 days ago',
+      signal: 'weak',
+      firmware: 'v2.2.0',
+      location: 'HSR Layout, Bangalore',
+      pairedDate: '10 Jan 2025',
+      merchantName: 'Not assigned',
+      batteryLevel: 15,
+      healthScore: 65,
+      transactions: 45,
+      offlineCapable: false
     },
   ];
 
