@@ -51,8 +51,8 @@ const Onboarding = () => {
       {/* Content */}
       <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12">
         {/* Logo */}
-        <div className="mb-12">
-          <h1 className="text-4xl font-bold mb-2 tracking-tight">PalmPay</h1>
+        <div className="mb-12 flex flex-col items-center">
+          <Logo size="xl" className="mb-4" />
           <p className="text-[#64E8FF] text-sm tracking-widest">YOUR PALM. YOUR WALLET.</p>
         </div>
 
