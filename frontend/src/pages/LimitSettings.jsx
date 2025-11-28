@@ -9,9 +9,12 @@ import {
   Shield,
   AlertCircle,
   CheckCircle2,
-  Lock
+  Lock,
+  Smartphone,
+  Info
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { mockUser } from '../mockDataPalmPay';
 
 const LimitSettings = () => {
   const navigate = useNavigate();
@@ -19,11 +22,14 @@ const LimitSettings = () => {
     perTransaction: '50000',
     daily: '100000',
     offline: '5000',
-    quickWallet: '2000'
+    quickWallet: '2000',
+    palmPerTransaction: '200',
+    palmDaily: '1000'
   });
   
   const [emergencyLock, setEmergencyLock] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [showIncreaseWarning, setShowIncreaseWarning] = useState(false);
 
   const handleSave = () => {
     // Mock API call
