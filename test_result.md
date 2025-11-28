@@ -177,15 +177,18 @@ frontend:
 
   - task: "Top 8 Priority Services - Electricity Bill"
     implemented: true
-    working: "NA"
+    working: false
     file: "/app/frontend/src/pages/services/ElectricityBill.jsx"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Complete flow implemented: Provider → ID → Fetch → Pay → Receipt"
+      - working: false
+        agent: "testing"
+        comment: "❌ ELECTRICITY BILL ISSUE - Page loads correctly but provider selection dropdown has timeout issues. The select element is present but option selection fails with 'did not find some options' error. This appears to be a dropdown population or option availability issue that needs investigation."
 
   - task: "Top 8 Priority Services - DTH, Broadband, Gas, Water, FASTag, Insurance"
     implemented: true
