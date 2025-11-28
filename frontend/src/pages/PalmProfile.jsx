@@ -182,6 +182,7 @@ const PalmProfile = () => {
             {menuItems.map((item, index) => (
               <button
                 key={index}
+                onClick={() => item.path && navigate(item.path)}
                 className="w-full p-4 flex items-center gap-4 hover:bg-gray-50 transition-colors"
               >
                 <div className={`w-10 h-10 ${item.bg} rounded-full flex items-center justify-center`}>
