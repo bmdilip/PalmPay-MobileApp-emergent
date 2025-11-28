@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { mockUser, mockTransactions } from '../mockDataPalmPay';
 import { useNavigate } from 'react-router-dom';
+import { Logo } from '../components/ui/logo';
 
 const PalmHome = () => {
   const [showBalance, setShowBalance] = useState(true);
