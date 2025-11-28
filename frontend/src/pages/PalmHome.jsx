@@ -107,17 +107,7 @@ const PalmHome = () => {
         </div>
       </div>
 
-      {/* Palm Badge */}
-      <div className="flex justify-center -mt-8 mb-6">
-        <div className="relative">
-          <div className="absolute inset-0 rounded-full bg-[#586BFF] blur-xl opacity-40 animate-pulse"></div>
-          <button className="relative bg-gradient-to-r from-[#586BFF] to-[#9B62FF] text-white rounded-full p-5 shadow-2xl hover:scale-105 transition-transform">
-            <Hand className="w-9 h-9" />
-          </button>
-        </div>
-      </div>
-
-      <div className="px-5">
+      <div className="px-5 mt-6">
         {/* Quick Actions */}
         <div className="mb-8">
           <h3 className="text-lg font-bold text-gray-800 mb-4">Quick Actions</h3>
