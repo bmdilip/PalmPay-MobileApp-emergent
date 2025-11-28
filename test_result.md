@@ -207,15 +207,18 @@ frontend:
 
   - task: "Travel Services - Flight & Hotel Booking"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/frontend/src/pages/services/"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Flight and Hotel booking implemented. Train/Bus/Cab set to Coming Soon"
+      - working: true
+        agent: "testing"
+        comment: "✅ TRAVEL SERVICES WORKING - Flight Booking and Hotel Booking pages load correctly with proper titles. Flight booking form interaction tested successfully (from/to city input working). Train, Bus, and Cab services correctly show Coming Soon pages with proper messaging, Browse Other Services and Go to Home buttons all functional and navigating correctly."
 
   - task: "Loading/Error/Empty state components"
     implemented: true
