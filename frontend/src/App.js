@@ -130,6 +130,9 @@ function App() {
             <Route path="/send" element={<SendMoney />} />
             <Route path="/transfer" element={<SendMoney />} />
             <Route path="/language" element={<LanguageSelector />} />
+            <Route path="/offline-queue" element={<OfflineQueue />} />
+            <Route path="/autopay" element={<AutoPay />} />
+            <Route path="/cashback" element={<CashbackRewards />} />
             
             {/* Service Routes - Top 8 Priority */}
             <Route path="/service/mobile" element={<MobileRecharge />} />
