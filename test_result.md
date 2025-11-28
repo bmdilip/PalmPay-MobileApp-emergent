@@ -333,9 +333,9 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Electricity Bill dropdown issue"
+    - "Multi-Language page setup issue"
   stuck_tasks: 
-    - "Top 8 Priority Services - Electricity Bill"
+    - "Phase 2B - Multi-Language"
   test_all: false
   test_priority: "high_first"
 
