@@ -140,32 +140,50 @@ function App() {
             
             {/* Service Routes - Top 8 Priority */}
             <Route path="/service/mobile" element={<MobileRecharge />} />
+            <Route path="/services/mobile-recharge" element={<MobileRecharge />} />
             <Route path="/service/electricity" element={<ElectricityBill />} />
+            <Route path="/services/electricity" element={<ElectricityBill />} />
             <Route path="/service/dth" element={<DTHRecharge />} />
+            <Route path="/services/dth" element={<DTHRecharge />} />
             <Route path="/service/broadband" element={<BroadbandBill />} />
+            <Route path="/services/broadband" element={<BroadbandBill />} />
             <Route path="/service/gas" element={<GasBill />} />
+            <Route path="/services/gas" element={<GasBill />} />
             <Route path="/service/piped-gas" element={<GasBill />} />
             <Route path="/service/water" element={<WaterBill />} />
+            <Route path="/services/water" element={<WaterBill />} />
             <Route path="/service/fastag" element={<FASTagRecharge />} />
+            <Route path="/services/fastag" element={<FASTagRecharge />} />
             <Route path="/service/insurance" element={<Insurance />} />
+            <Route path="/services/insurance" element={<Insurance />} />
             
             {/* Service Routes - Travel */}
             <Route path="/service/flights" element={<FlightBooking />} />
+            <Route path="/services/flights" element={<FlightBooking />} />
             <Route path="/service/hotels" element={<HotelBooking />} />
+            <Route path="/services/hotels" element={<HotelBooking />} />
             <Route path="/service/trains" element={<ComingSoon />} />
             <Route path="/service/bus" element={<ComingSoon />} />
             <Route path="/service/cab" element={<ComingSoon />} />
             
             {/* Service Routes - Additional Services */}
             <Route path="/service/datacard" element={<DataCard />} />
+            <Route path="/services/datacard" element={<DataCard />} />
             <Route path="/service/landline" element={<LandlineBill />} />
+            <Route path="/services/landline" element={<LandlineBill />} />
             <Route path="/service/housing" element={<HousingSociety />} />
+            <Route path="/services/housing" element={<HousingSociety />} />
             <Route path="/service/cable" element={<CableTVBill />} />
+            <Route path="/services/cable-tv" element={<CableTVBill />} />
             
             {/* Service Routes - Coming Soon */}
             <Route path="/service/mutual" element={<ComingSoon />} />
+            <Route path="/services/mutual-funds" element={<ComingSoon />} />
             <Route path="/service/gold" element={<ComingSoon />} />
+            <Route path="/services/digital-gold" element={<ComingSoon />} />
             <Route path="/service/loan" element={<ComingSoon />} />
+            <Route path="/services/loans" element={<ComingSoon />} />
+            <Route path="/services/loan-repayment" element={<ComingSoon />} />
             <Route path="/service/education" element={<ComingSoon />} />
             <Route path="/service/health" element={<ComingSoon />} />
           </Routes>
