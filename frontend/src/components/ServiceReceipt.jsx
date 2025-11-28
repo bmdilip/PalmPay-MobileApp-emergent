@@ -74,6 +74,51 @@ const ServiceReceipt = ({
           </Card>
         )}
 
+        {/* Consent Token (for device payments) */}
+        {isDevicePayment && consentToken && (
+          <Card className="mb-6 p-5 bg-gradient-to-br from-purple-50 to-indigo-50 border-purple-200">
+            <div className="flex items-start gap-3 mb-4">
+              <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                <Shield className="w-5 h-5 text-purple-600" />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-bold text-gray-800 mb-1">Device-Authorized Payment</h3>
+                <p className="text-xs text-gray-600">
+                  This payment was authorized on PalmPe device <span className="font-mono font-semibold">{deviceId}</span> using secure biometric authentication.
+                </p>
+              </div>
+            </div>
+            
+            <div className="bg-white/70 p-3 rounded-lg border border-purple-200">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-semibold text-gray-700">Consent Token</span>
+                <button
+                  onClick={handleCopyToken}
+                  className="flex items-center gap-1 text-xs text-purple-600 hover:text-purple-700 font-medium"
+                >
+                  {copiedToken ? (
+                    <>
+                      <Check className="w-3 h-3" />
+                      Copied
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3 h-3" />
+                      Copy
+                    </>
+                  )}
+                </button>
+              </div>
+              <p className="font-mono text-xs text-gray-800 break-all bg-white p-2 rounded">
+                {consentToken}
+              </p>
+              <p className="text-xs text-gray-500 mt-2">
+                This cryptographic proof verifies your consent for this transaction.
+              </p>
+            </div>
+          </Card>
+        )}
+
         {/* Transaction Details */}
         <Card className="mb-6 divide-y">
           {transactionId && (
@@ -100,6 +145,12 @@ const ServiceReceipt = ({
               <span className="text-sm font-medium text-gray-800">{detail.value}</span>
             </div>
           ))}
+          {isDevicePayment && deviceId && (
+            <div className="p-4 flex justify-between items-center bg-purple-50">
+              <span className="text-sm text-gray-500">Authorized On</span>
+              <span className="text-sm font-medium text-purple-700 font-mono">{deviceId}</span>
+            </div>
+          )}
           <div className="p-4 flex justify-between items-center">
             <span className="text-sm text-gray-500">Status</span>
             <span className={`text-sm font-semibold ${config.color} capitalize`}>{status}</span>
