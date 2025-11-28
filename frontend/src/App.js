@@ -116,6 +116,9 @@ function App() {
             <Route path="/collect" element={<CollectRequest />} />
             <Route path="/circlepay" element={<CirclePay />} />
             <Route path="/referral" element={<ReferralProgram />} />
+            <Route path="/dispute" element={<DisputeCenter />} />
+            <Route path="/send" element={<SendMoney />} />
+            <Route path="/transfer" element={<SendMoney />} />
             
             {/* Service Routes - Top 8 Priority */}
             <Route path="/service/mobile" element={<MobileRecharge />} />
