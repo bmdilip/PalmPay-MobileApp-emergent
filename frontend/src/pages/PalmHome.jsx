@@ -62,10 +62,7 @@ const PalmHome = () => {
             </div>
             <div>
               <p className="font-semibold text-lg">{mockUser.name}</p>
-              <div className="flex items-center gap-2 mt-1">
-                <Hand className="w-4 h-4 text-[#64E8FF]" />
-                <p className="text-sm text-gray-300">{mockUser.palmId}</p>
-              </div>
+              <p className="text-sm text-gray-300 font-mono mt-1">{mockUser.palmId}</p>
             </div>
           </div>
 
