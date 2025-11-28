@@ -25,10 +25,12 @@ import {
   Plane,
   Hotel,
   Wallet,
-  Globe
+  Globe,
+  ChevronDown
 } from 'lucide-react';
 import { mockUser, mockTransactions } from '../mockDataPalmPay';
 import { useNavigate } from 'react-router-dom';
+import { useWallet } from '../contexts/WalletContext';
 import Logo from '../components/Logo';
 
 const PremiumHome = () => {
