@@ -28,6 +28,9 @@ import ReferralProgram from "./pages/ReferralProgram";
 import DisputeCenter from "./pages/DisputeCenter";
 import SendMoney from "./pages/SendMoney";
 import LanguageSelector from "./pages/LanguageSelector";
+import OfflineQueue from "./pages/OfflineQueue";
+import AutoPay from "./pages/AutoPay";
+import CashbackRewards from "./pages/CashbackRewards";
 import { Toaster } from "./components/ui/toaster";
 import { Home as HomeIcon, Grid3x3, ArrowLeftRight, Clock, User } from "lucide-react";
 
