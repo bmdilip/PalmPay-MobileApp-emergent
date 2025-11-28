@@ -83,6 +83,8 @@ function App() {
             <Route path="/receipt/:receiptId" element={<ReceiptViewer />} />
             <Route path="/quick-wallet" element={<QuickWallet />} />
             <Route path="/security-center" element={<SecurityCenter />} />
+            <Route path="/rewards" element={<Rewards />} />
+            <Route path="/support" element={<Support />} />
           </Routes>
           <BottomNavigation />
         </div>
