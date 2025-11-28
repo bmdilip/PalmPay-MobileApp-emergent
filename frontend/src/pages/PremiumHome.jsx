@@ -68,6 +68,20 @@ const PremiumHome = () => {
           <div className="mb-6">
             <p className="text-white/80 text-sm mb-1">Welcome back,</p>
             <h2 className="text-2xl font-bold">{mockUser.name}</h2>
+            
+            {/* Palm Status Badge */}
+            <button 
+              onClick={() => navigate('/device-center')}
+              className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 transition-all border border-white/20"
+            >
+              <div className={`w-2 h-2 rounded-full ${mockUser.palmEnabled ? 'bg-green-400' : 'bg-red-400'} animate-pulse`}></div>
+              <span className="text-xs font-medium">
+                {mockUser.palmEnabled 
+                  ? `Palm Registered • Last used ${mockUser.lastDeviceUsed || '2h ago'}` 
+                  : 'Palm Not Registered • Pair a device'}
+              </span>
+              <ChevronRight className="w-3 h-3" />
+            </button>
           </div>
 
           {/* Balance Card */}
