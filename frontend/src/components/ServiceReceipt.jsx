@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card } from './ui/card';
 import { Button } from './ui/button';
-import { CheckCircle2, Download, Share2, Home } from 'lucide-react';
+import { CheckCircle2, Download, Share2, Home, Shield, Copy, Check } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const ServiceReceipt = ({ 
@@ -12,9 +12,13 @@ const ServiceReceipt = ({
   time,
   details = [],
   serviceName,
-  status = 'success' // 'success', 'pending', 'failed'
+  status = 'success', // 'success', 'pending', 'failed'
+  consentToken = null, // For device-authorized payments
+  deviceId = null,
+  isDevicePayment = false
 }) => {
   const navigate = useNavigate();
+  const [copiedToken, setCopiedToken] = useState(false);
 
   const statusConfig = {
     success: {
