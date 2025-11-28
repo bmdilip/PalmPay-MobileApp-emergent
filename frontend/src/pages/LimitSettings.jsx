@@ -276,6 +276,50 @@ const LimitSettings = () => {
           )}
         </Button>
       </div>
+
+      {/* Palm Limit Increase Warning Modal */}
+      {showIncreaseWarning && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-5 z-50">
+          <Card className="max-w-md w-full p-6 space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center">
+                <Shield className="w-6 h-6 text-amber-600" />
+              </div>
+              <div>
+                <h3 className="font-bold text-gray-800">Device Authentication Required</h3>
+                <p className="text-xs text-gray-600">Security verification needed</p>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <p className="text-sm text-gray-700">
+                To increase your Palm Payment Limit above ₹200, you must authenticate on a PalmPe device for security.
+              </p>
+              <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
+                <p className="text-xs text-gray-700">
+                  <strong>Why is this required?</strong> Higher limits mean more risk if a device is misused. We require device authentication to ensure it's really you making this change.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-3">
+              <Button
+                onClick={() => setShowIncreaseWarning(false)}
+                variant="outline"
+                className="flex-1"
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={handlePalmLimitIncrease}
+                className="flex-1 bg-[#586BFF]"
+              >
+                Authenticate on Device
+              </Button>
+            </div>
+          </Card>
+        </div>
+      )}
     </div>
   );
 };
