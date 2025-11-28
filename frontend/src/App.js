@@ -103,6 +103,7 @@ function App() {
             <Route path="/security-center" element={<SecurityCenter />} />
             <Route path="/rewards" element={<Rewards />} />
             <Route path="/support" element={<Support />} />
+            <Route path="/device-center" element={<DeviceCenter />} />
             
             {/* Service Routes - Top 8 Priority */}
             <Route path="/service/mobile" element={<MobileRecharge />} />
