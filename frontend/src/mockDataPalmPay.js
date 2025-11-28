@@ -7,9 +7,11 @@ export const mockUser = {
   email: 'arjun@example.com',
   upiId: 'arjun@palmpay',
   palmId: 'palm-0xabc123',
-  palmEnabled: true, // Changed to true to show registered state
-  walletBalance: 12450.75,
-  cbdcBalance: 2500.00,
+  palmEnabled: true,
+  walletBalance: 12450.75, // UPI Wallet
+  eMoneyBalance: 5000.00, // e-Money Wallet
+  cbdcBalance: 2500.00, // CBDC Wallet (sandbox)
+  totalBalance: 19950.75, // Combined total
   kycStatus: 'verified',
   secureElementStatus: 'active',
   profilePic: null,
@@ -18,6 +20,48 @@ export const mockUser = {
   deviceRegistrationDate: '2025-01-20',
   lastDeviceUsed: '2h ago'
 };
+
+export const mockWallets = [
+  {
+    id: 'upi-wallet',
+    type: 'upi',
+    name: 'UPI Wallet',
+    balance: 12450.75,
+    currency: 'INR',
+    icon: '💳',
+    isDefault: true,
+    features: ['Send', 'Receive', 'Pay Bills', 'Recharge', 'Offline'],
+    offlineLimit: 5000
+  },
+  {
+    id: 'emoney-wallet',
+    type: 'e-money',
+    name: 'e-Money Wallet',
+    balance: 5000.00,
+    currency: 'INR',
+    icon: '💰',
+    isDefault: false,
+    features: ['Top-up', 'Pay', 'Withdraw', 'Offline'],
+    issuer: 'PalmPay Trust',
+    offlineLimit: 2000,
+    canWithdraw: true
+  },
+  {
+    id: 'cbdc-wallet',
+    type: 'cbdc',
+    name: 'CBDC Wallet',
+    balance: 2500.00,
+    currency: 'INR',
+    icon: '🏛️',
+    isDefault: false,
+    isSandbox: true,
+    badge: 'SANDBOX',
+    features: ['Top-up (KYC)', 'Pay Online', 'Pay Offline', 'Refund'],
+    issuer: 'Reserve Bank of India',
+    offlineLimit: 1000,
+    requiresKYC: true
+  }
+];
 
 export const mockBanks = [
   { id: '1', name: 'HDFC Bank', accountNumber: '****1234', ifsc: 'HDFC0001234', isPrimary: true, balance: 45000 },
