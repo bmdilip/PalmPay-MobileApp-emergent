@@ -86,6 +86,31 @@ const PalmHistory = () => {
       </div>
 
       <div className="px-5 mt-6">
+        {/* Filter Dropdown */}
+        {showFilters && (
+          <Card className="p-4 mb-4">
+            <h3 className="font-bold text-gray-800 mb-3">Filter Transactions</h3>
+            <div className="grid grid-cols-2 gap-2">
+              {filterOptions.map((option) => (
+                <button
+                  key={option.value}
+                  onClick={() => {
+                    setFilterType(option.value);
+                    setShowFilters(false);
+                  }}
+                  className={`p-2 rounded-lg text-sm transition-all ${
+                    filterType === option.value
+                      ? 'bg-[#586BFF] text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </Card>
+        )}
+
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-4">
           <TabsList className="grid w-full grid-cols-3 bg-gray-100">
