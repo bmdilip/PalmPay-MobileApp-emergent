@@ -23,11 +23,12 @@ const PalmProfile = () => {
   const navigate = useNavigate();
 
   const menuItems = [
-    { icon: CreditCard, label: 'Payment Methods', color: 'text-[#586BFF]', bg: 'bg-[#586BFF]/10' },
-    { icon: Shield, label: 'Security & Privacy', color: 'text-[#9B62FF]', bg: 'bg-[#9B62FF]/10' },
-    { icon: Bell, label: 'Notifications', color: 'text-[#64E8FF]', bg: 'bg-[#64E8FF]/10' },
-    { icon: HelpCircle, label: 'Help & Support', color: 'text-[#586BFF]', bg: 'bg-[#586BFF]/10' },
-    { icon: Settings, label: 'Settings', color: 'text-gray-600', bg: 'bg-gray-100' },
+    { icon: CreditCard, label: 'Auto-Pay / Mandates', color: 'text-[#586BFF]', bg: 'bg-[#586BFF]/10', path: '/autopay' },
+    { icon: Shield, label: 'Limit Settings', color: 'text-[#9B62FF]', bg: 'bg-[#9B62FF]/10', path: '/limit-settings' },
+    { icon: Bell, label: 'Offline Queue', color: 'text-orange-600', bg: 'bg-orange-100', path: '/offline-queue' },
+    { icon: HelpCircle, label: 'Cashback & Rewards', color: 'text-green-600', bg: 'bg-green-100', path: '/cashback' },
+    { icon: Settings, label: 'Language', color: 'text-blue-600', bg: 'bg-blue-100', path: '/language' },
+    { icon: Settings, label: 'Settings', color: 'text-gray-600', bg: 'bg-gray-100', path: '/settings' },
   ];
 
   return (
