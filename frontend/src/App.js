@@ -97,6 +97,17 @@ function App() {
             <Route path="/security-center" element={<SecurityCenter />} />
             <Route path="/rewards" element={<Rewards />} />
             <Route path="/support" element={<Support />} />
+            
+            {/* Service Routes */}
+            <Route path="/service/mobile" element={<MobileRecharge />} />
+            <Route path="/service/electricity" element={<ElectricityBill />} />
+            <Route path="/service/dth" element={<DTHRecharge />} />
+            <Route path="/service/broadband" element={<BroadbandBill />} />
+            <Route path="/service/gas" element={<GasBill />} />
+            <Route path="/service/piped-gas" element={<GasBill />} />
+            <Route path="/service/water" element={<WaterBill />} />
+            <Route path="/service/fastag" element={<FASTagRecharge />} />
+            <Route path="/service/insurance" element={<Insurance />} />
           </Routes>
           <BottomNavigation />
         </div>
