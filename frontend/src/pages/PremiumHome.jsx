@@ -159,11 +159,8 @@ const PremiumHome = () => {
             return (
               <button
                 key={action.id}
-                className="flex flex-col items-center gap-2 group"
+                className="flex flex-col items-center gap-2 group animate-slideUp"
                 onClick={() => navigate(action.path)}
-                style={{
-                  animation: `slideUp 0.5s ease-out ${index * 0.1}s backwards`
-                }}
               >
                 <div 
                   className={`w-16 h-16 bg-gradient-to-br ${action.color} rounded-2xl shadow-lg flex items-center justify-center group-hover:scale-110 group-active:scale-95 transition-all duration-300`}
