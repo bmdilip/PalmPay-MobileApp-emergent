@@ -4,7 +4,7 @@ import { Card } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../components/ui/dialog';
-import { ArrowLeft, Search, User, Phone, AtSign, ChevronRight, Hand } from 'lucide-react';
+import { ArrowLeft, Search, User, Phone, AtSign, ChevronRight } from 'lucide-react';
 import { mockContacts, mockUser } from '../mockDataPalmPay';
 import { useToast } from '../hooks/use-toast';
 
