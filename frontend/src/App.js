@@ -144,16 +144,18 @@ function App() {
             <Route path="/service/bus" element={<ComingSoon />} />
             <Route path="/service/cab" element={<ComingSoon />} />
             
-            {/* Service Routes - Others (Coming Soon) */}
-            <Route path="/service/datacard" element={<ComingSoon />} />
-            <Route path="/service/landline" element={<ComingSoon />} />
-            <Route path="/service/housing" element={<ComingSoon />} />
+            {/* Service Routes - Additional Services */}
+            <Route path="/service/datacard" element={<DataCard />} />
+            <Route path="/service/landline" element={<LandlineBill />} />
+            <Route path="/service/housing" element={<HousingSociety />} />
+            <Route path="/service/cable" element={<CableTVBill />} />
+            
+            {/* Service Routes - Coming Soon */}
             <Route path="/service/mutual" element={<ComingSoon />} />
             <Route path="/service/gold" element={<ComingSoon />} />
             <Route path="/service/loan" element={<ComingSoon />} />
             <Route path="/service/education" element={<ComingSoon />} />
             <Route path="/service/health" element={<ComingSoon />} />
-            <Route path="/service/cable" element={<ComingSoon />} />
           </Routes>
           <BottomNavigation />
         </div>
