@@ -35,6 +35,9 @@ import AutoPay from "./pages/AutoPay";
 import CashbackRewards from "./pages/CashbackRewards";
 import AllServices from "./pages/AllServices";
 import WalletManagement from "./pages/WalletManagement";
+import AdminDashboard from "./admin/pages/AdminDashboard";
+import UserManagement from "./admin/pages/UserManagement";
+import DeviceManagement from "./admin/pages/DeviceManagement";
 import { Toaster } from "./components/ui/toaster";
 import { Home as HomeIcon, Grid3x3, ArrowLeftRight, Clock, User } from "lucide-react";
 
