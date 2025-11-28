@@ -136,6 +136,7 @@ function App() {
             <Route path="/offline-queue" element={<OfflineQueue />} />
             <Route path="/autopay" element={<AutoPay />} />
             <Route path="/cashback" element={<CashbackRewards />} />
+            <Route path="/all-services" element={<AllServices />} />
             
             {/* Service Routes - Top 8 Priority */}
             <Route path="/service/mobile" element={<MobileRecharge />} />
