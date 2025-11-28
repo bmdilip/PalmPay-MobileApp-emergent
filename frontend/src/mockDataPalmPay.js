@@ -166,10 +166,26 @@ export const mockTransactions = [
     status: 'success',
     category: 'pos',
     method: 'Palm Biometric (Phone-less)',
+    walletType: 'upi',
     location: 'BigBazaar, Mumbai',
     receiptId: 'rcpt-003',
     tripleHash: '0x123abc456def789...',
     deviceSignature: '0xfedcba9876543210...'
+  },
+  {
+    id: 'txn3a',
+    type: 'topup',
+    amount: 1500,
+    recipient: 'CBDC Top-up',
+    bankName: 'SBI',
+    date: '2025-01-27',
+    time: '14:20',
+    status: 'success',
+    category: 'topup',
+    method: 'CBDC Top-up (KYC)',
+    walletType: 'cbdc',
+    receiptId: 'rcpt-003a',
+    kycVerified: true
   },
   {
     id: 'txn4',
@@ -182,6 +198,7 @@ export const mockTransactions = [
     status: 'success',
     category: 'billpay',
     method: 'UPI',
+    walletType: 'upi',
     receiptId: 'rcpt-004'
   },
   {
@@ -195,6 +212,7 @@ export const mockTransactions = [
     status: 'success',
     category: 'upi',
     method: 'Palm Biometric',
+    walletType: 'upi',
     receiptId: 'rcpt-005',
     tripleHash: '0xaaa111bbb222ccc...',
     deviceSignature: '0x333ddd444eee555...'
