@@ -258,11 +258,9 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Profile page cleanup"
-    - "Service infrastructure"
-    - "Mobile Recharge flow"
-    - "Backend mock APIs"
-  stuck_tasks: []
+    - "Electricity Bill dropdown issue"
+  stuck_tasks: 
+    - "Top 8 Priority Services - Electricity Bill"
   test_all: false
   test_priority: "high_first"
 
