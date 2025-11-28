@@ -25,6 +25,8 @@ import DigitalWallet from "./pages/DigitalWallet";
 import CollectRequest from "./pages/CollectRequest";
 import CirclePay from "./pages/CirclePay";
 import ReferralProgram from "./pages/ReferralProgram";
+import DisputeCenter from "./pages/DisputeCenter";
+import SendMoney from "./pages/SendMoney";
 import { Toaster } from "./components/ui/toaster";
 import { Home as HomeIcon, Grid3x3, ArrowLeftRight, Clock, User } from "lucide-react";
 
