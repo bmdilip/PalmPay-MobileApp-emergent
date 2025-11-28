@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Hand, Shield, Zap, CheckCircle2 } from 'lucide-react';
+import Logo from '../components/Logo';
 
 const Onboarding = () => {
   const navigate = useNavigate();
