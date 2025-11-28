@@ -199,6 +199,7 @@ function App() {
             <Route path="/services/echallan" element={<ComingSoon />} />
             <Route path="/services/cylinder" element={<ComingSoon />} />
             <Route path="/digital-wallet" element={<DigitalWallet />} />
+            <Route path="/wallet" element={<WalletManagement />} />
             <Route path="/quickwallet" element={<QuickWallet />} />
             <Route path="/scan" element={<Palm2QR />} />
             <Route path="/cashback-rewards" element={<CashbackRewards />} />
