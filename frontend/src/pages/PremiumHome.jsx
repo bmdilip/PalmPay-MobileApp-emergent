@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { 
@@ -17,7 +17,15 @@ import {
   Eye,
   EyeOff,
   ChevronRight,
-  Sparkles
+  Sparkles,
+  Wifi,
+  Droplet,
+  Truck,
+  Building2,
+  Plane,
+  Hotel,
+  Wallet,
+  Globe
 } from 'lucide-react';
 import { mockUser, mockTransactions } from '../mockDataPalmPay';
 import { useNavigate } from 'react-router-dom';
@@ -25,7 +33,16 @@ import Logo from '../components/Logo';
 
 const PremiumHome = () => {
   const [showBalance, setShowBalance] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const quickActions = [
     { id: 'send', label: 'Send Money', icon: ArrowUpRight, color: 'from-blue-500 to-blue-600', bg: 'bg-blue-50' },
