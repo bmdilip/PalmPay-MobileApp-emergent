@@ -74,6 +74,9 @@ function App() {
             <Route path="/transfer" element={<PalmTransfer />} />
             <Route path="/history" element={<PalmHistory />} />
             <Route path="/profile" element={<PalmProfile />} />
+            <Route path="/device-locator" element={<DeviceLocator />} />
+            <Route path="/device-enrollment" element={<DeviceEnrollment />} />
+            <Route path="/receipt/:receiptId" element={<ReceiptViewer />} />
           </Routes>
           <BottomNavigation />
         </div>
