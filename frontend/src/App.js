@@ -10,6 +10,9 @@ import POSMode from "./pages/POSMode";
 import PalmTransfer from "./pages/PalmTransfer";
 import PalmHistory from "./pages/PalmHistory";
 import PalmProfile from "./pages/PalmProfile";
+import DeviceLocator from "./pages/DeviceLocator";
+import DeviceEnrollment from "./pages/DeviceEnrollment";
+import ReceiptViewer from "./pages/ReceiptViewer";
 import { Toaster } from "./components/ui/toaster";
 import { Home as HomeIcon, Grid3x3, ArrowLeftRight, Clock, User } from "lucide-react";
 
