@@ -172,6 +172,7 @@ function App() {
         <Toaster />
       </BrowserRouter>
     </div>
+    </LanguageProvider>
   );
 }
 
