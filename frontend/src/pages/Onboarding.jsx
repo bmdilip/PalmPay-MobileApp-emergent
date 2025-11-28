@@ -19,20 +19,20 @@ const Onboarding = () => {
   const slides = [
     {
       icon: Zap,
-      title: 'Pay at PalmPe Devices',
-      description: 'Visit any PalmPe device for secure palm authentication. No phone capture, hardware-level security only.',
+      title: 'What is PalmPay?',
+      description: 'Phone-less payments powered by PalmPe devices. Pay at stores without touching your phone. Your palm is your wallet.',
       color: '#586BFF'
     },
     {
       icon: Shield,
-      title: 'Military-Grade Security',
-      description: 'Your biometric data never leaves the device. SE/TEE encryption with decentralized consent logging.',
+      title: 'How Devices Work',
+      description: 'PalmPe devices use secure IR capture and on-device encryption. No raw biometrics stored anywhere—only cryptographic consent hashes.',
       color: '#9B62FF'
     },
     {
       icon: CheckCircle2,
-      title: 'Full UPI Wallet',
-      description: 'Send money, pay bills, recharge, and more. All features work without palm registration.',
+      title: 'Consent + Privacy',
+      description: 'Every payment creates a verifiable consent token. You control your data. Full UPI wallet works with or without device pairing.',
       color: '#64E8FF'
     }
   ];
