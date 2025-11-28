@@ -45,6 +45,12 @@ import FlightBooking from "./pages/services/FlightBooking";
 import HotelBooking from "./pages/services/HotelBooking";
 import ComingSoon from "./pages/services/ComingSoon";
 
+// Service pages - Additional
+import DataCard from "./pages/services/DataCard";
+import LandlineBill from "./pages/services/LandlineBill";
+import HousingSociety from "./pages/services/HousingSociety";
+import CableTVBill from "./pages/services/CableTVBill";
+
 const BottomNavigation = () => {
   const navigate = useNavigate();
   const location = useLocation();
