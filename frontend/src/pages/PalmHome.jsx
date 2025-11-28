@@ -17,7 +17,6 @@ import {
 import { mockUser, mockTransactions } from '../mockDataPalmPay';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../components/Logo';
-import { Logo } from '../components/ui/logo';
 
 const PalmHome = () => {
   const [showBalance, setShowBalance] = useState(true);
