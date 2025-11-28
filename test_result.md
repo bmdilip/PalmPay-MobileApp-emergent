@@ -132,15 +132,18 @@ backend:
 frontend:
   - task: "Profile page cleanup (remove SE/TEE/Liveness)"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/frontend/src/pages/PalmProfile.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Removed old SE/TEE/Liveness fields and replaced with PalmPe Device Authentication section"
+      - working: true
+        agent: "testing"
+        comment: "✅ PROFILE PAGE TESTING COMPLETE - Old Biometric Security/SE/TEE/Liveness fields successfully removed. New PalmPe Device Authentication section present with all required fields: Device Status (Active), Last Used Device (PalmPe Terminal - MG Road), Linked Merchant (No merchant linked), and View PalmPe Usage History button. All buttons clickable and functional."
 
   - task: "Service infrastructure components"
     implemented: true
