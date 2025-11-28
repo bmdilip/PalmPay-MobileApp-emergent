@@ -22,6 +22,16 @@ import Support from "./pages/Support";
 import { Toaster } from "./components/ui/toaster";
 import { Home as HomeIcon, Grid3x3, ArrowLeftRight, Clock, User } from "lucide-react";
 
+// Service pages
+import MobileRecharge from "./pages/services/MobileRecharge";
+import ElectricityBill from "./pages/services/ElectricityBill";
+import DTHRecharge from "./pages/services/DTHRecharge";
+import BroadbandBill from "./pages/services/BroadbandBill";
+import GasBill from "./pages/services/GasBill";
+import WaterBill from "./pages/services/WaterBill";
+import FASTagRecharge from "./pages/services/FASTagRecharge";
+import Insurance from "./pages/services/Insurance";
+
 const BottomNavigation = () => {
   const navigate = useNavigate();
   const location = useLocation();
