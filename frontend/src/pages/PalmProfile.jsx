@@ -52,11 +52,20 @@ const PalmProfile = () => {
               </div>
               <div className="flex-1">
                 <h2 className="text-xl font-semibold">{mockUser.name}</h2>
-                <div className="flex items-center gap-2 mt-2">
-                  <div className="bg-[#64E8FF]/20 px-3 py-1 rounded-full border border-[#64E8FF]/30">
-                    <span className="text-xs text-[#64E8FF] font-medium">Palm Verified</span>
-                  </div>
-                </div>
+                
+                {/* Palm Status Badge */}
+                <button 
+                  onClick={() => navigate('/device-center')}
+                  className="mt-2 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 transition-all border border-white/20"
+                >
+                  <div className={`w-2 h-2 rounded-full ${mockUser.palmEnabled ? 'bg-green-400' : 'bg-red-400'} animate-pulse`}></div>
+                  <span className="text-xs font-medium">
+                    {mockUser.palmEnabled 
+                      ? `Palm Registered` 
+                      : 'Palm Not Registered'}
+                  </span>
+                  <ChevronRight className="w-3 h-3" />
+                </button>
               </div>
             </div>
             <Button className="w-full bg-white text-[#0A0F1F] hover:bg-gray-100 font-semibold">
