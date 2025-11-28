@@ -21,8 +21,8 @@ const BottomNavigation = () => {
   const location = useLocation();
 
   // Hide navigation on certain pages
-  const hideNavPages = ['/', '/onboarding', '/palm-register', '/palm2qr', '/pos-mode'];
-  if (hideNavPages.includes(location.pathname)) {
+  const hideNavPages = ['/', '/onboarding', '/palm-register', '/palm2qr', '/pos-mode', '/device-locator', '/device-enrollment'];
+  if (hideNavPages.includes(location.pathname) || location.pathname.startsWith('/receipt/')) {
     return null;
   }
 
