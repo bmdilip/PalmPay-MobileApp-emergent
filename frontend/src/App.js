@@ -101,8 +101,9 @@ const BottomNavigation = () => {
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
+    <LanguageProvider>
+      <div className="App">
+        <BrowserRouter>
         <div className="max-w-md mx-auto bg-white min-h-screen relative">
           <Routes>
             <Route path="/" element={<Onboarding />} />
