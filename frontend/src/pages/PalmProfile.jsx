@@ -14,7 +14,6 @@ import {
   Settings,
   ChevronRight,
   LogOut,
-  Hand,
   CheckCircle2,
   Building2
 } from 'lucide-react';
