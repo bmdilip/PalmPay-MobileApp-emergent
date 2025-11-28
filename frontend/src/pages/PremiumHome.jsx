@@ -292,9 +292,6 @@ const PremiumHome = () => {
             <div 
               key={transaction.id} 
               className="p-4 flex items-center justify-between hover:bg-gradient-to-r hover:from-gray-50 hover:to-transparent transition-all duration-300 cursor-pointer group"
-              style={{
-                animation: `fadeIn 0.5s ease-out ${index * 0.1}s backwards`
-              }}
             >
               <div className="flex items-center gap-3">
                 <div className={`w-11 h-11 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 ${
