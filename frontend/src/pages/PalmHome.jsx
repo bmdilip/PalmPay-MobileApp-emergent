@@ -45,8 +45,8 @@ const PalmHome = () => {
         
         <div className="relative z-10">
           <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <Logo size="sm" />
+            <div>
+              <Logo size="md" withGlow={true} className="mb-2" />
               <p className="text-[#64E8FF] text-xs tracking-widest">YOUR PALM. YOUR WALLET.</p>
             </div>
             <button className="relative p-2 hover:bg-white/10 rounded-full transition-colors">
