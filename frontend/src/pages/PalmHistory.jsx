@@ -8,10 +8,37 @@ import { mockTransactions } from '../mockDataPalmPay';
 const PalmHistory = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('all');
+  const [filterType, setFilterType] = useState('all'); // New comprehensive filter
+  const [showFilters, setShowFilters] = useState(false);
 
-  const filteredTransactions = activeTab === 'all' 
-    ? mockTransactions 
-    : mockTransactions.filter(t => t.type === activeTab);
+  const filterOptions = [
+    { value: 'all', label: 'All Transactions' },
+    { value: 'upi', label: 'UPI' },
+    { value: 'device', label: 'Device Auth' },
+    { value: 'wallet', label: 'Wallet' },
+    { value: 'billpay', label: 'Bill Payments' },
+    { value: 'recharge', label: 'Recharge' },
+    { value: 'rewards', label: 'Rewards' },
+    { value: 'mandates', label: 'Auto-Pay' },
+    { value: 'circlepay', label: 'CirclePay' },
+    { value: 'failed', label: 'Failed' },
+    { value: 'pending', label: 'Pending' },
+    { value: 'offline', label: 'Offline Queue' },
+  ];
+
+  const filteredTransactions = mockTransactions.filter(t => {
+    if (activeTab !== 'all' && t.type !== activeTab) return false;
+    if (filterType === 'all') return true;
+    if (filterType === 'device' && t.method.includes('Palm')) return true;
+    if (filterType === 'upi' && t.method.includes('UPI')) return true;
+    if (filterType === 'wallet' && t.method.includes('Wallet')) return true;
+    if (filterType === 'billpay' && t.category === 'billpay') return true;
+    if (filterType === 'recharge' && t.category === 'recharge') return true;
+    if (filterType === 'failed' && t.status === 'failed') return true;
+    if (filterType === 'pending' && t.status === 'pending') return true;
+    if (filterType === 'offline' && t.status === 'offline') return true;
+    return false;
+  });
 
   const getCategoryBadge = (category) => {
     const colors = {
