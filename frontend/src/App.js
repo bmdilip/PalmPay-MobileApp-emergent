@@ -170,8 +170,8 @@ function App() {
           <BottomNavigation />
         </div>
         <Toaster />
+        </div>
       </BrowserRouter>
-    </div>
     </LanguageProvider>
   );
 }
