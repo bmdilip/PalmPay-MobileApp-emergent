@@ -32,6 +32,7 @@ import LanguageSelector from "./pages/LanguageSelector";
 import OfflineQueue from "./pages/OfflineQueue";
 import AutoPay from "./pages/AutoPay";
 import CashbackRewards from "./pages/CashbackRewards";
+import AllServices from "./pages/AllServices";
 import { Toaster } from "./components/ui/toaster";
 import { Home as HomeIcon, Grid3x3, ArrowLeftRight, Clock, User } from "lucide-react";
 
