@@ -106,11 +106,78 @@ const LimitSettings = () => {
           </div>
         </Card>
 
+        {/* Palm Payment Limits - NEW */}
+        <div>
+          <h3 className="text-lg font-bold text-gray-800 mb-2 flex items-center gap-2">
+            <Smartphone className="w-5 h-5 text-[#9B62FF]" />
+            Palm Payment Limits
+          </h3>
+          <p className="text-xs text-gray-600 mb-4 flex items-start gap-2">
+            <Info className="w-4 h-4 text-gray-400 flex-shrink-0 mt-0.5" />
+            <span>Limits for payments made using PalmPe devices (phone-less payments). Set lower limits to protect against device misuse.</span>
+          </p>
+
+          <Card className="divide-y border-purple-200 bg-purple-50/30">
+            <div className="p-5 space-y-3">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="palmPerTransaction">Per Device Payment Limit</Label>
+                {mockUser.palmEnabled ? (
+                  <span className="text-xs text-green-600 font-medium flex items-center gap-1">
+                    <CheckCircle2 className="w-3 h-3" />
+                    Palm Enabled
+                  </span>
+                ) : (
+                  <span className="text-xs text-gray-500">Device not paired</span>
+                )}
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-gray-500">₹</span>
+                <Input
+                  id="palmPerTransaction"
+                  type="number"
+                  value={limits.palmPerTransaction}
+                  onChange={(e) => setLimits({ ...limits, palmPerTransaction: e.target.value })}
+                  max="5000"
+                  className="flex-1"
+                  disabled={!mockUser.palmEnabled}
+                />
+              </div>
+              <p className="text-xs text-gray-500">
+                Recommended: ₹200 | Max: ₹5,000 per device payment
+              </p>
+              <div className="mt-3 p-3 bg-white rounded-lg border border-purple-200">
+                <p className="text-xs text-gray-700">
+                  <strong>What is this?</strong> This limits payments made without your phone using only the PalmPe device. Lower limits provide better protection if a device is lost or used without your consent.
+                </p>
+              </div>
+            </div>
+
+            <div className="p-5 space-y-3">
+              <Label htmlFor="palmDaily">Daily Palm Payment Limit</Label>
+              <div className="flex items-center gap-3">
+                <span className="text-gray-500">₹</span>
+                <Input
+                  id="palmDaily"
+                  type="number"
+                  value={limits.palmDaily}
+                  onChange={(e) => setLimits({ ...limits, palmDaily: e.target.value })}
+                  max="20000"
+                  className="flex-1"
+                  disabled={!mockUser.palmEnabled}
+                />
+              </div>
+              <p className="text-xs text-gray-500">
+                Cumulative daily cap for all device payments | Max: ₹20,000
+              </p>
+            </div>
+          </Card>
+        </div>
+
         {/* Transaction Limits */}
         <div>
           <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
             <Shield className="w-5 h-5 text-[#586BFF]" />
-            Transaction Limits
+            General Transaction Limits
           </h3>
 
           <Card className="divide-y">
@@ -127,7 +194,7 @@ const LimitSettings = () => {
                   className="flex-1"
                 />
               </div>
-              <p className="text-xs text-gray-500">Max: ₹50,000 per transaction</p>
+              <p className="text-xs text-gray-500">Max: ₹50,000 per transaction (UPI/wallet)</p>
             </div>
 
             <div className="p-5 space-y-3">
