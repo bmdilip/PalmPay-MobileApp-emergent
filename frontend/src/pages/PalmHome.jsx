@@ -23,10 +23,10 @@ const PalmHome = () => {
   const navigate = useNavigate();
 
   const quickActions = [
+    { id: 'send', label: 'Send Money', icon: 'ArrowUpRight', color: '#586BFF', route: '/transfer' },
+    { id: 'request', label: 'Request', icon: 'ArrowDownLeft', color: '#64E8FF', route: '/request' },
+    { id: 'quickwallet', label: 'Quick Wallet', icon: 'Zap', color: '#9B62FF', route: '/quick-wallet' },
     { id: 'palm2qr', label: 'Palm2QR', icon: 'QrCode', color: '#586BFF', route: '/palm2qr' },
-    { id: 'pos', label: 'Pay at POS', icon: 'Smartphone', color: '#9B62FF', route: '/pos-mode' },
-    { id: 'send', label: 'Send Money', icon: 'ArrowUpRight', color: '#64E8FF', route: '/transfer' },
-    { id: 'request', label: 'Request', icon: 'ArrowDownLeft', color: '#586BFF', route: '/request' },
   ];
 
   const getIcon = (iconName) => {
