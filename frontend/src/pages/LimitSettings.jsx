@@ -32,10 +32,23 @@ const LimitSettings = () => {
   const [showIncreaseWarning, setShowIncreaseWarning] = useState(false);
 
   const handleSave = () => {
+    // Check if palm limits are being increased
+    const currentPalmLimit = 200; // Mock current limit
+    if (parseInt(limits.palmPerTransaction) > currentPalmLimit) {
+      setShowIncreaseWarning(true);
+      return;
+    }
+    
     // Mock API call
     console.log('Saving limits:', limits);
     setSaved(true);
     setTimeout(() => setSaved(false), 3000);
+  };
+
+  const handlePalmLimitIncrease = () => {
+    alert('To increase Palm Payment Limit, please authenticate on a PalmPe device for security.\n\nRedirecting to Device Center...');
+    setShowIncreaseWarning(false);
+    navigate('/device-center');
   };
 
   const handleEmergencyLock = (enabled) => {
