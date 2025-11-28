@@ -22,7 +22,7 @@ import Support from "./pages/Support";
 import { Toaster } from "./components/ui/toaster";
 import { Home as HomeIcon, Grid3x3, ArrowLeftRight, Clock, User } from "lucide-react";
 
-// Service pages
+// Service pages - Top 8 Priority
 import MobileRecharge from "./pages/services/MobileRecharge";
 import ElectricityBill from "./pages/services/ElectricityBill";
 import DTHRecharge from "./pages/services/DTHRecharge";
@@ -31,6 +31,11 @@ import GasBill from "./pages/services/GasBill";
 import WaterBill from "./pages/services/WaterBill";
 import FASTagRecharge from "./pages/services/FASTagRecharge";
 import Insurance from "./pages/services/Insurance";
+
+// Service pages - Travel
+import FlightBooking from "./pages/services/FlightBooking";
+import HotelBooking from "./pages/services/HotelBooking";
+import ComingSoon from "./pages/services/ComingSoon";
 
 const BottomNavigation = () => {
   const navigate = useNavigate();
