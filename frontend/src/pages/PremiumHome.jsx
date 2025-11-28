@@ -220,9 +220,6 @@ const PremiumHome = () => {
                 key={service.id}
                 className="flex flex-col items-center gap-2 group"
                 onClick={() => navigate(service.path)}
-                style={{
-                  animation: `fadeIn 0.5s ease-out ${index * 0.1}s backwards`
-                }}
               >
                 <div 
                   className="w-16 h-16 rounded-2xl shadow-md flex items-center justify-center group-hover:scale-110 group-active:scale-95 transition-all duration-300"
