@@ -7,15 +7,16 @@ export const mockUser = {
   email: 'arjun@example.com',
   upiId: 'arjun@palmpay',
   palmId: 'palm-0xabc123',
-  palmEnabled: false, // Feature toggle - false until registration at PalmPe device
+  palmEnabled: true, // Changed to true to show registered state
   walletBalance: 12450.75,
   cbdcBalance: 2500.00,
   kycStatus: 'verified',
   secureElementStatus: 'active',
   profilePic: null,
   registeredDate: '2025-01-15',
-  linkedDeviceId: null,
-  deviceRegistrationDate: null
+  linkedDeviceId: 'device-001',
+  deviceRegistrationDate: '2025-01-20',
+  lastDeviceUsed: '2h ago'
 };
 
 export const mockBanks = [
