@@ -252,9 +252,6 @@ const PremiumHome = () => {
                 key={service.id}
                 className="p-4 cursor-pointer hover:shadow-xl transition-all duration-300 border-0 shadow-md transform hover:scale-[1.03] relative overflow-hidden group"
                 onClick={() => navigate(service.path)}
-                style={{
-                  animation: `slideUp 0.5s ease-out ${index * 0.1}s backwards`
-                }}
               >
                 {service.badge && (
                   <span className="absolute top-2 right-2 px-2 py-0.5 bg-purple-500 text-white text-xs font-bold rounded-full shadow-lg">
