@@ -13,6 +13,8 @@ import PalmProfile from "./pages/PalmProfile";
 import DeviceLocator from "./pages/DeviceLocator";
 import DeviceEnrollment from "./pages/DeviceEnrollment";
 import ReceiptViewer from "./pages/ReceiptViewer";
+import QuickWallet from "./pages/QuickWallet";
+import SecurityCenter from "./pages/SecurityCenter";
 import { Toaster } from "./components/ui/toaster";
 import { Home as HomeIcon, Grid3x3, ArrowLeftRight, Clock, User } from "lucide-react";
 
