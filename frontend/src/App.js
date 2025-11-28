@@ -208,6 +208,11 @@ function App() {
             <Route path="/scan" element={<Palm2QR />} />
             <Route path="/cashback-rewards" element={<CashbackRewards />} />
             <Route path="/add-money" element={<QuickWallet />} />
+            
+            {/* Admin Routes */}
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/users" element={<UserManagement />} />
+            <Route path="/admin/devices" element={<DeviceManagement />} />
             </Routes>
             <BottomNavigation />
           </div>
