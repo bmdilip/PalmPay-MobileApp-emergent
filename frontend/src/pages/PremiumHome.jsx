@@ -209,7 +209,7 @@ const PremiumHome = () => {
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-bold text-gray-800">Recharge & Bills</h3>
           <button 
-            onClick={() => navigate('/services')}
+            onClick={() => navigate('/all-services')}
             className="text-sm font-semibold text-[#586BFF] flex items-center gap-1 hover:gap-2 transition-all"
           >
             View All <ChevronRight className="w-4 h-4" />
