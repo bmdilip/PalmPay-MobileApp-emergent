@@ -45,23 +45,29 @@ const PremiumHome = () => {
   }, []);
 
   const quickActions = [
-    { id: 'send', label: 'Send Money', icon: ArrowUpRight, color: 'from-blue-500 to-blue-600', bg: 'bg-blue-50' },
-    { id: 'request', label: 'Request', icon: ArrowDownLeft, color: 'from-green-500 to-green-600', bg: 'bg-green-50' },
-    { id: 'scan', label: 'Scan QR', icon: QrCode, color: 'from-purple-500 to-purple-600', bg: 'bg-purple-50' },
-    { id: 'quickwallet', label: 'Quick Wallet', icon: Zap, color: 'from-orange-500 to-orange-600', bg: 'bg-orange-50' },
+    { id: 'send', label: 'Send Money', icon: ArrowUpRight, color: 'from-blue-500 to-blue-600', path: '/send' },
+    { id: 'request', label: 'Request', icon: ArrowDownLeft, color: 'from-green-500 to-green-600', path: '/collect' },
+    { id: 'scan', label: 'Scan QR', icon: QrCode, color: 'from-purple-500 to-purple-600', path: '/scan' },
+    { id: 'quickwallet', label: 'Quick Wallet', icon: Zap, color: 'from-orange-500 to-orange-600', path: '/digital-wallet' },
   ];
 
-  const services = [
-    { id: 'recharge', label: 'Mobile Recharge', icon: Smartphone, color: '#586BFF' },
-    { id: 'bills', label: 'Pay Bills', icon: CreditCard, color: '#9B62FF' },
-    { id: 'dth', label: 'DTH', icon: Repeat, color: '#64E8FF' },
-    { id: 'insurance', label: 'Insurance', icon: Shield, color: '#586BFF' },
+  const rechargeServices = [
+    { id: 'mobile', label: 'Mobile Recharge', icon: Smartphone, color: '#586BFF', path: '/services/mobile-recharge' },
+    { id: 'electricity', label: 'Electricity Bill', icon: Zap, color: '#FF6B35', path: '/services/electricity' },
+    { id: 'dth', label: 'DTH', icon: Repeat, color: '#9B62FF', path: '/services/dth' },
+    { id: 'broadband', label: 'Broadband', icon: Wifi, color: '#64E8FF', path: '/services/broadband' },
+    { id: 'water', label: 'Water Bill', icon: Droplet, color: '#4ECDC4', path: '/services/water' },
+    { id: 'gas', label: 'Gas Bill', icon: Zap, color: '#F7931E', path: '/services/gas' },
+    { id: 'fastag', label: 'FASTag', icon: Truck, color: '#9C27B0', path: '/services/fastag' },
+    { id: 'insurance', label: 'Insurance', icon: Shield, color: '#00BCD4', path: '/services/insurance' },
   ];
 
   const financialServices = [
-    { id: 'mutual', label: 'Mutual Funds', icon: TrendingUp, color: '#586BFF' },
-    { id: 'gold', label: 'Digital Gold', icon: Sparkles, color: '#D4AF37' },
-    { id: 'loan', label: 'Loans', icon: CreditCard, color: '#9B62FF' },
+    { id: 'mutual', label: 'Mutual Funds', desc: 'SIPs & Investments', icon: TrendingUp, color: '#586BFF', path: '/services/mutual-funds' },
+    { id: 'gold', label: 'Digital Gold', desc: 'Save ₹10 daily', icon: Sparkles, color: '#D4AF37', path: '/services/digital-gold' },
+    { id: 'loans', label: 'Loans', desc: 'Personal, Gold and...', icon: Building2, color: '#9B62FF', path: '/services/loans' },
+    { id: 'insurance-fin', label: 'Insurance', desc: 'Vehicle & Health', icon: Shield, color: '#00BCD4', path: '/services/insurance', badge: 'Offer' },
+    { id: 'travel', label: 'Travel & Transit', desc: 'Flight, Train, Bus, Hotel, Metro', icon: Plane, color: '#FF6B35', path: '/services/flights', badge: 'Sale' },
   ];
 
   return (
