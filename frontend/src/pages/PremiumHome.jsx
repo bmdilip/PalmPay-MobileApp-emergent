@@ -122,20 +122,84 @@ const PremiumHome = () => {
             </button>
           </div>
 
-          {/* Balance Card - Premium Design */}
+          {/* Balance Card - Premium Design with Wallet Switcher */}
           <Card 
-            className="bg-white/10 backdrop-blur-xl border-white/20 p-5 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02]"
+            className="bg-white/10 backdrop-blur-xl border-white/20 p-5 shadow-xl hover:shadow-2xl transition-all duration-300"
             style={{
               backdropFilter: 'blur(20px)',
               background: 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%)'
             }}
           >
+            {/* Wallet Selector */}
+            <div className="mb-4 relative">
+              <button
+                onClick={() => setShowWalletSelector(!showWalletSelector)}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/20 hover:bg-white/30 transition-all text-xs font-medium"
+              >
+                <span>{selectedWallet.icon}</span>
+                <span>{selectedWallet.name}</span>
+                {selectedWallet.isSandbox && (
+                  <span className="px-1.5 py-0.5 bg-amber-400/90 text-amber-900 rounded text-[10px] font-bold">
+                    {selectedWallet.badge}
+                  </span>
+                )}
+                <ChevronDown className={`w-3 h-3 transition-transform ${showWalletSelector ? 'rotate-180' : ''}`} />
+              </button>
+
+              {/* Wallet Dropdown */}
+              {showWalletSelector && (
+                <div className="absolute top-full mt-2 left-0 right-0 bg-white rounded-xl shadow-2xl border border-gray-200 py-2 z-50 animate-slideDown">
+                  {wallets.map((wallet) => (
+                    <button
+                      key={wallet.id}
+                      onClick={() => {
+                        switchWallet(wallet.id);
+                        setShowWalletSelector(false);
+                      }}
+                      className={`w-full px-4 py-3 flex items-center gap-3 hover:bg-gray-50 transition-colors ${
+                        selectedWallet.id === wallet.id ? 'bg-blue-50' : ''
+                      }`}
+                    >
+                      <span className="text-2xl">{wallet.icon}</span>
+                      <div className="flex-1 text-left">
+                        <div className="flex items-center gap-2">
+                          <p className="text-sm font-semibold text-gray-800">{wallet.name}</p>
+                          {wallet.isSandbox && (
+                            <span className="px-1.5 py-0.5 bg-amber-100 text-amber-700 rounded text-[10px] font-bold">
+                              {wallet.badge}
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-xs text-gray-600">₹{wallet.balance.toLocaleString()}</p>
+                      </div>
+                      {selectedWallet.id === wallet.id && (
+                        <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                      )}
+                    </button>
+                  ))}
+                  <div className="border-t mt-2 pt-2 px-4">
+                    <button
+                      onClick={() => {
+                        navigate('/wallet');
+                        setShowWalletSelector(false);
+                      }}
+                      className="text-xs text-[#586BFF] font-semibold hover:underline"
+                    >
+                      View All Wallets →
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-white/70 text-xs mb-1 font-medium">Total Balance</p>
-                <div className="flex items-center gap-3">
+                <p className="text-white/70 text-xs mb-1 font-medium">
+                  {selectedWallet.name} Balance
+                </p>
+                <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-3xl font-bold tracking-tight">
-                    {showBalance ? `₹${mockUser.walletBalance.toLocaleString()}` : '₹****'}
+                    {showBalance ? `₹${selectedWallet.balance.toLocaleString()}` : '₹****'}
                   </h3>
                   <button 
                     onClick={() => setShowBalance(!showBalance)}
@@ -144,6 +208,9 @@ const PremiumHome = () => {
                     {showBalance ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
                   </button>
                 </div>
+                <p className="text-white/60 text-xs">
+                  Total: {showBalance ? `₹${getTotalBalance().toLocaleString()}` : '₹****'}
+                </p>
               </div>
               <Button 
                 onClick={() => navigate('/add-money')}
