@@ -53,9 +53,8 @@ const PalmProfile = () => {
               </div>
               <div className="flex-1">
                 <h2 className="text-xl font-semibold">{mockUser.name}</h2>
-                <div className="flex items-center gap-2 mt-1">
-                  <div className="flex items-center gap-1 bg-[#64E8FF]/20 px-2 py-1 rounded-full">
-                    <Hand className="w-3 h-3 text-[#64E8FF]" />
+                <div className="flex items-center gap-2 mt-2">
+                  <div className="bg-[#64E8FF]/20 px-3 py-1 rounded-full border border-[#64E8FF]/30">
                     <span className="text-xs text-[#64E8FF] font-medium">Palm Verified</span>
                   </div>
                 </div>
