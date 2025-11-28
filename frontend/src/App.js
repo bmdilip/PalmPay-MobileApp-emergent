@@ -19,6 +19,7 @@ import QuickWallet from "./pages/QuickWallet";
 import SecurityCenter from "./pages/SecurityCenter";
 import Rewards from "./pages/Rewards";
 import Support from "./pages/Support";
+import DeviceCenter from "./pages/DeviceCenter";
 import { Toaster } from "./components/ui/toaster";
 import { Home as HomeIcon, Grid3x3, ArrowLeftRight, Clock, User } from "lucide-react";
 
