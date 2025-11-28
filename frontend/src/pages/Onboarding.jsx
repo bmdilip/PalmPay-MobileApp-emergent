@@ -1,0 +1,131 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '../components/ui/button';
+import { Hand, Shield, Zap, CheckCircle2 } from 'lucide-react';
+
+const Onboarding = () => {
+  const navigate = useNavigate();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [animatePulse, setAnimatePulse] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAnimatePulse(prev => !prev);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const slides = [
+    {
+      icon: Hand,
+      title: 'Pay with Your Palm',
+      description: 'No phone required. Just show your palm at any PalmPe device and pay instantly.',
+      color: '#586BFF'
+    },
+    {
+      icon: Shield,
+      title: 'Military-Grade Security',
+      description: 'Your biometric data stays with you. SE/TEE encryption with decentralized consent logging.',
+      color: '#9B62FF'
+    },
+    {
+      icon: Zap,
+      title: 'Instant & Seamless',
+      description: 'Triple-hash authentication. Liveness detection. UPI-compliant. India\'s first palm-vein payment wallet.',
+      color: '#64E8FF'
+    }
+  ];
+
+  const currentSlideData = slides[currentSlide];
+  const IconComponent = currentSlideData.icon;
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-[#0A0F1F] via-[#1a1f3a] to-[#0A0F1F] text-white flex flex-col">
+      {/* Animated Background */}
+      <div className="absolute inset-0 overflow-hidden opacity-20">
+        <div className="absolute top-20 left-10 w-64 h-64 bg-[#586BFF] rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#9B62FF] rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12">
+        {/* Logo */}
+        <div className="mb-12">
+          <h1 className="text-4xl font-bold mb-2 tracking-tight">PalmPay</h1>
+          <p className="text-[#64E8FF] text-sm tracking-widest">YOUR PALM. YOUR WALLET.</p>
+        </div>
+
+        {/* Icon with Glow */}
+        <div className="relative mb-8">
+          <div 
+            className="absolute inset-0 rounded-full blur-2xl opacity-50 transition-all duration-1000"
+            style={{ 
+              backgroundColor: currentSlideData.color,
+              transform: animatePulse ? 'scale(1.5)' : 'scale(1.2)'
+            }}
+          ></div>
+          <div 
+            className="relative w-32 h-32 rounded-full flex items-center justify-center"
+            style={{ backgroundColor: `${currentSlideData.color}20` }}
+          >
+            <IconComponent className="w-16 h-16" style={{ color: currentSlideData.color }} />
+          </div>
+        </div>
+
+        {/* Slide Content */}
+        <div className="text-center mb-8 max-w-md">
+          <h2 className="text-2xl font-bold mb-4">{currentSlideData.title}</h2>
+          <p className="text-gray-300 leading-relaxed">{currentSlideData.description}</p>
+        </div>
+
+        {/* Slide Indicators */}
+        <div className="flex gap-2 mb-12">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`h-2 rounded-full transition-all ${
+                index === currentSlide ? 'w-8 bg-[#586BFF]' : 'w-2 bg-gray-600'
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Navigation Buttons */}
+        <div className="w-full max-w-md space-y-3">
+          {currentSlide === slides.length - 1 ? (
+            <>
+              <Button 
+                onClick={() => navigate('/palm-register')}
+                className="w-full bg-gradient-to-r from-[#586BFF] to-[#9B62FF] hover:from-[#4a5ceb] hover:to-[#8a51eb] h-14 text-lg font-semibold"
+              >
+                Get Started
+              </Button>
+              <Button 
+                onClick={() => navigate('/home')}
+                variant="outline"
+                className="w-full border-[#586BFF] text-[#586BFF] hover:bg-[#586BFF]/10 h-12"
+              >
+                Skip for Now
+              </Button>
+            </>
+          ) : (
+            <Button 
+              onClick={() => setCurrentSlide(prev => prev + 1)}
+              className="w-full bg-gradient-to-r from-[#586BFF] to-[#9B62FF] hover:from-[#4a5ceb] hover:to-[#8a51eb] h-14 text-lg font-semibold"
+            >
+              Next
+            </Button>
+          )}
+        </div>
+
+        {/* Footer */}
+        <p className="text-xs text-gray-500 mt-8 text-center">
+          By Lumioria Innovations Pvt. Ltd. • RBI Compliant • UPI Enabled
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default Onboarding;
