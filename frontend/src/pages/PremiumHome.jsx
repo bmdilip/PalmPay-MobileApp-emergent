@@ -65,9 +65,10 @@ const PremiumHome = () => {
   const financialServices = [
     { id: 'mutual', label: 'Mutual Funds', desc: 'SIPs & Investments', icon: TrendingUp, color: '#586BFF', path: '/services/mutual-funds' },
     { id: 'gold', label: 'Digital Gold', desc: 'Save ₹10 daily', icon: Sparkles, color: '#D4AF37', path: '/services/digital-gold' },
-    { id: 'loans', label: 'Loans', desc: 'Personal, Gold and...', icon: Building2, color: '#9B62FF', path: '/services/loans' },
+    { id: 'limits', label: 'Limit Settings', desc: 'Payment & Palm limits', icon: Shield, color: '#9B62FF', path: '/limit-settings' },
+    { id: 'rewards', label: 'Rewards', desc: 'Cashback & Offers', icon: Gift, color: '#FF6B35', path: '/cashback-rewards' },
     { id: 'insurance-fin', label: 'Insurance', desc: 'Vehicle & Health', icon: Shield, color: '#00BCD4', path: '/services/insurance', badge: 'Offer' },
-    { id: 'travel', label: 'Travel & Transit', desc: 'Flight, Train, Bus, Hotel, Metro', icon: Plane, color: '#FF6B35', path: '/services/flights', badge: 'Sale' },
+    { id: 'travel', label: 'Travel & Transit', desc: 'Flight, Train, Bus, Hotel, Metro', icon: Plane, color: '#FF9800', path: '/services/flights', badge: 'Sale' },
   ];
 
   return (
