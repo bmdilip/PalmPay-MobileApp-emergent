@@ -101,7 +101,7 @@ const PalmProfile = () => {
             </div>
             <div className="p-4 flex items-center gap-4">
               <div className="w-10 h-10 bg-[#586BFF]/10 rounded-full flex items-center justify-center">
-                <Hand className="w-5 h-5 text-[#586BFF]" />
+                <Shield className="w-5 h-5 text-[#586BFF]" />
               </div>
               <div className="flex-1">
                 <p className="text-sm text-gray-500">Palm ID</p>
