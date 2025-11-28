@@ -44,6 +44,14 @@ const ServiceReceipt = ({
   const config = statusConfig[status] || statusConfig.success;
   const StatusIcon = config.icon;
 
+  const handleCopyToken = () => {
+    if (consentToken) {
+      navigator.clipboard.writeText(consentToken);
+      setCopiedToken(true);
+      setTimeout(() => setCopiedToken(false), 2000);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex flex-col items-center justify-center p-5">
       <div className="max-w-md w-full">
