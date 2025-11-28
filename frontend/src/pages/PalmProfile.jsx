@@ -111,31 +111,37 @@ const PalmProfile = () => {
           </Card>
         </div>
 
-        {/* Biometric Security */}
+        {/* PalmPe Device Authentication */}
         <div className="mb-6">
-          <h3 className="text-lg font-bold text-gray-800 mb-3">Biometric Security</h3>
+          <h3 className="text-lg font-bold text-gray-800 mb-3">PalmPe Device Authentication</h3>
           <Card className="p-4 space-y-3">
             <div className="flex justify-between items-center">
               <div>
-                <p className="font-medium text-gray-800">Secure Element Status</p>
-                <p className="text-sm text-gray-500">Hardware encryption active</p>
+                <p className="font-medium text-gray-800">Device Status</p>
+                <p className="text-sm text-gray-500">Authentication enabled</p>
               </div>
               <div className="text-green-600 text-sm font-semibold bg-green-100 px-3 py-1 rounded-full">Active</div>
             </div>
             <div className="flex justify-between items-center">
               <div>
-                <p className="font-medium text-gray-800">TEE Protection</p>
-                <p className="text-sm text-gray-500">Trusted execution environment</p>
+                <p className="font-medium text-gray-800">Last Used Device</p>
+                <p className="text-sm text-gray-500">PalmPe Terminal - MG Road</p>
               </div>
-              <div className="text-green-600 text-sm font-semibold bg-green-100 px-3 py-1 rounded-full">Enabled</div>
+              <button className="text-sm text-[#586BFF] font-medium">View</button>
             </div>
             <div className="flex justify-between items-center">
               <div>
-                <p className="font-medium text-gray-800">Liveness Detection</p>
-                <p className="text-sm text-gray-500">Anti-spoofing measures</p>
+                <p className="font-medium text-gray-800">Linked Merchant</p>
+                <p className="text-sm text-gray-500">No merchant linked</p>
               </div>
-              <div className="text-green-600 text-sm font-semibold bg-green-100 px-3 py-1 rounded-full">Active</div>
+              <button className="text-sm text-[#586BFF] font-medium">Link</button>
             </div>
+            <Button 
+              onClick={() => navigate('/device-locator')}
+              className="w-full bg-gradient-to-r from-[#586BFF] to-[#9B62FF] text-white mt-2"
+            >
+              View PalmPe Usage History
+            </Button>
           </Card>
         </div>
 
