@@ -232,9 +232,50 @@ const DeviceCenter = () => {
                         {device.status.toUpperCase()}
                       </span>
                     </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Health Score</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
+                          <div 
+                            className={`h-full rounded-full ${
+                              device.healthScore >= 80 ? 'bg-green-500' : 
+                              device.healthScore >= 60 ? 'bg-yellow-500' : 'bg-red-500'
+                            }`}
+                            style={{ width: `${device.healthScore}%` }}
+                          ></div>
+                        </div>
+                        <span className="font-medium text-gray-800">{device.healthScore}%</span>
+                      </div>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Total Transactions</span>
+                      <span className="font-medium text-gray-800">{device.transactions}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Offline Mode</span>
+                      <span className={`font-medium ${device.offlineCapable ? 'text-green-600' : 'text-gray-500'}`}>
+                        {device.offlineCapable ? 'Enabled' : 'Disabled'}
+                      </span>
+                    </div>
                   </div>
 
-                  <div className="mt-4 pt-4 border-t">
+                  <div className="mt-4 pt-4 border-t space-y-2">
+                    {device.status === 'offline' && (
+                      <Button 
+                        className="w-full bg-blue-500 hover:bg-blue-600 text-white mb-2"
+                        onClick={() => alert('Sending activation signal to device...')}
+                      >
+                        Wake Up Device
+                      </Button>
+                    )}
+                    {device.firmware !== 'v2.3.1' && (
+                      <Button 
+                        className="w-full bg-purple-500 hover:bg-purple-600 text-white mb-2"
+                        onClick={() => alert('Firmware update initiated...')}
+                      >
+                        Update Firmware
+                      </Button>
+                    )}
                     <Button 
                       onClick={() => handleRemoveDevice(device.id)}
                       variant="outline" 
