@@ -185,7 +185,22 @@ function App() {
             <Route path="/services/loans" element={<ComingSoon />} />
             <Route path="/services/loan-repayment" element={<ComingSoon />} />
             <Route path="/service/education" element={<ComingSoon />} />
+            <Route path="/services/education" element={<ComingSoon />} />
             <Route path="/service/health" element={<ComingSoon />} />
+            <Route path="/services/postpaid" element={<ComingSoon />} />
+            <Route path="/services/municipal" element={<ComingSoon />} />
+            <Route path="/services/rental" element={<ComingSoon />} />
+            <Route path="/services/clubs" element={<ComingSoon />} />
+            <Route path="/services/metro" element={<ComingSoon />} />
+            <Route path="/services/lic" element={<ComingSoon />} />
+            <Route path="/services/donation" element={<ComingSoon />} />
+            <Route path="/services/echallan" element={<ComingSoon />} />
+            <Route path="/services/cylinder" element={<ComingSoon />} />
+            <Route path="/digital-wallet" element={<DigitalWallet />} />
+            <Route path="/quickwallet" element={<QuickWallet />} />
+            <Route path="/scan" element={<Palm2QR />} />
+            <Route path="/cashback-rewards" element={<CashbackRewards />} />
+            <Route path="/add-money" element={<QuickWallet />} />
           </Routes>
           <BottomNavigation />
         </div>
