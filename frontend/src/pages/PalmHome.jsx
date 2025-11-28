@@ -31,7 +31,7 @@ const PalmHome = () => {
 
   const getIcon = (iconName) => {
     const icons = {
-      QrCode, Smartphone, ArrowUpRight, ArrowDownLeft
+      QrCode, Smartphone, ArrowUpRight, ArrowDownLeft, Zap
     };
     return icons[iconName] || QrCode;
   };
