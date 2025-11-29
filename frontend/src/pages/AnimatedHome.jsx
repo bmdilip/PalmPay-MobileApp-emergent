@@ -665,6 +665,12 @@ const AnimatedHome = () => {
           </Card>
         </motion.div>
       </div>
+
+      {/* SECTION 9: Floating Action Button (Help) */}
+      <FloatingActionButton 
+        onClick={() => navigate('/support')}
+        icon={<HelpCircle className="w-6 h-6" />}
+      />
     </div>
   );
 };
