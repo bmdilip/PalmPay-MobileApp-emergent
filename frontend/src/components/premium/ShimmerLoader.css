@@ -1,0 +1,51 @@
+/* Shimmer Loader Styles */
+.shimmer-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.shimmer-card {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 0%,
+    #e0e0e0 50%,
+    #f0f0f0 100%
+  );
+  background-size: 1000px 100%;
+  border-radius: 12px;
+  animation: shimmer 2s infinite;
+}
+
+/* Spinner Styles */
+.spinner {
+  display: inline-block;
+  animation: spin 1s linear infinite;
+}
+
+/* Progress Bar Styles */
+.progress-bar {
+  width: 100%;
+  background: #E5E7EB;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00C8D6, #008B95);
+  transition: width 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 2px;
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
