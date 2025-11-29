@@ -176,7 +176,7 @@ const PalmScanAnimation = ({ className = '' }) => {
             filter: 'drop-shadow(0 0 30px rgba(88, 107, 255, 0.8))'
           }}
         >
-          <svg viewBox="0 0 300 400" className="w-full h-full">
+          <svg viewBox="0 0 240 200" className="w-full h-full">
             <defs>
               {/* Palm Gradient */}
               <linearGradient id="palmGradient" x1="0%" y1="0%" x2="100%" y2="100%">
