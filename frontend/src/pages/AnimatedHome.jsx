@@ -229,7 +229,7 @@ const AnimatedHome = () => {
                 <AnimatePresence>
                   {showWalletSelector && (
                     <motion.div 
-                      className="absolute top-full mt-2 left-0 right-0 bg-white rounded-xl shadow-2xl border border-gray-200 py-2 z-50"
+                      className="fixed top-32 left-5 right-5 bg-white rounded-xl shadow-2xl border border-gray-200 py-2 z-[100]"
                       initial={{ opacity: 0, y: -10, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -10, scale: 0.95 }}
