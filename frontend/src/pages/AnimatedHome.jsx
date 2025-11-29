@@ -357,17 +357,301 @@ const AnimatedHome = () => {
         </div>
       </motion.div>
 
-      {/* Continuing in next section... */}
-      <div className="px-5 space-y-6">
-        {/* More sections to be added */}
-        <motion.p 
-          className="text-center text-gray-500 text-sm"
+      {/* SECTION 4: Promotional Banner with Animation */}
+      <motion.div 
+        className="px-5 mb-6"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8 }}
+      >
+        <motion.div
+          onClick={() => navigate('/cashback-rewards')}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <Card className="bg-gradient-to-r from-orange-50 via-amber-50 to-yellow-50 border-0 p-6 shadow-lg overflow-hidden relative cursor-pointer">
+            <motion.div 
+              className="absolute top-0 right-0 w-32 h-32 bg-orange-200/30 rounded-full -translate-y-16 translate-x-16"
+              animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
+              transition={{ duration: 4, repeat: Infinity }}
+            />
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-yellow-200/30 rounded-full translate-y-12 -translate-x-12"></div>
+            <div className="relative z-10">
+              <div className="flex items-center gap-2 mb-2">
+                <motion.div
+                  animate={{ y: [0, -5, 0] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                >
+                  <Gift className="w-5 h-5 text-orange-600" />
+                </motion.div>
+                <span className="text-xs font-bold text-orange-600 uppercase tracking-wide">Exclusive Offer</span>
+              </div>
+              <h3 className="text-lg font-bold text-gray-800 mb-1">Get ₹100 Cashback</h3>
+              <p className="text-sm text-gray-600 mb-3">On your first bill payment of ₹500 or more</p>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white h-9 text-sm font-semibold shadow-lg">
+                  Pay Now
+                </Button>
+              </motion.div>
+            </div>
+          </Card>
+        </motion.div>
+      </motion.div>
+
+      {/* SECTION 5: Recharge & Bills with Direction-Aware Hover */}
+      <div className="px-5 mb-6">
+        <div className="flex items-center justify-between mb-4">
+          <motion.h3 
+            className="text-lg font-bold text-gray-800"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.9 }}
+          >
+            Recharge & Bills
+          </motion.h3>
+          <motion.button 
+            onClick={() => navigate('/all-services')}
+            className="text-sm font-semibold text-[#586BFF] flex items-center gap-1"
+            whileHover={{ gap: "0.5rem" }}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.9 }}
+          >
+            View All <ChevronRight className="w-4 h-4" />
+          </motion.button>
+        </div>
+        <motion.div 
+          className="grid grid-cols-4 gap-4"
+          variants={staggerContainer}
+          initial="initial"
+          animate="animate"
+        >
+          {rechargeServices.map((service, index) => {
+            const Icon = service.icon;
+            return (
+              <motion.button
+                key={service.id}
+                className="flex flex-col items-center gap-2 group relative"
+                onClick={() => navigate(service.path)}
+                variants={staggerItem}
+                whileHover={{ scale: 1.1, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <motion.div 
+                  className="w-16 h-16 rounded-2xl shadow-md flex items-center justify-center relative overflow-hidden"
+                  style={{ backgroundColor: `${service.color}15` }}
+                  whileHover={{
+                    boxShadow: `0 10px 30px ${service.color}40`
+                  }}
+                >
+                  {/* Direction-aware hover gradient */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent opacity-0 group-hover:opacity-100"
+                    transition={{ duration: 0.3 }}
+                  />
+                  <Icon className="w-7 h-7 relative z-10" style={{ color: service.color }} />
+                </motion.div>
+                <span className="text-xs font-medium text-gray-700 text-center leading-tight">
+                  {service.label}
+                </span>
+              </motion.button>
+            );
+          })}
+        </motion.div>
+      </div>
+
+      {/* SECTION 6: Financial Services with Enhanced Cards */}
+      <div className="px-5 mb-6">
+        <motion.div 
+          className="flex items-center justify-between mb-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
+          transition={{ delay: 1.1 }}
         >
-          ✨ Animated Home Dashboard - Sections 1-3 Complete
-        </motion.p>
+          <h3 className="text-lg font-bold text-gray-800">Financial Services</h3>
+        </motion.div>
+        <motion.div 
+          className="grid grid-cols-2 gap-3"
+          variants={staggerContainer}
+          initial="initial"
+          animate="animate"
+        >
+          {financialServices.map((service, index) => {
+            const Icon = service.icon;
+            return (
+              <motion.div
+                key={service.id}
+                variants={staggerItem}
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Card 
+                  className="p-4 cursor-pointer border-0 shadow-md relative overflow-hidden group"
+                  onClick={() => navigate(service.path)}
+                >
+                  {/* Glow border effect */}
+                  <motion.div
+                    className="absolute inset-0 rounded-lg"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ 
+                      opacity: 1,
+                      boxShadow: `0 0 20px ${service.color}40`
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  
+                  {service.badge && (
+                    <motion.span 
+                      className="absolute top-2 right-2 px-2 py-0.5 bg-purple-500 text-white text-xs font-bold rounded-full shadow-lg"
+                      animate={{ scale: [1, 1.1, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      {service.badge}
+                    </motion.span>
+                  )}
+                  <div className="flex items-start gap-3 relative z-10">
+                    <motion.div 
+                      className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                      style={{ backgroundColor: `${service.color}15` }}
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <Icon className="w-6 h-6" style={{ color: service.color }} />
+                    </motion.div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-sm font-bold text-gray-800 mb-0.5 truncate">{service.label}</h4>
+                      <p className="text-xs text-gray-600 line-clamp-2">{service.desc}</p>
+                    </div>
+                  </div>
+                </Card>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      </div>
+
+      {/* SECTION 7: Recent Transactions with Staggered List */}
+      <div className="px-5 mb-6">
+        <div className="flex items-center justify-between mb-4">
+          <motion.h3 
+            className="text-lg font-bold text-gray-800"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.3 }}
+          >
+            Recent Transactions
+          </motion.h3>
+          <motion.button 
+            onClick={() => navigate('/history')}
+            className="text-sm font-semibold text-[#586BFF] flex items-center gap-1"
+            whileHover={{ gap: "0.5rem" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.3 }}
+          >
+            View All <ChevronRight className="w-4 h-4" />
+          </motion.button>
+        </div>
+        <Card className="border-0 shadow-lg divide-y divide-gray-100 overflow-hidden">
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+          >
+            {mockTransactions.slice(0, 4).map((transaction, index) => (
+              <motion.div 
+                key={transaction.id} 
+                className="p-4 flex items-center justify-between hover:bg-gradient-to-r hover:from-gray-50 hover:to-transparent cursor-pointer group relative overflow-hidden"
+                variants={staggerItem}
+                whileHover={{ x: 5 }}
+              >
+                {/* Glow border on hover */}
+                <motion.div
+                  className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#586BFF] to-[#9B62FF]"
+                  initial={{ scaleY: 0 }}
+                  whileHover={{ scaleY: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+                
+                <div className="flex items-center gap-3 flex-1">
+                  <motion.div 
+                    className={`w-11 h-11 rounded-xl flex items-center justify-center ${
+                      transaction.type === 'received' ? 'bg-green-50' : 'bg-blue-50'
+                    }`}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                  >
+                    {transaction.type === 'received' ? 
+                      <ArrowDownLeft className="w-5 h-5 text-green-600" /> : 
+                      <ArrowUpRight className="w-5 h-5 text-blue-600" />
+                    }
+                  </motion.div>
+                  <div>
+                    <p className="font-semibold text-gray-800 text-sm">{transaction.recipient}</p>
+                    <p className="text-xs text-gray-500">{transaction.date} • {transaction.time}</p>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <motion.p 
+                    className={`font-bold text-sm ${
+                      transaction.type === 'received' ? 'text-green-600' : 'text-gray-800'
+                    }`}
+                    initial={{ scale: 1 }}
+                    whileHover={{ scale: 1.1 }}
+                  >
+                    {transaction.type === 'received' ? '+' : '-'}₹{transaction.amount}
+                  </motion.p>
+                  <p className="text-xs text-green-600 capitalize">{transaction.status}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </Card>
+      </div>
+
+      {/* SECTION 8: Refer & Earn with 3D Effect */}
+      <div className="px-5 mb-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5 }}
+          whileHover={{ scale: 1.02, rotateX: 2 }}
+          style={{ transformStyle: "preserve-3d" }}
+        >
+          <Card 
+            className="bg-gradient-to-br from-purple-500 via-purple-600 to-purple-700 border-0 p-5 shadow-xl text-white overflow-hidden relative cursor-pointer"
+            onClick={() => navigate('/referral')}
+          >
+            <motion.div 
+              className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"
+              animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
+              transition={{ duration: 8, repeat: Infinity }}
+            />
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-12 -translate-x-12"></div>
+            <div className="relative z-10 flex items-center justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <motion.div
+                    animate={{ rotate: [0, 15, -15, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <Users className="w-5 h-5" />
+                  </motion.div>
+                  <span className="text-xs font-bold uppercase tracking-wide">Refer & Earn</span>
+                </div>
+                <p className="text-sm mb-1 font-semibold">Invite friends and earn ₹100</p>
+                <p className="text-xs text-white/80">For each successful referral</p>
+              </div>
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button className="bg-white text-purple-600 hover:bg-white/90 font-semibold text-sm px-4 h-9 shadow-lg">
+                  Invite
+                </Button>
+              </motion.div>
+            </div>
+          </Card>
+        </motion.div>
       </div>
     </div>
   );
