@@ -95,6 +95,13 @@ const Onboarding = () => {
         <div className="text-center mb-8 max-w-md">
           <h2 className="text-2xl font-bold mb-4">{currentSlideData.title}</h2>
           <p className="text-gray-300 leading-relaxed">{currentSlideData.description}</p>
+          
+          {/* Patent Badges on first slide */}
+          {currentSlide === 0 && (
+            <div className="mt-6">
+              <PatentPendingBadge />
+            </div>
+          )}
         </div>
 
         {/* Slide Indicators */}
