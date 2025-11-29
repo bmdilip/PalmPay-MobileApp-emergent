@@ -228,14 +228,28 @@ const AnimatedHome = () => {
                 {/* Animated Wallet Dropdown */}
                 <AnimatePresence>
                   {showWalletSelector && (
-                    <motion.div 
-                      className="fixed top-32 left-5 right-5 bg-white rounded-xl shadow-2xl border border-gray-200 py-2 z-[100]"
-                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      {wallets.map((wallet, index) => (
+                    <>
+                      {/* Backdrop */}
+                      <motion.div 
+                        className="fixed inset-0 bg-black/20 z-[99]"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setShowWalletSelector(false)}
+                      />
+                      
+                      {/* Dropdown */}
+                      <motion.div 
+                        className="fixed top-32 left-5 right-5 bg-white rounded-xl shadow-2xl border-2 border-[#00C8D6] py-2 z-[100] max-w-md mx-auto"
+                        initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <div className="px-4 py-2 border-b border-gray-200">
+                          <p className="text-xs font-semibold text-gray-600">Select Wallet</p>
+                        </div>
+                        {wallets.map((wallet, index) => (
                         <motion.button
                           key={wallet.id}
                           onClick={() => {
