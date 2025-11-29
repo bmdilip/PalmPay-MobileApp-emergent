@@ -223,6 +223,10 @@ function App() {
             
             {/* Premium Components Demo */}
             <Route path="/premium-demo" element={<PremiumComponentsDemo />} />
+            
+            {/* Phase 2 Routes */}
+            <Route path="/patent-badges" element={<PatentBadgesOnboarding />} />
+            <Route path="/wallet-management" element={<WalletPage />} />
             </Routes>
             <BottomNavigation />
           </div>
