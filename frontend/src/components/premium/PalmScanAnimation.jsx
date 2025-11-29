@@ -53,8 +53,8 @@ const PalmScanAnimation = ({ className = '' }) => {
 
   if (prefersReducedMotion) {
     return (
-      <div className={`relative w-full max-w-sm mx-auto ${className}`}>
-        <svg viewBox="0 0 300 400" className="w-full h-full">
+      <div className={`relative w-full max-w-xs mx-auto ${className}`} style={{ maxHeight: '280px' }}>
+        <svg viewBox="0 0 240 200" className="w-full h-full">
           <PalmOutlineSVG />
         </svg>
       </div>
