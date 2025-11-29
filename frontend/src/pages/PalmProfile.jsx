@@ -77,6 +77,83 @@ const PalmProfile = () => {
       </div>
 
       <div className="px-5 mt-6">
+        {/* Role Switcher for Testing */}
+        <Card className="p-6 mb-6 bg-gradient-to-br from-purple-50 to-blue-50 border-2 border-purple-200">
+          <div className="flex items-center gap-2 mb-4">
+            <Building2 className="w-5 h-5 text-purple-600" />
+            <h3 className="text-lg font-bold text-gray-800">Switch Dashboard (Testing)</h3>
+          </div>
+          <p className="text-xs text-gray-600 mb-4">Quick access to different dashboards for testing</p>
+          
+          <div className="grid grid-cols-1 gap-3">
+            {/* User Dashboard */}
+            <button
+              onClick={() => navigate('/home')}
+              className="p-4 bg-white rounded-xl border-2 border-blue-200 hover:border-blue-400 hover:shadow-lg transition-all text-left group"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                    <User className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <p className="font-bold text-gray-800">User Dashboard</p>
+                    <p className="text-xs text-gray-600">Main PalmPay app (Current)</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600" />
+                  <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-blue-600 transition-colors" />
+                </div>
+              </div>
+            </button>
+
+            {/* Admin Dashboard */}
+            <button
+              onClick={() => navigate('/admin')}
+              className="p-4 bg-white rounded-xl border-2 border-purple-200 hover:border-purple-400 hover:shadow-lg transition-all text-left group"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center">
+                    <Shield className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <p className="font-bold text-gray-800">Admin Dashboard</p>
+                    <p className="text-xs text-gray-600">Manage users, devices & merchants</p>
+                  </div>
+                </div>
+                <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-purple-600 transition-colors" />
+              </div>
+            </button>
+
+            {/* Merchant Dashboard */}
+            <button
+              onClick={() => navigate('/merchant')}
+              className="p-4 bg-white rounded-xl border-2 border-orange-200 hover:border-orange-400 hover:shadow-lg transition-all text-left group"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center">
+                    <Building2 className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <p className="font-bold text-gray-800">Merchant Dashboard</p>
+                    <p className="text-xs text-gray-600">Accept payments & track sales</p>
+                  </div>
+                </div>
+                <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-orange-600 transition-colors" />
+              </div>
+            </button>
+          </div>
+
+          <Card className="p-3 bg-blue-50 border-blue-200 mt-4">
+            <p className="text-xs text-gray-700">
+              <strong>💡 Testing Mode:</strong> These buttons allow you to quickly switch between different role dashboards. In production, access would be controlled by authentication.
+            </p>
+          </Card>
+        </Card>
+
         {/* Account Details */}
         <div className="mb-6">
           <h3 className="text-lg font-bold text-gray-800 mb-3">Account Details</h3>
