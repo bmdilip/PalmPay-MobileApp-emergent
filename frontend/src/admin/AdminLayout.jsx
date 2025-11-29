@@ -66,8 +66,8 @@ const AdminLayout = ({ children }) => {
 
         {/* Sidebar */}
         <div className={`${
-          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } fixed lg:static inset-y-0 left-0 z-50 w-64 bg-gradient-to-b from-[#0A0F1F] via-[#1a1f3a] to-[#0A0F1F] text-white transition-transform duration-300 flex flex-col lg:translate-x-0 top-[57px]`}>
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+        } fixed lg:relative w-64 h-full bg-gradient-to-b from-[#0A0F1F] via-[#1a1f3a] to-[#0A0F1F] text-white transition-transform duration-300 flex flex-col z-50 lg:z-auto`}>
           {/* Menu Items */}
           <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
             {menuItems.map((item) => {
