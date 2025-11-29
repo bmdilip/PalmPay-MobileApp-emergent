@@ -22,7 +22,8 @@ import {
   Sparkles,
   Gift,
   Plane,
-  Users
+  Users,
+  HelpCircle
 } from 'lucide-react';
 import { mockUser, mockTransactions } from '../mockDataPalmPay';
 import { useNavigate } from 'react-router-dom';
@@ -33,6 +34,14 @@ import Logo from '../components/Logo';
 import MeshGradientBackground from '../components/animated/MeshGradientBackground';
 import DotGridBackground from '../components/animated/DotGridBackground';
 import ParticleField from '../components/animated/ParticleField';
+
+// Premium Components
+import { 
+  PatentPendingBadge,
+  FloatingActionButton,
+  GlowButton,
+  SpotlightCard
+} from '../components/premium';
 
 // Animation presets
 import { 
