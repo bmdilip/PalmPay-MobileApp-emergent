@@ -74,7 +74,11 @@ const PalmHistory = () => {
               </button>
               <h1 className="text-xl font-semibold">Transaction History</h1>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 items-center">
+              <LayoutSwitcher 
+                currentLayout={viewLayout} 
+                onChange={setViewLayout}
+              />
               <button 
                 onClick={() => setShowFilters(!showFilters)}
                 className="p-2 hover:bg-white/10 rounded-full transition-colors"
