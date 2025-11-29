@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Card } from '../../components/ui/card';
 import { 
   Users, 
@@ -11,6 +12,8 @@ import {
 import { mockAdminStats, mockAdminTransactions } from '../mockData';
 import AdminLayout from '../AdminLayout';
 import { useNavigate } from 'react-router-dom';
+import { ThreeDHoverCard, GlowBorderCard } from '../../components/premium';
+import { fadeInUp, staggerContainer, staggerItem } from '../../lib/animations';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
