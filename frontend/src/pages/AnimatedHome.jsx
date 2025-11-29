@@ -281,7 +281,7 @@ const AnimatedHome = () => {
                     <>
                       {/* Backdrop */}
                       <motion.div 
-                        className="fixed inset-0 bg-black/20 z-[99]"
+                        className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[9998]"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -290,7 +290,7 @@ const AnimatedHome = () => {
                       
                       {/* Dropdown - Larger and Clearer - FIXED POSITIONING */}
                       <motion.div 
-                        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2.5rem)] max-w-md max-h-[70vh] overflow-y-auto bg-white rounded-2xl shadow-2xl border-2 border-[#00C8D6] z-[100]"
+                        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2.5rem)] max-w-md max-h-[80vh] overflow-y-auto bg-white rounded-2xl shadow-2xl border-2 border-[#586BFF] z-[9999]"
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.9 }}
