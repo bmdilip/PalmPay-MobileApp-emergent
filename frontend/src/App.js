@@ -121,6 +121,7 @@ function App() {
           <div className="max-w-md mx-auto bg-white min-h-screen relative">
             <Routes>
             <Route path="/" element={<Onboarding />} />
+            <Route path="/onboarding" element={<Onboarding />} />
             <Route path="/palm-register" element={<PalmRegister />} />
             <Route path="/home" element={<AnimatedHome />} />
             <Route path="/home-old" element={<PremiumHome />} />
