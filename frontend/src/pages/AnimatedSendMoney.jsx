@@ -22,6 +22,7 @@ import {
   modalContent,
   successCheck
 } from '../lib/animations';
+import { ConfettiEffect } from '../components/premium';
 
 const AnimatedSendMoney = () => {
   const navigate = useNavigate();
