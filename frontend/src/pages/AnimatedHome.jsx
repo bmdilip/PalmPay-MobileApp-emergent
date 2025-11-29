@@ -285,7 +285,8 @@ const AnimatedHome = () => {
                           )}
                         </motion.button>
                       ))}
-                    </motion.div>
+                      </motion.div>
+                    </>
                   )}
                 </AnimatePresence>
               </div>
