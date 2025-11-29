@@ -116,7 +116,8 @@ function App() {
             <Routes>
             <Route path="/" element={<Onboarding />} />
             <Route path="/palm-register" element={<PalmRegister />} />
-            <Route path="/home" element={<PremiumHome />} />
+            <Route path="/home" element={<AnimatedHome />} />
+            <Route path="/home-old" element={<PremiumHome />} />
             <Route path="/services" element={<PremiumServices />} />
             <Route path="/palm2qr" element={<Palm2QR />} />
             <Route path="/pos-mode" element={<POSMode />} />
