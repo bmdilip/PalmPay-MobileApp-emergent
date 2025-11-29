@@ -58,21 +58,29 @@ const Onboarding = () => {
           <p className="text-[#64E8FF] text-sm tracking-widest">YOUR PALM. YOUR WALLET.</p>
         </div>
 
-        {/* Icon with Glow */}
+        {/* Icon with Glow or Palm Vein Scanner */}
         <div className="relative mb-8">
-          <div 
-            className="absolute inset-0 rounded-full blur-2xl opacity-50 transition-all duration-1000"
-            style={{ 
-              backgroundColor: currentSlideData.color,
-              transform: animatePulse ? 'scale(1.5)' : 'scale(1.2)'
-            }}
-          ></div>
-          <div 
-            className="relative w-32 h-32 rounded-full flex items-center justify-center"
-            style={{ backgroundColor: `${currentSlideData.color}20` }}
-          >
-            <IconComponent className="w-16 h-16" style={{ color: currentSlideData.color }} />
-          </div>
+          {currentSlideData.showPalmVein ? (
+            <div className="w-full max-w-sm">
+              <PalmVeinScanner status="scanning" />
+            </div>
+          ) : (
+            <>
+              <div 
+                className="absolute inset-0 rounded-full blur-2xl opacity-50 transition-all duration-1000"
+                style={{ 
+                  backgroundColor: currentSlideData.color,
+                  transform: animatePulse ? 'scale(1.5)' : 'scale(1.2)'
+                }}
+              ></div>
+              <div 
+                className="relative w-32 h-32 rounded-full flex items-center justify-center"
+                style={{ backgroundColor: `${currentSlideData.color}20` }}
+              >
+                <IconComponent className="w-16 h-16" style={{ color: currentSlideData.color }} />
+              </div>
+            </>
+          )}
         </div>
 
         {/* Slide Content */}
