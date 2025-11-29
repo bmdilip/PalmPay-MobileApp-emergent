@@ -327,9 +327,6 @@ const AnimatedHome = () => {
         </div>
       </motion.div>
 
-      {/* SECTION 2.5: Patent Pending Badges - NEW */}
-      <PatentPendingBadge />
-
       {/* SECTION 3: Quick Actions with Glow Buttons & Stagger Animation */}
       <motion.div 
         className="px-5 -mt-8 mb-8 relative z-20"
