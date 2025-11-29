@@ -187,6 +187,49 @@ const AnimatedHome = () => {
                   </span>
                   <ChevronRight className="w-3 h-3" />
                 </motion.button>
+                
+                {/* Palm ID Display - Integrated below Palm Registered badge */}
+                {mockUser.palmEnabled && (
+                  <motion.div 
+                    className="mt-3 bg-white/15 backdrop-blur-sm border border-white/30 rounded-xl p-3"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-1.5">
+                        <Hand className="w-3.5 h-3.5 text-white/80" />
+                        <span className="text-xs font-semibold text-white/90">Your Palm ID</span>
+                      </div>
+                      <span className="text-[10px] font-medium text-green-300 bg-green-500/20 px-2 py-0.5 rounded-full">
+                        ✓ Verified
+                      </span>
+                    </div>
+                    
+                    <div className="flex items-center justify-between bg-white/10 rounded-lg p-2">
+                      <div className="flex-1">
+                        <p className="text-[10px] text-white/60 mb-0.5">ID Number</p>
+                        <p className="text-xs font-mono font-bold text-white tracking-wide">{palmId}</p>
+                      </div>
+                      <motion.button
+                        onClick={handleCopyPalmId}
+                        className="ml-2 p-1.5 hover:bg-white/20 rounded-md transition-colors"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        {copiedPalmId ? (
+                          <CheckCircle2 className="w-3.5 h-3.5 text-green-300" />
+                        ) : (
+                          <Copy className="w-3.5 h-3.5 text-white/80" />
+                        )}
+                      </motion.button>
+                    </div>
+                    
+                    <p className="text-[10px] text-white/60 mt-2">
+                      Registered: Nov 15, 2024 • Right Palm
+                    </p>
+                  </motion.div>
+                )}
               </motion.div>
             )}
           </AnimatePresence>
