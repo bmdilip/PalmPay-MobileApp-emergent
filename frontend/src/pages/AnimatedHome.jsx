@@ -43,6 +43,7 @@ import {
   SpotlightCard,
   AdvertisementBanner
 } from '../components/premium';
+import { Copy, Hand } from 'lucide-react';
 
 // Animation presets
 import { 
