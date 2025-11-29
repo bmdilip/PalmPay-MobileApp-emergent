@@ -396,7 +396,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "FINAL COMPREHENSIVE TEST - ALL 3 FIXES completed"
+    - "Palm Scan Animation Testing completed"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
