@@ -233,16 +233,17 @@ const AnimatedHome = () => {
                         onClick={() => setShowWalletSelector(false)}
                       />
                       
-                      {/* Dropdown */}
+                      {/* Dropdown - Larger and Clearer */}
                       <motion.div 
-                        className="fixed top-32 left-5 right-5 bg-white rounded-xl shadow-2xl border-2 border-[#00C8D6] py-2 z-[100] max-w-md mx-auto"
-                        initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                        className="fixed top-36 left-5 right-5 bg-white rounded-2xl shadow-2xl border-2 border-[#00C8D6] z-[100]"
+                        initial={{ opacity: 0, y: -20, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                        transition={{ duration: 0.2 }}
+                        exit={{ opacity: 0, y: -20, scale: 0.9 }}
+                        transition={{ duration: 0.3, type: 'spring' }}
                       >
-                        <div className="px-4 py-2 border-b border-gray-200">
-                          <p className="text-xs font-semibold text-gray-600">Select Wallet</p>
+                        <div className="px-5 py-4 border-b-2 border-gray-100">
+                          <p className="text-sm font-bold text-gray-800">Select Wallet</p>
+                          <p className="text-xs text-gray-500 mt-0.5">Choose your payment wallet</p>
                         </div>
                         {wallets.map((wallet, index) => (
                         <motion.button
