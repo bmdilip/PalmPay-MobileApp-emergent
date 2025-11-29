@@ -228,6 +228,9 @@ function App() {
             {/* Phase 2 Routes */}
             <Route path="/patent-badges" element={<PatentBadgesOnboarding />} />
             <Route path="/wallet-management" element={<WalletPage />} />
+            
+            {/* Phase 3 Routes */}
+            <Route path="/home-layouts" element={<AnimatedHomeWithLayouts />} />
             </Routes>
             <BottomNavigation />
           </div>
