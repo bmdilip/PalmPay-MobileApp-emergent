@@ -288,12 +288,12 @@ const AnimatedHome = () => {
                         onClick={() => setShowWalletSelector(false)}
                       />
                       
-                      {/* Dropdown - Larger and Clearer */}
+                      {/* Dropdown - Larger and Clearer - FIXED POSITIONING */}
                       <motion.div 
-                        className="fixed top-36 left-5 right-5 bg-white rounded-2xl shadow-2xl border-2 border-[#00C8D6] z-[100]"
-                        initial={{ opacity: 0, y: -20, scale: 0.9 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -20, scale: 0.9 }}
+                        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2.5rem)] max-w-md max-h-[70vh] overflow-y-auto bg-white rounded-2xl shadow-2xl border-2 border-[#00C8D6] z-[100]"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.9 }}
                         transition={{ duration: 0.3, type: 'spring' }}
                       >
                         <div className="px-5 py-4 border-b-2 border-gray-100">
