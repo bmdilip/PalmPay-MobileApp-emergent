@@ -241,7 +241,7 @@ const AnimatedHome = () => {
             transition={{ delay: 0.4 }}
           >
             <Card 
-              className="bg-white/10 backdrop-blur-xl border-white/20 p-5 shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
+              className="bg-white/10 backdrop-blur-xl border-white/20 p-5 shadow-xl hover:shadow-2xl transition-all duration-300 relative group"
               style={{
                 backdropFilter: 'blur(20px)',
                 background: 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%)'
