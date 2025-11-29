@@ -59,8 +59,18 @@ const AnimatedHome = () => {
   const [showBalance, setShowBalance] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   const [showWalletSelector, setShowWalletSelector] = useState(false);
+  const [copiedPalmId, setCopiedPalmId] = useState(false);
   const navigate = useNavigate();
   const { selectedWallet, wallets, switchWallet, getTotalBalance } = useWallet();
+  
+  // Generate Palm ID
+  const palmId = `PLM-${mockUser.id.toUpperCase().slice(0, 8)}-${Date.now().toString().slice(-4)}`;
+  
+  const handleCopyPalmId = () => {
+    navigator.clipboard.writeText(palmId);
+    setCopiedPalmId(true);
+    setTimeout(() => setCopiedPalmId(false), 2000);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
