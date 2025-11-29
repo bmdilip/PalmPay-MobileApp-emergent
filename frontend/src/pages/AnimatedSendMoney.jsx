@@ -449,6 +449,9 @@ const AnimatedSendMoney = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Confetti Effect */}
+      <ConfettiEffect active={showConfetti} duration={3000} />
     </div>
   );
 };
