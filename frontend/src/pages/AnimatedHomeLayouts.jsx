@@ -75,6 +75,9 @@ export const CompactLayout = ({ user, wallet, navigate, showBalance, setShowBala
         <p className="text-xs opacity-70">{wallet.name}</p>
       </Card>
 
+      {/* Palm ID Card */}
+      <PalmIDCard />
+
       {/* Compact Quick Actions */}
       <div className="grid grid-cols-4 gap-2">
         {quickActions.map((action) => {
