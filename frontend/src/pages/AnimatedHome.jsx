@@ -23,7 +23,8 @@ import {
   Gift,
   Plane,
   Users,
-  HelpCircle
+  HelpCircle,
+  CheckCircle2
 } from 'lucide-react';
 import { mockUser, mockTransactions } from '../mockDataPalmPay';
 import { useNavigate } from 'react-router-dom';
