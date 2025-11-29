@@ -13,6 +13,7 @@ const PalmHistory = () => {
   const [activeTab, setActiveTab] = useState('all');
   const [filterType, setFilterType] = useState('all'); // New comprehensive filter
   const [showFilters, setShowFilters] = useState(false);
+  const [viewLayout, setViewLayout] = useState('list');
 
   const filterOptions = [
     { value: 'all', label: 'All Transactions' },
