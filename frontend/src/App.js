@@ -39,6 +39,7 @@ import AnimatedHome from "./pages/AnimatedHome";
 import AnimatedHomeWithLayouts from "./pages/AnimatedHomeWithLayouts";
 import AnimatedSendMoney from "./pages/AnimatedSendMoney";
 import PremiumComponentsDemo from "./pages/PremiumComponentsDemo";
+import AllComponentsDemo from "./pages/AllComponentsDemo";
 import PatentBadgesOnboarding from "./pages/PatentBadgesOnboarding";
 import WalletPage from "./pages/WalletPage";
 import AdminDashboard from "./admin/pages/AdminDashboard";
