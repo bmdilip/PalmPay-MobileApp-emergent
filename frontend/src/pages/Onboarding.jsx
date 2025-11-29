@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Hand, Shield, Zap, CheckCircle2 } from 'lucide-react';
 import Logo from '../components/Logo';
-import { PalmVeinScanner, PatentPendingBadge } from '../components/premium';
+import PalmScanAnimation from '../components/premium/PalmScanAnimation';
+import { PatentPendingBadge } from '../components/premium';
 
 const Onboarding = () => {
   const navigate = useNavigate();
