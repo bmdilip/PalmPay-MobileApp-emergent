@@ -68,12 +68,7 @@ const AnimatedHome = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const quickActions = [
-    { id: 'send', label: 'Send Money', icon: ArrowUpRight, color: 'from-blue-500 to-blue-600', path: '/send' },
-    { id: 'request', label: 'Request', icon: ArrowDownLeft, color: 'from-green-500 to-green-600', path: '/collect' },
-    { id: 'scan', label: 'Scan QR', icon: QrCode, color: 'from-purple-500 to-purple-600', path: '/scan' },
-    { id: 'quickwallet', label: 'Quick Wallet', icon: Zap, color: 'from-orange-500 to-orange-600', path: '/digital-wallet' },
-  ];
+  // Quick actions are now defined inline with premium styling
 
   const rechargeServices = [
     { id: 'mobile', label: 'Mobile Recharge', icon: Smartphone, color: '#586BFF', path: '/services/mobile-recharge' },
