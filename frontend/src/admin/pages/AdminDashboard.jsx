@@ -89,7 +89,7 @@ const AdminDashboard = () => {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Recent Transactions */}
         <Card className="p-4 lg:p-6">
