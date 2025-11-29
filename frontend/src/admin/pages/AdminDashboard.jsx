@@ -62,25 +62,31 @@ const AdminDashboard = () => {
           <p className="text-sm text-gray-600 mt-1">System overview and analytics</p>
         </div>
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Stats Grid with Premium Cards */}
+        <motion.div 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+          variants={staggerContainer}
+          initial="initial"
+          animate="animate"
+        >
           {statCards.map((stat, index) => {
             const Icon = stat.icon;
             return (
-              <Card 
-                key={index} 
-                className="p-4 hover:shadow-lg transition-all cursor-pointer"
-                onClick={() => navigate(stat.path)}
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${stat.color} flex items-center justify-center flex-shrink-0`}>
-                    <Icon className="w-5 h-5 text-white" />
+              <motion.div key={index} variants={staggerItem}>
+                <ThreeDHoverCard 
+                  onClick={() => navigate(stat.path)}
+                  className="p-4 sm:p-5 cursor-pointer"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${stat.color} flex items-center justify-center flex-shrink-0 shadow-lg`}>
+                      <Icon className="w-6 h-6 text-white" />
+                    </div>
                   </div>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-1">{stat.value}</h3>
-                <p className="text-sm font-medium text-gray-600">{stat.title}</p>
-                <p className="text-xs text-gray-500 mt-1">{stat.subtitle}</p>
-              </Card>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-1">{stat.value}</h3>
+                  <p className="text-sm font-medium text-gray-600">{stat.title}</p>
+                  <p className="text-xs text-gray-500 mt-1">{stat.subtitle}</p>
+                </ThreeDHoverCard>
+              </motion.div>
             );
           })}
         </div>
