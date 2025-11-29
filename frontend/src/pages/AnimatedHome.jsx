@@ -97,7 +97,7 @@ const AnimatedHome = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20 relative overflow-hidden">
+    <div className="min-h-screen bg-gray-50 pb-20 relative overflow-x-hidden">
       {/* SECTION 1: Background Layers */}
       <MeshGradientBackground />
       <DotGridBackground />
