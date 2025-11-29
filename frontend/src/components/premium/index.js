@@ -26,3 +26,4 @@ export { default as LayoutSwitcher } from './LayoutSwitcher';
 export { default as Modal } from './Modal';
 export { default as ShimmerLoader, Spinner, ProgressBar } from './ShimmerLoader';
 export { default as ConfettiEffect } from './ConfettiEffect';
+export { default as PalmScanAnimation } from './PalmScanAnimation';
