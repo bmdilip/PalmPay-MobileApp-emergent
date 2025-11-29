@@ -64,10 +64,18 @@ const AdminLayout = ({ children }) => {
           />
         )}
 
+        {/* Mobile Backdrop */}
+        {sidebarOpen && (
+          <div 
+            className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+            onClick={() => setSidebarOpen(false)}
+          />
+        )}
+
         {/* Sidebar */}
         <div className={`${
-          sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
-        } fixed lg:relative w-64 h-full bg-gradient-to-b from-[#0A0F1F] via-[#1a1f3a] to-[#0A0F1F] text-white transition-transform duration-300 flex flex-col z-50 lg:z-auto`}>
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        } lg:translate-x-0 fixed lg:relative w-64 h-screen bg-gradient-to-b from-[#0A0F1F] via-[#1a1f3a] to-[#0A0F1F] text-white transition-transform duration-300 flex flex-col z-50 lg:z-auto`}>
           {/* Menu Items */}
           <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
             {menuItems.map((item) => {
