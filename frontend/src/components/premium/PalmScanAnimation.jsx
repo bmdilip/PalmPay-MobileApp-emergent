@@ -62,7 +62,7 @@ const PalmScanAnimation = ({ className = '' }) => {
   }
 
   return (
-    <div className={`relative w-full max-w-sm mx-auto ${className}`}>
+    <div className={`relative w-full max-w-xs mx-auto ${className}`} style={{ maxHeight: '280px' }}>
       {/* Floating Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {particles.map((particle) => (
