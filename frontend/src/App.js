@@ -218,6 +218,9 @@ function App() {
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/users" element={<UserManagement />} />
             <Route path="/admin/devices" element={<DeviceManagement />} />
+            
+            {/* Premium Components Demo */}
+            <Route path="/premium-demo" element={<PremiumComponentsDemo />} />
             </Routes>
             <BottomNavigation />
           </div>
