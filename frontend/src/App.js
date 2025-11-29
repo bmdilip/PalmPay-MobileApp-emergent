@@ -36,6 +36,7 @@ import CashbackRewards from "./pages/CashbackRewards";
 import AllServices from "./pages/AllServices";
 import WalletManagement from "./pages/WalletManagement";
 import AnimatedHome from "./pages/AnimatedHome";
+import AnimatedHomeWithLayouts from "./pages/AnimatedHomeWithLayouts";
 import AnimatedSendMoney from "./pages/AnimatedSendMoney";
 import PremiumComponentsDemo from "./pages/PremiumComponentsDemo";
 import PatentBadgesOnboarding from "./pages/PatentBadgesOnboarding";
