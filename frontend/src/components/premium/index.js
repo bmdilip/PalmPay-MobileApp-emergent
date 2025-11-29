@@ -27,3 +27,4 @@ export { default as Modal } from './Modal';
 export { default as ShimmerLoader, Spinner, ProgressBar } from './ShimmerLoader';
 export { default as ConfettiEffect } from './ConfettiEffect';
 export { default as PalmScanAnimation } from './PalmScanAnimation';
+export { default as PalmIDCard } from './PalmIDCard';
