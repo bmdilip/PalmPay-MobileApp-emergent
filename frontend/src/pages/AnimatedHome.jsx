@@ -366,6 +366,15 @@ const AnimatedHome = () => {
         </div>
       </motion.div>
 
+      {/* SECTION 3.5: Advertisement Banner - NEW (Revenue Generation) */}
+      <AdvertisementBanner 
+        onClose={() => console.log('Ad closed')}
+        onClick={(ad) => {
+          console.log('Ad clicked:', ad);
+          navigate(ad.link);
+        }}
+      />
+
       {/* SECTION 4: Promotional Banner with Animation */}
       <motion.div 
         className="px-5 mb-6"
