@@ -35,6 +35,7 @@ import AutoPay from "./pages/AutoPay";
 import CashbackRewards from "./pages/CashbackRewards";
 import AllServices from "./pages/AllServices";
 import WalletManagement from "./pages/WalletManagement";
+import AnimatedHome from "./pages/AnimatedHome";
 import AdminDashboard from "./admin/pages/AdminDashboard";
 import UserManagement from "./admin/pages/UserManagement";
 import DeviceManagement from "./admin/pages/DeviceManagement";
