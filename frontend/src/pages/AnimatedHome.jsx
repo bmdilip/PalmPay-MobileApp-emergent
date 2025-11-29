@@ -40,7 +40,8 @@ import {
   FloatingActionButton,
   GlowButton,
   SpotlightCard,
-  AdvertisementBanner
+  AdvertisementBanner,
+  PatentPendingBadge
 } from '../components/premium';
 
 // Animation presets
