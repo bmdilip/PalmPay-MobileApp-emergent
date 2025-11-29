@@ -342,43 +342,88 @@ const AnimatedHome = () => {
         </div>
       </motion.div>
 
-      {/* SECTION 3: Quick Actions with Glow Buttons & Stagger Animation */}
+      {/* SECTION 3: Premium Quick Actions with Professional Icons */}
       <motion.div 
-        className="px-5 -mt-8 mb-8 relative z-20"
+        className="mx-5 mt-6"
         variants={staggerContainer}
         initial="initial"
         animate="animate"
       >
-        <div className="grid grid-cols-4 gap-3">
-          {quickActions.map((action, index) => {
+        <motion.div 
+          className="grid grid-cols-4 gap-3"
+          variants={staggerContainer}
+        >
+          {[
+            { 
+              id: 'send', 
+              label: 'Send Money', 
+              icon: ArrowUpRight, 
+              gradient: 'from-[#667eea] via-[#764ba2] to-[#667eea]',
+              shadow: 'shadow-[0_8px_30px_rgba(102,126,234,0.4)]',
+              glow: 'group-hover:shadow-[0_8px_40px_rgba(102,126,234,0.6)]',
+              path: '/send' 
+            },
+            { 
+              id: 'request', 
+              label: 'Request', 
+              icon: ArrowDownLeft, 
+              gradient: 'from-[#11998e] via-[#38ef7d] to-[#11998e]',
+              shadow: 'shadow-[0_8px_30px_rgba(17,153,142,0.4)]',
+              glow: 'group-hover:shadow-[0_8px_40px_rgba(17,153,142,0.6)]',
+              path: '/collect' 
+            },
+            { 
+              id: 'scan', 
+              label: 'Scan QR', 
+              icon: QrCode, 
+              gradient: 'from-[#8E2DE2] via-[#4A00E0] to-[#8E2DE2]',
+              shadow: 'shadow-[0_8px_30px_rgba(142,45,226,0.4)]',
+              glow: 'group-hover:shadow-[0_8px_40px_rgba(142,45,226,0.6)]',
+              path: '/scan' 
+            },
+            { 
+              id: 'wallet', 
+              label: 'Quick Wallet', 
+              icon: Zap, 
+              gradient: 'from-[#f093fb] via-[#f5576c] to-[#f093fb]',
+              shadow: 'shadow-[0_8px_30px_rgba(240,147,251,0.4)]',
+              glow: 'group-hover:shadow-[0_8px_40px_rgba(240,147,251,0.6)]',
+              path: '/digital-wallet' 
+            }
+          ].map((action) => {
             const Icon = action.icon;
             return (
               <motion.button
                 key={action.id}
-                className="flex flex-col items-center gap-2 group"
-                onClick={() => navigate(action.path)}
                 variants={staggerItem}
-                whileHover={{ scale: 1.1, y: -5 }}
+                onClick={() => navigate(action.path)}
+                className="flex flex-col items-center gap-2 group"
+                whileHover={{ y: -4 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 300 }}
               >
                 <motion.div 
-                  className={`w-16 h-16 bg-gradient-to-br ${action.color} rounded-2xl shadow-lg flex items-center justify-center relative overflow-hidden`}
-                  whileHover={{
-                    boxShadow: "0 20px 40px -5px rgba(0,0,0,0.3)"
-                  }}
+                  className={`
+                    relative w-16 h-16 rounded-2xl 
+                    bg-gradient-to-br ${action.gradient} 
+                    flex items-center justify-center 
+                    ${action.shadow} ${action.glow}
+                    transition-all duration-300
+                    before:absolute before:inset-0 before:rounded-2xl 
+                    before:bg-white/20 before:opacity-0 
+                    group-hover:before:opacity-100 before:transition-opacity
+                  `}
+                  whileHover={{ scale: 1.05, rotate: [0, -5, 5, 0] }}
+                  transition={{ duration: 0.3 }}
                 >
+                  <Icon className="w-8 h-8 text-white relative z-10" strokeWidth={2.5} />
                   {/* Glow effect */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <Icon className="w-7 h-7 text-white relative z-10" />
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/40 to-transparent opacity-50" />
                 </motion.div>
-                <span className="text-xs font-medium text-gray-700 text-center leading-tight">
-                  {action.label}
-                </span>
+                <span className="text-[11px] font-semibold text-gray-700 text-center leading-tight">{action.label}</span>
               </motion.button>
             );
           })}
-        </div>
+        </motion.div>
       </motion.div>
 
       {/* SECTION 3.5: Advertisement Banner - NEW (Revenue Generation) */}
