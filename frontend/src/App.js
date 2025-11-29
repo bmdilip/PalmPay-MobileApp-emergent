@@ -139,7 +139,8 @@ function App() {
             <Route path="/circlepay" element={<CirclePay />} />
             <Route path="/referral" element={<ReferralProgram />} />
             <Route path="/dispute" element={<DisputeCenter />} />
-            <Route path="/send" element={<SendMoney />} />
+            <Route path="/send" element={<AnimatedSendMoney />} />
+            <Route path="/send-old" element={<SendMoney />} />
             <Route path="/transfer" element={<SendMoney />} />
             <Route path="/language" element={<LanguageSelector />} />
             <Route path="/offline-queue" element={<OfflineQueue />} />
