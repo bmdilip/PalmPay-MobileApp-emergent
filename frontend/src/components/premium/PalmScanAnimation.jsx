@@ -323,105 +323,93 @@ const PalmScanAnimation = ({ className = '' }) => {
   );
 };
 
-// Anatomically Correct Palm Outline SVG Component
+// Anatomically Correct Palm Outline SVG Component with Proper Hand Shape
 const PalmOutlineSVG = ({ gradient = '#586BFF', glow = '', animate = true }) => {
   return (
     <g filter={glow ? `url(#${glow})` : ''}>
-      {/* Palm Base */}
+      {/* Palm Base - More realistic shape */}
       <motion.path
-        d="M 150 320 Q 130 300 120 270 L 120 180 Q 120 150 140 140 L 160 140 L 160 270 Q 165 300 150 320 Z"
+        d="M 100 160 Q 95 150 92 135 L 92 110 Q 95 95 105 90 Q 115 88 125 90 L 140 92 L 145 95 Q 148 100 148 110 L 148 135 Q 145 150 140 160 L 100 160 Z"
         fill="none"
         stroke={gradient ? `url(#${gradient})` : gradient}
-        strokeWidth="3"
+        strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
         initial={{ pathLength: 0, opacity: 0 }}
         animate={animate ? { pathLength: 1, opacity: 1 } : {}}
-        transition={{ duration: 1, ease: 'easeInOut' }}
+        transition={{ duration: 1.2, ease: 'easeInOut' }}
       />
 
-      {/* Thumb */}
+      {/* Thumb - Curved and realistic */}
       <motion.path
-        d="M 120 220 Q 100 210 85 190 Q 70 170 70 150 Q 70 130 80 120 Q 90 110 100 115 Q 110 120 110 135 L 115 180 L 120 210"
+        d="M 92 130 Q 85 125 78 115 Q 72 105 72 95 Q 72 85 76 78 Q 82 72 88 75 Q 93 78 93 88 L 95 110"
         fill="none"
         stroke={gradient ? `url(#${gradient})` : gradient}
-        strokeWidth="3"
+        strokeWidth="2.5"
         strokeLinecap="round"
         initial={{ pathLength: 0, opacity: 0 }}
         animate={animate ? { pathLength: 1, opacity: 1 } : {}}
-        transition={{ duration: 1, delay: 0.1, ease: 'easeInOut' }}
+        transition={{ duration: 1, delay: 0.15, ease: 'easeInOut' }}
       />
 
-      {/* Index Finger */}
+      {/* Index Finger - Natural curve */}
       <motion.path
-        d="M 135 140 L 135 80 Q 135 60 140 55 Q 145 50 150 55 Q 155 60 155 80 L 155 140"
+        d="M 105 90 L 105 55 Q 105 45 107 40 Q 110 36 114 38 Q 117 42 117 52 L 117 90"
         fill="none"
         stroke={gradient ? `url(#${gradient})` : gradient}
-        strokeWidth="3"
+        strokeWidth="2.5"
         strokeLinecap="round"
         initial={{ pathLength: 0, opacity: 0 }}
         animate={animate ? { pathLength: 1, opacity: 1 } : {}}
-        transition={{ duration: 1, delay: 0.2, ease: 'easeInOut' }}
+        transition={{ duration: 1, delay: 0.25, ease: 'easeInOut' }}
       />
 
-      {/* Middle Finger */}
+      {/* Middle Finger - Longest, natural taper */}
       <motion.path
-        d="M 155 140 L 155 50 Q 155 35 160 30 Q 165 25 170 30 Q 175 35 175 50 L 175 140"
+        d="M 120 90 L 120 35 Q 120 25 123 20 Q 126 16 130 18 Q 133 22 133 32 L 133 90"
         fill="none"
         stroke={gradient ? `url(#${gradient})` : gradient}
-        strokeWidth="3"
+        strokeWidth="2.5"
         strokeLinecap="round"
         initial={{ pathLength: 0, opacity: 0 }}
         animate={animate ? { pathLength: 1, opacity: 1 } : {}}
-        transition={{ duration: 1, delay: 0.3, ease: 'easeInOut' }}
+        transition={{ duration: 1, delay: 0.35, ease: 'easeInOut' }}
       />
 
-      {/* Ring Finger */}
+      {/* Ring Finger - Slightly shorter */}
       <motion.path
-        d="M 175 140 L 175 70 Q 175 55 180 50 Q 185 45 190 50 Q 195 55 195 70 L 195 140"
+        d="M 135 92 L 135 50 Q 135 40 138 35 Q 141 31 145 33 Q 148 37 148 47 L 148 92"
         fill="none"
         stroke={gradient ? `url(#${gradient})` : gradient}
-        strokeWidth="3"
+        strokeWidth="2.5"
         strokeLinecap="round"
         initial={{ pathLength: 0, opacity: 0 }}
         animate={animate ? { pathLength: 1, opacity: 1 } : {}}
-        transition={{ duration: 1, delay: 0.4, ease: 'easeInOut' }}
+        transition={{ duration: 1, delay: 0.45, ease: 'easeInOut' }}
       />
 
-      {/* Pinky Finger */}
+      {/* Pinky - Shortest, natural angle */}
       <motion.path
-        d="M 195 140 L 195 100 Q 195 85 200 80 Q 205 75 210 80 Q 215 85 215 100 L 215 140"
+        d="M 148 95 L 152 70 Q 153 60 155 55 Q 158 51 162 53 Q 165 57 164 67 L 162 90 L 155 95"
         fill="none"
         stroke={gradient ? `url(#${gradient})` : gradient}
-        strokeWidth="3"
+        strokeWidth="2.5"
         strokeLinecap="round"
         initial={{ pathLength: 0, opacity: 0 }}
         animate={animate ? { pathLength: 1, opacity: 1 } : {}}
-        transition={{ duration: 1, delay: 0.5, ease: 'easeInOut' }}
+        transition={{ duration: 1, delay: 0.55, ease: 'easeInOut' }}
       />
 
-      {/* Vein Lines - Subtle */}
+      {/* Inner Vein Network - More detailed */}
       <motion.path
-        d="M 145 200 Q 150 180 155 160"
+        d="M 110 120 Q 115 105 120 90 M 125 125 Q 128 110 130 95 M 135 125 Q 138 110 140 95"
         fill="none"
         stroke={gradient ? `url(#${gradient})` : gradient}
-        strokeWidth="1"
-        opacity="0.4"
-        strokeDasharray="2 3"
+        strokeWidth="0.8"
+        opacity="0.3"
+        strokeDasharray="1.5 2"
         initial={{ pathLength: 0, opacity: 0 }}
-        animate={animate ? { pathLength: 1, opacity: 0.4 } : {}}
-        transition={{ duration: 1.5, delay: 0.6, ease: 'easeInOut' }}
-      />
-
-      <motion.path
-        d="M 165 200 Q 170 180 175 160"
-        fill="none"
-        stroke={gradient ? `url(#${gradient})` : gradient}
-        strokeWidth="1"
-        opacity="0.4"
-        strokeDasharray="2 3"
-        initial={{ pathLength: 0, opacity: 0 }}
-        animate={animate ? { pathLength: 1, opacity: 0.4 } : {}}
+        animate={animate ? { pathLength: 1, opacity: 0.3 } : {}}
         transition={{ duration: 1.5, delay: 0.7, ease: 'easeInOut' }}
       />
     </g>
