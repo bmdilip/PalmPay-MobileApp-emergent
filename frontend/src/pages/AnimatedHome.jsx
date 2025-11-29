@@ -246,42 +246,64 @@ const AnimatedHome = () => {
                           <p className="text-sm font-bold text-gray-800">Select Wallet</p>
                           <p className="text-xs text-gray-500 mt-0.5">Choose your payment wallet</p>
                         </div>
-                        {wallets.map((wallet, index) => (
-                        <motion.button
-                          key={wallet.id}
-                          onClick={() => {
-                            switchWallet(wallet.id);
-                            setShowWalletSelector(false);
-                          }}
-                          className={`w-full px-4 py-3 flex items-center gap-3 hover:bg-gray-50 transition-colors ${
-                            selectedWallet.id === wallet.id ? 'bg-blue-50' : ''
-                          }`}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.05 }}
-                        >
-                          <span className="text-2xl">{wallet.icon}</span>
-                          <div className="flex-1 text-left">
-                            <div className="flex items-center gap-2">
-                              <p className="text-sm font-semibold text-gray-800">{wallet.name}</p>
-                              {wallet.isSandbox && (
-                                <span className="px-1.5 py-0.5 bg-amber-100 text-amber-700 rounded text-[10px] font-bold">
-                                  {wallet.badge}
-                                </span>
-                              )}
+                        <div className="p-3">
+                          {wallets.map((wallet, index) => (
+                          <motion.button
+                            key={wallet.id}
+                            onClick={() => {
+                              switchWallet(wallet.id);
+                              setShowWalletSelector(false);
+                            }}
+                            className={`
+                              w-full px-4 py-4 mb-2 last:mb-0
+                              flex items-center gap-4 
+                              rounded-xl border-2
+                              transition-all duration-200
+                              ${selectedWallet.id === wallet.id 
+                                ? 'bg-[#00C8D6]/10 border-[#00C8D6]' 
+                                : 'bg-white border-gray-200 hover:border-[#00C8D6]/50 hover:bg-gray-50'
+                              }
+                            `}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            <div className={`
+                              w-14 h-14 rounded-2xl 
+                              bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 
+                              flex items-center justify-center flex-shrink-0
+                              shadow-lg
+                            `}>
+                              <span className="text-white text-2xl font-bold">
+                                {wallet.emoji}
+                              </span>
                             </div>
-                            <p className="text-xs text-gray-600">₹{wallet.balance.toLocaleString()}</p>
-                          </div>
-                          {selectedWallet.id === wallet.id && (
-                            <motion.div 
-                              className="w-2 h-2 rounded-full bg-green-500"
-                              initial={{ scale: 0 }}
-                              animate={{ scale: 1 }}
-                              transition={{ type: "spring" }}
-                            />
-                          )}
-                        </motion.button>
-                      ))}
+                            <div className="flex-1 text-left">
+                              <div className="flex items-center gap-2 mb-1">
+                                <p className="font-bold text-gray-800 text-base">{wallet.name}</p>
+                                {wallet.isSandbox && (
+                                  <span className="px-2 py-0.5 bg-amber-100 text-amber-700 rounded-md text-[10px] font-bold">
+                                    {wallet.badge}
+                                  </span>
+                                )}
+                              </div>
+                              <p className="text-sm font-semibold text-[#00C8D6]">₹{wallet.balance.toLocaleString()}</p>
+                            </div>
+                            {selectedWallet.id === wallet.id && (
+                              <motion.div 
+                                className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center"
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                transition={{ type: "spring", stiffness: 500 }}
+                              >
+                                <CheckCircle2 className="w-4 h-4 text-white" />
+                              </motion.div>
+                            )}
+                          </motion.button>
+                        ))}
+                        </div>
                       </motion.div>
                     </>
                   )}
