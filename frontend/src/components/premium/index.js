@@ -23,3 +23,6 @@ export { default as AdvertisementBanner } from './AdvertisementBanner';
 export { default as PalmVeinScanner } from './PalmVeinScanner';
 export { default as TabsComponent } from './TabsComponent';
 export { default as LayoutSwitcher } from './LayoutSwitcher';
+export { default as Modal } from './Modal';
+export { default as ShimmerLoader, Spinner, ProgressBar } from './ShimmerLoader';
+export { default as ConfettiEffect } from './ConfettiEffect';
