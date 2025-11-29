@@ -58,19 +58,11 @@ const Onboarding = () => {
           <p className="text-[#64E8FF] text-sm tracking-widest">YOUR PALM. YOUR WALLET.</p>
         </div>
 
-        {/* Icon with Glow or Palm Vein Image */}
+        {/* Icon with Glow or Palm Scan Animation */}
         <div className="relative mb-8">
           {currentSlideData.showPalmVein ? (
-            <div className="w-full max-w-sm flex justify-center">
-              <img 
-                src="https://customer-assets.emergentagent.com/job_payment-revolution/artifacts/6j99yz92_Gemini_Generated_Image_rxgnaarxgnaarxgn%20%281%29.png"
-                alt="Palm Vein Authentication"
-                className="w-64 h-64 object-contain rounded-2xl"
-                style={{
-                  filter: 'drop-shadow(0 0 40px rgba(0, 200, 214, 0.6))',
-                  animation: 'palmScan 3s ease-in-out infinite'
-                }}
-              />
+            <div className="w-full max-w-md flex justify-center px-8">
+              <PalmScanAnimation />
             </div>
           ) : (
             <>
