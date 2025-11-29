@@ -37,10 +37,10 @@ import ParticleField from '../components/animated/ParticleField';
 
 // Premium Components
 import { 
-  PatentPendingBadge,
   FloatingActionButton,
   GlowButton,
-  SpotlightCard
+  SpotlightCard,
+  AdvertisementBanner
 } from '../components/premium';
 
 // Animation presets
