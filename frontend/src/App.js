@@ -232,6 +232,9 @@ function App() {
             
             {/* Phase 3 Routes */}
             <Route path="/home-layouts" element={<AnimatedHomeWithLayouts />} />
+            
+            {/* All Components Demo */}
+            <Route path="/all-components" element={<AllComponentsDemo />} />
             </Routes>
             <BottomNavigation />
           </div>
