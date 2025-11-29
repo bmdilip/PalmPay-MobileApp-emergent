@@ -159,6 +159,9 @@ export const ClassicLayout = ({ user, wallet, navigate, showBalance, setShowBala
         </div>
       </Card>
 
+      {/* Palm ID Card */}
+      <PalmIDCard />
+
       {/* Services Grid */}
       <div>
         <h3 className="text-lg font-bold text-gray-800 mb-3">Services</h3>
