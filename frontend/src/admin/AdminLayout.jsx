@@ -55,27 +55,31 @@ const AdminLayout = ({ children }) => {
         </div>
       </div>
 
-      <div className="flex-1 flex overflow-hidden">
-        {/* Overlay for mobile */}
+      <div className="flex-1 flex overflow-hidden relative">
+        {/* Mobile Backdrop - Only show on mobile when sidebar is open */}
         {sidebarOpen && (
           <div 
-            className="fixed inset-0 bg-black/50 z-40"
+            className="fixed inset-0 bg-black/60 z-40 lg:hidden"
             onClick={() => setSidebarOpen(false)}
           />
         )}
 
-        {/* Mobile Backdrop */}
-        {sidebarOpen && (
-          <div 
-            className="fixed inset-0 bg-black/50 z-40 lg:hidden"
-            onClick={() => setSidebarOpen(false)}
-          />
-        )}
-
-        {/* Sidebar */}
-        <div className={`${
-          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } lg:translate-x-0 fixed lg:relative w-64 h-screen bg-gradient-to-b from-[#0A0F1F] via-[#1a1f3a] to-[#0A0F1F] text-white transition-transform duration-300 flex flex-col z-50 lg:z-auto`}>
+        {/* Sidebar - HIDE on mobile by default */}
+        <div className={`
+          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
+          lg:translate-x-0 
+          fixed lg:static 
+          top-14 lg:top-0
+          left-0 
+          w-64 
+          h-[calc(100vh-3.5rem)] lg:h-full
+          bg-gradient-to-b from-[#0A0F1F] via-[#1a1f3a] to-[#0A0F1F] 
+          text-white 
+          transition-transform duration-300 ease-in-out
+          flex flex-col 
+          z-50 lg:z-auto
+          shadow-2xl lg:shadow-none
+        `}>
           {/* Menu Items */}
           <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
             {menuItems.map((item) => {
