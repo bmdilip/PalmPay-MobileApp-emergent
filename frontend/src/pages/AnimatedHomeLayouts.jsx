@@ -38,7 +38,8 @@ import ParticleField from '../components/animated/ParticleField';
 import { 
   FloatingActionButton,
   AdvertisementBanner,
-  LayoutSwitcher
+  LayoutSwitcher,
+  PalmIDCard
 } from '../components/premium';
 
 // Animation presets
