@@ -231,3 +231,58 @@ export const mockDevices = [
     distance: '2.8 km'
   },
 ];
+
+export const mockContacts = [
+  {
+    id: 'contact-1',
+    name: 'Priya Sharma',
+    phone: '+91 98765 43211',
+    upiId: 'priya@okaxis',
+    palmId: 'palm-0xdef456',
+    avatar: null,
+    lastTransactionDate: '2025-01-29',
+    frequentContact: true
+  },
+  {
+    id: 'contact-2',
+    name: 'Rohit Kumar',
+    phone: '+91 98765 43212',
+    upiId: 'rohit@paytm',
+    palmId: 'palm-0xabc789',
+    avatar: null,
+    lastTransactionDate: '2025-01-29',
+    frequentContact: true
+  },
+  {
+    id: 'contact-3',
+    name: 'Amit Singh',
+    phone: '+91 98765 43213',
+    upiId: 'amit@ybl',
+    palmId: null,
+    avatar: null,
+    lastTransactionDate: '2025-01-27',
+    frequentContact: true
+  },
+  {
+    id: 'contact-4',
+    name: 'Neha Patel',
+    phone: '+91 98765 43214',
+    upiId: 'neha@paytm',
+    palmId: 'palm-0xghi012',
+    avatar: null,
+    lastTransactionDate: '2025-01-26',
+    frequentContact: false
+  },
+  {
+    id: 'contact-5',
+    name: 'Rahul Verma',
+    phone: '+91 98765 43215',
+    upiId: 'rahul@icici',
+    palmId: null,
+    avatar: null,
+    lastTransactionDate: '2025-01-25',
+    frequentContact: false
+  },
+];
+
+export const mockBanks = mockLinkedBanks; // Alias for compatibility
