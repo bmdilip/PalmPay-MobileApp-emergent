@@ -1,23 +1,18 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Logo = ({ size = 'md', variant = 'full', withGlow = false, className = '' }) => {
-  // Logo URLs from provided assets
-  const logos = {
-    full: 'https://customer-assets.emergentagent.com/job_premium-finance-ui/artifacts/6fr07bb9_PalmPe%20Logo%20-%20Transparent.png',
-    text: 'https://customer-assets.emergentagent.com/job_premium-finance-ui/artifacts/2qrgpzdu_Palmpe%20-%20Transparent.png',
-    mark: 'https://customer-assets.emergentagent.com/job_premium-finance-ui/artifacts/nvu73z5s_Brand%20Mark%20Transparent.png'
-  };
+const Logo = ({ size = 'md', variant = 'mark', withGlow = false, className = '' }) => {
+  // Logo URL - Using the premium brand mark
+  const logoUrl = 'https://customer-assets.emergentagent.com/job_premium-finance-ui/artifacts/vzw8o6pm_Brand%20Mark%20Transparent.png';
 
   const sizeClasses = {
     xs: 'h-6',
     sm: 'h-8',
     md: 'h-12',
     lg: 'h-16',
-    xl: 'h-24'
+    xl: 'h-20',
+    '2xl': 'h-24'
   };
-
-  const logoUrl = logos[variant] || logos.full;
 
   return (
     <motion.div
