@@ -581,14 +581,22 @@ const Auth = () => {
         </motion.div>
 
         {/* Footer Text */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="text-xs text-white/40 mt-6 text-center max-w-md"
+          className="mt-6 text-center max-w-md"
         >
-          By continuing, you agree to PalmPay's Terms of Service and Privacy Policy
-        </motion.p>
+          <p className="text-xs text-white/70 font-medium mb-1">
+            PalmPe™ | PalmPay™
+          </p>
+          <p className="text-xs text-white/50 mb-2">
+            © 2025 Lumioria Innovations Pvt. Ltd. All Rights Reserved.
+          </p>
+          <p className="text-xs text-white/40">
+            By continuing, you agree to our Terms of Service and Privacy Policy
+          </p>
+        </motion.div>
       </div>
     </div>
   );
