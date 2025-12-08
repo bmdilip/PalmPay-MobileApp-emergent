@@ -817,6 +817,13 @@ const AnimatedHome = () => {
         onClick={() => navigate('/support')}
         icon={<HelpCircle className="w-6 h-6" />}
       />
+
+      {/* Notification Panel */}
+      <NotificationPanel 
+        isOpen={showNotifications}
+        onClose={() => setShowNotifications(false)}
+        notifications={notifications}
+      />
     </div>
   );
 };
