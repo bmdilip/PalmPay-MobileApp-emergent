@@ -55,8 +55,12 @@ const VerifyOTP = () => {
         mobile: mobile
       };
       const mockToken = 'mock-jwt-token-' + Date.now();
-      login(mockUser, mockToken);
+      // Store user and token
+      localStorage.setItem('palmpay_user', JSON.stringify(mockUser));
+      localStorage.setItem('palmpay_token', mockToken);
       setIsVerifying(false);
+      // Redirect to palm registration
+      navigate('/palm-register');
     }, 1500);
   };
 
