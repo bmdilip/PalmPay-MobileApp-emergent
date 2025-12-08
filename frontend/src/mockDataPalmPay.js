@@ -29,6 +29,7 @@ export const mockWallets = [
     balance: 12450.75,
     currency: 'INR',
     icon: '💳',
+    emoji: '💳',
     isDefault: true,
     features: ['Send', 'Receive', 'Pay Bills', 'Recharge', 'Offline'],
     offlineLimit: 5000
@@ -40,6 +41,7 @@ export const mockWallets = [
     balance: 5000.00,
     currency: 'INR',
     icon: '💰',
+    emoji: '💰',
     isDefault: false,
     features: ['Top-up', 'Pay', 'Withdraw', 'Offline'],
     issuer: 'PalmPay Trust',
@@ -53,6 +55,7 @@ export const mockWallets = [
     balance: 2500.00,
     currency: 'INR',
     icon: '🏛️',
+    emoji: '🏦',
     isDefault: false,
     isSandbox: true,
     badge: 'SANDBOX',
