@@ -9,6 +9,7 @@ import PalmRegister from "./pages/PalmRegister";
 import Auth from "./pages/Auth";
 import VerifyOTP from "./pages/VerifyOTP";
 import ForgotPassword from "./pages/ForgotPassword";
+import PalmEnrollment from "./pages/PalmEnrollment";
 import PalmHome from "./pages/PalmHome";
 import PremiumHome from "./pages/PremiumHome";
 import Services from "./pages/Services";
