@@ -6,10 +6,12 @@ import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import Logo from '../components/Logo';
 import { useAuth } from '../contexts/AuthContext';
+import HoverCard3D from '../components/premium/HoverCard3D';
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [authMethod, setAuthMethod] = useState('mobile'); // 'mobile' or 'email'
+  const [loginType, setLoginType] = useState('otp'); // 'otp' or 'password'
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -40,11 +42,8 @@ const Auth = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    
-    // Clear error for this field
     setErrors(prev => ({ ...prev, [name]: '' }));
 
-    // Calculate password strength
     if (name === 'password') {
       calculatePasswordStrength(value);
     }
@@ -84,7 +83,8 @@ const Auth = () => {
       }
     }
 
-    if (authMethod === 'email' || !isLogin) {
+    // Password validation only for password login type or signup
+    if (loginType === 'password' || !isLogin) {
       if (!formData.password) {
         newErrors.password = 'Password is required';
       } else if (formData.password.length < 8) {
@@ -108,18 +108,19 @@ const Auth = () => {
 
     setIsLoading(true);
 
-    // Simulate API call
     setTimeout(() => {
-      if (authMethod === 'mobile' && isLogin) {
-        // Navigate to OTP verification
+      if (loginType === 'otp' && isLogin) {
+        // Navigate to OTP verification for both mobile and email
         navigate('/verify-otp', { 
           state: { 
-            mobile: formData.countryCode + formData.mobile,
-            authMethod: 'mobile'
+            identifier: authMethod === 'mobile' 
+              ? formData.countryCode + formData.mobile
+              : formData.email,
+            authMethod: authMethod
           } 
         });
       } else {
-        // For email login or signup, redirect to palm registration
+        // For password login or signup
         const mockUser = {
           id: 'user-' + Date.now(),
           name: formData.name || 'User',
@@ -127,10 +128,8 @@ const Auth = () => {
           mobile: formData.countryCode + formData.mobile
         };
         const mockToken = 'mock-jwt-token-' + Date.now();
-        // Store user and token
         localStorage.setItem('palmpay_user', JSON.stringify(mockUser));
         localStorage.setItem('palmpay_token', mockToken);
-        // Redirect to palm registration
         navigate('/palm-register');
       }
       setIsLoading(false);
@@ -185,355 +184,400 @@ const Auth = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <Logo size="lg" withGlow={true} />
+          <Logo size="lg" variant="full" withGlow={true} />
         </motion.div>
 
-        {/* Auth Card */}
+        {/* Auth Card with 3D Hover */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="w-full max-w-md"
         >
-          <Card className="bg-white/10 backdrop-blur-xl border-white/20 shadow-2xl overflow-hidden">
-            {/* Tab Toggle */}
-            <div className="p-6 pb-4">
-              <div className="flex gap-2 p-1 bg-white/5 rounded-xl mb-6">
-                <button
-                  onClick={() => setIsLogin(true)}
-                  className={`flex-1 py-3 rounded-lg font-semibold text-sm transition-all duration-300 ${
-                    isLogin
-                      ? 'bg-gradient-to-r from-[#586BFF] to-[#9B62FF] text-white shadow-lg'
-                      : 'text-white/60 hover:text-white/80'
-                  }`}
-                >
-                  Login
-                </button>
-                <button
-                  onClick={() => setIsLogin(false)}
-                  className={`flex-1 py-3 rounded-lg font-semibold text-sm transition-all duration-300 ${
-                    !isLogin
-                      ? 'bg-gradient-to-r from-[#586BFF] to-[#9B62FF] text-white shadow-lg'
-                      : 'text-white/60 hover:text-white/80'
-                  }`}
-                >
-                  Sign Up
-                </button>
-              </div>
+          <HoverCard3D intensity={8} shadow={true}>
+            <Card className="bg-white/10 backdrop-blur-xl border-white/20 shadow-2xl overflow-hidden">
+              {/* Tab Toggle */}
+              <div className="p-6 pb-4">
+                <div className="flex gap-2 p-1 bg-white/5 rounded-xl mb-6">
+                  <motion.button
+                    onClick={() => setIsLogin(true)}
+                    className={`flex-1 py-3 rounded-lg font-semibold text-sm transition-all duration-300 ${
+                      isLogin
+                        ? 'bg-gradient-to-r from-[#586BFF] to-[#9B62FF] text-white shadow-lg'
+                        : 'text-white/60 hover:text-white/80'
+                    }`}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Login
+                  </motion.button>
+                  <motion.button
+                    onClick={() => setIsLogin(false)}
+                    className={`flex-1 py-3 rounded-lg font-semibold text-sm transition-all duration-300 ${
+                      !isLogin
+                        ? 'bg-gradient-to-r from-[#586BFF] to-[#9B62FF] text-white shadow-lg'
+                        : 'text-white/60 hover:text-white/80'
+                    }`}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Sign Up
+                  </motion.button>
+                </div>
 
-              {/* Auth Method Toggle */}
-              <div className="flex gap-2 mb-6">
-                <button
-                  onClick={() => setAuthMethod('mobile')}
-                  className={`flex-1 py-2 px-4 rounded-lg text-xs font-medium transition-all ${
-                    authMethod === 'mobile'
-                      ? 'bg-white/20 text-white border border-white/30'
-                      : 'bg-white/5 text-white/50 border border-white/10 hover:bg-white/10'
-                  }`}
-                >
-                  <Phone className="w-3 h-3 inline mr-1" />
-                  Mobile OTP
-                </button>
-                <button
-                  onClick={() => setAuthMethod('email')}
-                  className={`flex-1 py-2 px-4 rounded-lg text-xs font-medium transition-all ${
-                    authMethod === 'email'
-                      ? 'bg-white/20 text-white border border-white/30'
-                      : 'bg-white/5 text-white/50 border border-white/10 hover:bg-white/10'
-                  }`}
-                >
-                  <Mail className="w-3 h-3 inline mr-1" />
-                  Email/Password
-                </button>
-              </div>
+                {/* Auth Method Toggle */}
+                <div className="flex gap-2 mb-4">
+                  <motion.button
+                    onClick={() => setAuthMethod('mobile')}
+                    className={`flex-1 py-2 px-4 rounded-lg text-xs font-medium transition-all ${
+                      authMethod === 'mobile'
+                        ? 'bg-white/20 text-white border border-white/30'
+                        : 'bg-white/5 text-white/50 border border-white/10 hover:bg-white/10'
+                    }`}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Phone className="w-3 h-3 inline mr-1" />
+                    Mobile
+                  </motion.button>
+                  <motion.button
+                    onClick={() => setAuthMethod('email')}
+                    className={`flex-1 py-2 px-4 rounded-lg text-xs font-medium transition-all ${
+                      authMethod === 'email'
+                        ? 'bg-white/20 text-white border border-white/30'
+                        : 'bg-white/5 text-white/50 border border-white/10 hover:bg-white/10'
+                    }`}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Mail className="w-3 h-3 inline mr-1" />
+                    Email
+                  </motion.button>
+                </div>
 
-              {/* Form */}
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <AnimatePresence mode="wait">
-                  {/* Name field (signup only) */}
-                  {!isLogin && (
-                    <motion.div
-                      key="name"
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
+                {/* Login Type Toggle (OTP or Password) - Only for Login */}
+                {isLogin && (
+                  <motion.div 
+                    className="flex gap-2 mb-6"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                  >
+                    <motion.button
+                      onClick={() => setLoginType('otp')}
+                      className={`flex-1 py-2 px-3 rounded-lg text-xs font-medium transition-all ${
+                        loginType === 'otp'
+                          ? 'bg-green-500/20 text-green-300 border border-green-400/30'
+                          : 'bg-white/5 text-white/50 border border-white/10 hover:bg-white/10'
+                      }`}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                     >
-                      <label className="block text-white/80 text-sm font-medium mb-2">
-                        Full Name
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Enter your full name"
-                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-[#586BFF] focus:ring-2 focus:ring-[#586BFF]/50 transition-all"
-                      />
-                      {errors.name && (
-                        <motion.p 
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          className="text-red-400 text-xs mt-1 flex items-center gap-1"
-                        >
-                          <AlertCircle className="w-3 h-3" />
-                          {errors.name}
-                        </motion.p>
-                      )}
-                    </motion.div>
-                  )}
-
-                  {/* Mobile Number */}
-                  {authMethod === 'mobile' && (
-                    <motion.div
-                      key="mobile"
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: 20 }}
-                      transition={{ duration: 0.3 }}
+                      🔐 OTP Login
+                    </motion.button>
+                    <motion.button
+                      onClick={() => setLoginType('password')}
+                      className={`flex-1 py-2 px-3 rounded-lg text-xs font-medium transition-all ${
+                        loginType === 'password'
+                          ? 'bg-blue-500/20 text-blue-300 border border-blue-400/30'
+                          : 'bg-white/5 text-white/50 border border-white/10 hover:bg-white/10'
+                      }`}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                     >
-                      <label className="block text-white/80 text-sm font-medium mb-2">
-                        Mobile Number
-                      </label>
-                      <div className="flex gap-2">
-                        <select
-                          name="countryCode"
-                          value={formData.countryCode}
-                          onChange={handleChange}
-                          className="px-3 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-[#586BFF] transition-all"
-                        >
-                          {countryCodes.map(({ code, country, flag }) => (
-                            <option key={code} value={code} className="bg-[#1a1f3a]">
-                              {flag} {code}
-                            </option>
-                          ))}
-                        </select>
-                        <div className="flex-1">
-                          <input
-                            type="tel"
-                            name="mobile"
-                            value={formData.mobile}
-                            onChange={handleChange}
-                            placeholder="10 digit mobile number"
-                            maxLength="10"
-                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-[#586BFF] focus:ring-2 focus:ring-[#586BFF]/50 transition-all"
-                          />
-                        </div>
-                      </div>
-                      {errors.mobile && (
-                        <motion.p 
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          className="text-red-400 text-xs mt-1 flex items-center gap-1"
-                        >
-                          <AlertCircle className="w-3 h-3" />
-                          {errors.mobile}
-                        </motion.p>
-                      )}
-                    </motion.div>
-                  )}
-
-                  {/* Email */}
-                  {authMethod === 'email' && (
-                    <motion.div
-                      key="email"
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: 20 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <label className="block text-white/80 text-sm font-medium mb-2">
-                        Email Address
-                      </label>
-                      <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
-                        <input
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          placeholder="your@email.com"
-                          className="w-full pl-11 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-[#586BFF] focus:ring-2 focus:ring-[#586BFF]/50 transition-all"
-                        />
-                      </div>
-                      {errors.email && (
-                        <motion.p 
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          className="text-red-400 text-xs mt-1 flex items-center gap-1"
-                        >
-                          <AlertCircle className="w-3 h-3" />
-                          {errors.email}
-                        </motion.p>
-                      )}
-                    </motion.div>
-                  )}
-
-                  {/* Password (email auth only) */}
-                  {authMethod === 'email' && (
-                    <motion.div
-                      key="password"
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: 20 }}
-                      transition={{ duration: 0.3, delay: 0.1 }}
-                    >
-                      <label className="block text-white/80 text-sm font-medium mb-2">
-                        Password
-                      </label>
-                      <div className="relative">
-                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
-                        <input
-                          type={showPassword ? 'text' : 'password'}
-                          name="password"
-                          value={formData.password}
-                          onChange={handleChange}
-                          placeholder="Enter password"
-                          className="w-full pl-11 pr-12 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-[#586BFF] focus:ring-2 focus:ring-[#586BFF]/50 transition-all"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => setShowPassword(!showPassword)}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/60 transition-colors"
-                        >
-                          {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                        </button>
-                      </div>
-                      {errors.password && (
-                        <motion.p 
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          className="text-red-400 text-xs mt-1 flex items-center gap-1"
-                        >
-                          <AlertCircle className="w-3 h-3" />
-                          {errors.password}
-                        </motion.p>
-                      )}
-                      
-                      {/* Password Strength Indicator */}
-                      {!isLogin && formData.password && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          className="mt-2"
-                        >
-                          <div className="flex items-center justify-between mb-1">
-                            <span className="text-xs text-white/60">Password Strength</span>
-                            <span 
-                              className="text-xs font-semibold"
-                              style={{ color: getPasswordStrengthColor() }}
-                            >
-                              {getPasswordStrengthText()}
-                            </span>
-                          </div>
-                          <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
-                            <motion.div
-                              className="h-full rounded-full"
-                              style={{ backgroundColor: getPasswordStrengthColor() }}
-                              initial={{ width: 0 }}
-                              animate={{ width: `${passwordStrength}%` }}
-                              transition={{ duration: 0.3 }}
-                            />
-                          </div>
-                        </motion.div>
-                      )}
-                    </motion.div>
-                  )}
-
-                  {/* Confirm Password (signup only) */}
-                  {!isLogin && authMethod === 'email' && (
-                    <motion.div
-                      key="confirmPassword"
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <label className="block text-white/80 text-sm font-medium mb-2">
-                        Confirm Password
-                      </label>
-                      <div className="relative">
-                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
-                        <input
-                          type={showPassword ? 'text' : 'password'}
-                          name="confirmPassword"
-                          value={formData.confirmPassword}
-                          onChange={handleChange}
-                          placeholder="Re-enter password"
-                          className="w-full pl-11 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-[#586BFF] focus:ring-2 focus:ring-[#586BFF]/50 transition-all"
-                        />
-                        {formData.confirmPassword && formData.password === formData.confirmPassword && (
-                          <Check className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-green-400" />
-                        )}
-                      </div>
-                      {errors.confirmPassword && (
-                        <motion.p 
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          className="text-red-400 text-xs mt-1 flex items-center gap-1"
-                        >
-                          <AlertCircle className="w-3 h-3" />
-                          {errors.confirmPassword}
-                        </motion.p>
-                      )}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {/* Forgot Password (login + email only) */}
-                {isLogin && authMethod === 'email' && (
-                  <div className="text-right">
-                    <button
-                      type="button"
-                      onClick={() => navigate('/forgot-password')}
-                      className="text-xs text-[#64E8FF] hover:text-[#64E8FF]/80 transition-colors"
-                    >
-                      Forgot Password?
-                    </button>
-                  </div>
+                      🔑 Password Login
+                    </motion.button>
+                  </motion.div>
                 )}
 
-                {/* Submit Button */}
-                <motion.button
-                  type="submit"
-                  disabled={isLoading}
-                  className="w-full py-3.5 bg-gradient-to-r from-[#586BFF] to-[#9B62FF] hover:from-[#4a5ceb] hover:to-[#8a51eb] text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                  whileHover={{ scale: isLoading ? 1 : 1.02 }}
-                  whileTap={{ scale: isLoading ? 1 : 0.98 }}
-                >
-                  {isLoading ? (
-                    <>
+                {/* Form */}
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <AnimatePresence mode="wait">
+                    {/* Name field (signup only) */}
+                    {!isLogin && (
                       <motion.div
-                        className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                      />
-                      Processing...
-                    </>
-                  ) : (
-                    <>
-                      {isLogin ? 'Login' : 'Create Account'}
-                      <ArrowRight className="w-5 h-5" />
-                    </>
-                  )}
-                </motion.button>
-              </form>
-            </div>
+                        key="name"
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <label className="block text-white/80 text-sm font-medium mb-2">
+                          Full Name
+                        </label>
+                        <input
+                          type="text"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          placeholder="Enter your full name"
+                          className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-[#586BFF] focus:ring-2 focus:ring-[#586BFF]/50 transition-all"
+                        />
+                        {errors.name && (
+                          <motion.p 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="text-red-400 text-xs mt-1 flex items-center gap-1"
+                          >
+                            <AlertCircle className="w-3 h-3" />
+                            {errors.name}
+                          </motion.p>
+                        )}
+                      </motion.div>
+                    )}
 
-            {/* Footer */}
-            <div className="px-6 py-4 bg-white/5 border-t border-white/10">
-              <p className="text-center text-xs text-white/60">
-                {isLogin ? "Don't have an account?" : 'Already have an account?'}
-                {' '}
-                <button
-                  onClick={() => setIsLogin(!isLogin)}
-                  className="text-[#64E8FF] hover:text-[#64E8FF]/80 font-semibold transition-colors"
-                >
-                  {isLogin ? 'Sign Up' : 'Login'}
-                </button>
-              </p>
-            </div>
-          </Card>
+                    {/* Mobile Number */}
+                    {authMethod === 'mobile' && (
+                      <motion.div
+                        key="mobile"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 20 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <label className="block text-white/80 text-sm font-medium mb-2">
+                          Mobile Number
+                        </label>
+                        <div className="flex gap-2">
+                          <select
+                            name="countryCode"
+                            value={formData.countryCode}
+                            onChange={handleChange}
+                            className="px-3 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-[#586BFF] transition-all"
+                          >
+                            {countryCodes.map(({ code, country, flag }) => (
+                              <option key={code} value={code} className="bg-[#1a1f3a]">
+                                {flag} {code}
+                              </option>
+                            ))}
+                          </select>
+                          <div className="flex-1">
+                            <input
+                              type="tel"
+                              name="mobile"
+                              value={formData.mobile}
+                              onChange={handleChange}
+                              placeholder="10 digit mobile number"
+                              maxLength="10"
+                              className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-[#586BFF] focus:ring-2 focus:ring-[#586BFF]/50 transition-all"
+                            />
+                          </div>
+                        </div>
+                        {errors.mobile && (
+                          <motion.p 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="text-red-400 text-xs mt-1 flex items-center gap-1"
+                          >
+                            <AlertCircle className="w-3 h-3" />
+                            {errors.mobile}
+                          </motion.p>
+                        )}
+                      </motion.div>
+                    )}
+
+                    {/* Email */}
+                    {authMethod === 'email' && (
+                      <motion.div
+                        key="email"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 20 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <label className="block text-white/80 text-sm font-medium mb-2">
+                          Email Address
+                        </label>
+                        <div className="relative">
+                          <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
+                          <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="your@email.com"
+                            className="w-full pl-11 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-[#586BFF] focus:ring-2 focus:ring-[#586BFF]/50 transition-all"
+                          />
+                        </div>
+                        {errors.email && (
+                          <motion.p 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="text-red-400 text-xs mt-1 flex items-center gap-1"
+                          >
+                            <AlertCircle className="w-3 h-3" />
+                            {errors.email}
+                          </motion.p>
+                        )}
+                      </motion.div>
+                    )}
+
+                    {/* Password (for password login type or signup) */}
+                    {(loginType === 'password' || !isLogin) && (
+                      <motion.div
+                        key="password"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 20 }}
+                        transition={{ duration: 0.3, delay: 0.1 }}
+                      >
+                        <label className="block text-white/80 text-sm font-medium mb-2">
+                          Password
+                        </label>
+                        <div className="relative">
+                          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
+                          <input
+                            type={showPassword ? 'text' : 'password'}
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            placeholder="Enter password"
+                            className="w-full pl-11 pr-12 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-[#586BFF] focus:ring-2 focus:ring-[#586BFF]/50 transition-all"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/60 transition-colors"
+                          >
+                            {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                          </button>
+                        </div>
+                        {errors.password && (
+                          <motion.p 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="text-red-400 text-xs mt-1 flex items-center gap-1"
+                          >
+                            <AlertCircle className="w-3 h-3" />
+                            {errors.password}
+                          </motion.p>
+                        )}
+                        
+                        {/* Password Strength Indicator */}
+                        {!isLogin && formData.password && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            className="mt-2"
+                          >
+                            <div className="flex items-center justify-between mb-1">
+                              <span className="text-xs text-white/60">Password Strength</span>
+                              <span 
+                                className="text-xs font-semibold"
+                                style={{ color: getPasswordStrengthColor() }}
+                              >
+                                {getPasswordStrengthText()}
+                              </span>
+                            </div>
+                            <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+                              <motion.div
+                                className="h-full rounded-full"
+                                style={{ backgroundColor: getPasswordStrengthColor() }}
+                                initial={{ width: 0 }}
+                                animate={{ width: `${passwordStrength}%` }}
+                                transition={{ duration: 0.3 }}
+                              />
+                            </div>
+                          </motion.div>
+                        )}
+                      </motion.div>
+                    )}
+
+                    {/* Confirm Password (signup only) */}
+                    {!isLogin && (
+                      <motion.div
+                        key="confirmPassword"
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <label className="block text-white/80 text-sm font-medium mb-2">
+                          Confirm Password
+                        </label>
+                        <div className="relative">
+                          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
+                          <input
+                            type={showPassword ? 'text' : 'password'}
+                            name="confirmPassword"
+                            value={formData.confirmPassword}
+                            onChange={handleChange}
+                            placeholder="Re-enter password"
+                            className="w-full pl-11 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-[#586BFF] focus:ring-2 focus:ring-[#586BFF]/50 transition-all"
+                          />
+                          {formData.confirmPassword && formData.password === formData.confirmPassword && (
+                            <Check className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-green-400" />
+                          )}
+                        </div>
+                        {errors.confirmPassword && (
+                          <motion.p 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="text-red-400 text-xs mt-1 flex items-center gap-1"
+                          >
+                            <AlertCircle className="w-3 h-3" />
+                            {errors.confirmPassword}
+                          </motion.p>
+                        )}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Forgot Password (login + password mode only) */}
+                  {isLogin && loginType === 'password' && (
+                    <div className="text-right">
+                      <button
+                        type="button"
+                        onClick={() => navigate('/forgot-password')}
+                        className="text-xs text-[#64E8FF] hover:text-[#64E8FF]/80 transition-colors"
+                      >
+                        Forgot Password?
+                      </button>
+                    </div>
+                  )}
+
+                  {/* Submit Button */}
+                  <motion.button
+                    type="submit"
+                    disabled={isLoading}
+                    className="w-full py-3.5 bg-gradient-to-r from-[#586BFF] to-[#9B62FF] hover:from-[#4a5ceb] hover:to-[#8a51eb] text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    whileHover={{ scale: isLoading ? 1 : 1.02, boxShadow: '0 10px 30px rgba(88, 107, 255, 0.4)' }}
+                    whileTap={{ scale: isLoading ? 1 : 0.98 }}
+                  >
+                    {isLoading ? (
+                      <>
+                        <motion.div
+                          className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                        />
+                        Processing...
+                      </>
+                    ) : (
+                      <>
+                        {isLogin ? (loginType === 'otp' ? 'Send OTP' : 'Login') : 'Create Account'}
+                        <ArrowRight className="w-5 h-5" />
+                      </>
+                    )}
+                  </motion.button>
+                </form>
+              </div>
+
+              {/* Footer */}
+              <div className="px-6 py-4 bg-white/5 border-t border-white/10">
+                <p className="text-center text-xs text-white/60">
+                  {isLogin ? "Don't have an account?" : 'Already have an account?'}
+                  {' '}
+                  <button
+                    onClick={() => setIsLogin(!isLogin)}
+                    className="text-[#64E8FF] hover:text-[#64E8FF]/80 font-semibold transition-colors"
+                  >
+                    {isLogin ? 'Sign Up' : 'Login'}
+                  </button>
+                </p>
+              </div>
+            </Card>
+          </HoverCard3D>
         </motion.div>
 
         {/* Footer Text */}
