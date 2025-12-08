@@ -211,7 +211,7 @@ const ForgotPassword = () => {
             transition={{ delay: 0.8 }}
             className="text-center mt-6"
           >
-            <p className="text-xs text-white/60">
+            <p className="text-xs text-white/60 mb-4">
               Remember your password?{' '}
               <button
                 onClick={() => navigate('/auth')}
@@ -219,6 +219,12 @@ const ForgotPassword = () => {
               >
                 Back to Login
               </button>
+            </p>
+            <p className="text-xs text-white/70 font-medium mb-1">
+              PalmPe™ | PalmPay™
+            </p>
+            <p className="text-xs text-white/50">
+              © 2025 Lumioria Innovations Pvt. Ltd. All Rights Reserved.
             </p>
           </motion.div>
         )}
