@@ -35,7 +35,7 @@ const AdminLayout = ({ children }) => {
   return (
     <div className="h-screen flex flex-col bg-gray-50 overflow-hidden">
       {/* Top Bar - Always Visible */}
-      <div className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between flex-shrink-0 z-30">
+      <div className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between flex-shrink-0 z-50 relative">
         <div className="flex items-center gap-3">
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
