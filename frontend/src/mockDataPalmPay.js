@@ -286,3 +286,87 @@ export const mockContacts = [
 ];
 
 export const mockBanks = mockLinkedBanks; // Alias for compatibility
+
+export const mockReceipts = [
+  {
+    id: 'receipt-001',
+    transactionId: 'txn-001',
+    type: 'sent',
+    recipient: 'Priya Sharma',
+    amount: 500,
+    date: '2025-01-29',
+    time: '10:30 AM',
+    status: 'success',
+    method: 'UPI',
+    category: 'transfer',
+    upiId: 'priya@okaxis',
+    referenceNumber: 'REF1234567890',
+    description: 'Payment to Priya'
+  },
+  {
+    id: 'receipt-002',
+    transactionId: 'txn-002',
+    type: 'received',
+    recipient: 'Rohit Kumar',
+    amount: 1200,
+    date: '2025-01-29',
+    time: '09:15 AM',
+    status: 'success',
+    method: 'UPI',
+    category: 'transfer',
+    upiId: 'rohit@paytm',
+    referenceNumber: 'REF0987654321',
+    description: 'Payment from Rohit'
+  },
+];
+
+export const services = [
+  {
+    id: 'mobile-recharge',
+    name: 'Mobile Recharge',
+    icon: '📱',
+    category: 'Recharge',
+    color: '#3B82F6',
+    path: '/services/mobile-recharge'
+  },
+  {
+    id: 'electricity',
+    name: 'Electricity Bill',
+    icon: '⚡',
+    category: 'Bills',
+    color: '#F59E0B',
+    path: '/services/electricity'
+  },
+  {
+    id: 'dth',
+    name: 'DTH Recharge',
+    icon: '📺',
+    category: 'Recharge',
+    color: '#8B5CF6',
+    path: '/services/dth'
+  },
+  {
+    id: 'broadband',
+    name: 'Broadband Bill',
+    icon: '🌐',
+    category: 'Bills',
+    color: '#10B981',
+    path: '/services/broadband'
+  },
+  {
+    id: 'gas',
+    name: 'Gas Bill',
+    icon: '🔥',
+    category: 'Bills',
+    color: '#EF4444',
+    path: '/services/gas'
+  },
+  {
+    id: 'water',
+    name: 'Water Bill',
+    icon: '💧',
+    category: 'Bills',
+    color: '#06B6D4',
+    path: '/services/water'
+  },
+];
