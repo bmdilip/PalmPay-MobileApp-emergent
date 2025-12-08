@@ -246,11 +246,12 @@ function App() {
             <Route path="/all-components" element={<AllComponentsDemo />} />
             </Routes>
             <BottomNavigation />
+            </div>
+            <Toaster />
           </div>
-          <Toaster />
-          </div>
-        </BrowserRouter>
-      </WalletProvider>
+          </WalletProvider>
+        </AuthProvider>
+      </BrowserRouter>
     </LanguageProvider>
   );
 }
