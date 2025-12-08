@@ -126,6 +126,9 @@ function App() {
             <Routes>
             <Route path="/" element={<Onboarding />} />
             <Route path="/onboarding" element={<Onboarding />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/verify-otp" element={<VerifyOTP />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/palm-register" element={<PalmRegister />} />
             <Route path="/home" element={<AnimatedHome />} />
             <Route path="/home-old" element={<PremiumHome />} />
