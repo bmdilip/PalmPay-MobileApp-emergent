@@ -119,10 +119,11 @@ const BottomNavigation = () => {
 function App() {
   return (
     <LanguageProvider>
-      <WalletProvider>
-        <BrowserRouter>
-          <div className="App">
-          <div className="max-w-md mx-auto bg-white min-h-screen relative">
+      <BrowserRouter>
+        <AuthProvider>
+          <WalletProvider>
+            <div className="App">
+            <div className="max-w-md mx-auto bg-white min-h-screen relative">
             <Routes>
             <Route path="/" element={<Onboarding />} />
             <Route path="/onboarding" element={<Onboarding />} />
