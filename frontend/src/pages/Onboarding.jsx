@@ -139,9 +139,17 @@ const Onboarding = () => {
         </div>
 
         {/* Footer */}
-        <p className="text-xs text-gray-500 mt-8 text-center">
-          By Lumioria Innovations Pvt. Ltd. • RBI Compliant • UPI Enabled
-        </p>
+        <div className="mt-8 text-center">
+          <p className="text-xs text-gray-600 font-medium mb-1">
+            PalmPe™ | PalmPay™
+          </p>
+          <p className="text-xs text-gray-500 mb-1">
+            © 2025 Lumioria Innovations Pvt. Ltd. All Rights Reserved.
+          </p>
+          <p className="text-xs text-gray-400">
+            RBI Compliant • UPI Enabled
+          </p>
+        </div>
       </div>
     </div>
   );
