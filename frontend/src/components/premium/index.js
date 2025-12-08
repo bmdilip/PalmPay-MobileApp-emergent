@@ -28,3 +28,4 @@ export { default as ShimmerLoader, Spinner, ProgressBar } from './ShimmerLoader'
 export { default as ConfettiEffect } from './ConfettiEffect';
 export { default as PalmScanAnimation } from './PalmScanAnimation';
 export { default as PalmIDCard } from './PalmIDCard';
+export { default as HoverCard3D } from './HoverCard3D';
