@@ -133,15 +133,18 @@ const AnimatedHome = () => {
           >
             <Logo size={scrolled ? "sm" : "md"} withGlow={false} />
             <motion.button 
+              onClick={() => setShowNotifications(true)}
               className="relative p-2.5 hover:bg-white/10 rounded-full transition-all"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
               <Bell className="w-5 h-5" />
-              <motion.span 
-                className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"
-                {...pulseAnimation}
-              />
+              {notifications.filter(n => n.unread).length > 0 && (
+                <motion.span 
+                  className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"
+                  {...pulseAnimation}
+                />
+              )}
             </motion.button>
           </motion.div>
 
