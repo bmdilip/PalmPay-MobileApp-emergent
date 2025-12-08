@@ -43,6 +43,7 @@ import {
   SpotlightCard,
   AdvertisementBanner
 } from '../components/premium';
+import HoverCard3D from '../components/premium/HoverCard3D';
 import { Copy, Hand } from 'lucide-react';
 
 // Animation presets
