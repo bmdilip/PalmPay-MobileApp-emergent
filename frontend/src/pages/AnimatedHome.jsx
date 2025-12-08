@@ -26,10 +26,11 @@ import {
   HelpCircle,
   CheckCircle2
 } from 'lucide-react';
-import { mockUser, mockTransactions } from '../mockDataPalmPay';
+import { mockUser, mockTransactions, mockNotifications } from '../mockDataPalmPay';
 import { useNavigate } from 'react-router-dom';
 import { useWallet } from '../contexts/WalletContext';
 import Logo from '../components/Logo';
+import NotificationPanel from '../components/NotificationPanel';
 
 // Animated Background Components
 import MeshGradientBackground from '../components/animated/MeshGradientBackground';
