@@ -61,300 +61,173 @@ export const mockWallets = [
     badge: 'SANDBOX',
     features: ['Top-up (KYC)', 'Pay Online', 'Pay Offline', 'Refund'],
     issuer: 'Reserve Bank of India',
-    offlineLimit: 1000,
-    requiresKYC: true
+    offlineLimit: 1000
   }
 ];
 
-export const mockBanks = [
-  { id: '1', name: 'HDFC Bank', accountNumber: '****1234', ifsc: 'HDFC0001234', isPrimary: true, balance: 45000 },
-  { id: '2', name: 'ICICI Bank', accountNumber: '****5678', ifsc: 'ICIC0005678', isPrimary: false, balance: 23500 },
-  { id: '3', name: 'State Bank of India', accountNumber: '****9012', ifsc: 'SBIN0001234', isPrimary: false, balance: 67800 },
-];
-
-export const mockContacts = [
-  { id: '1', name: 'Priya Sharma', phone: '+91 98765 11111', upiId: 'priya@palmpay', hasPalmId: true, avatar: 'P' },
-  { id: '2', name: 'Ravi Kumar', phone: '+91 98765 22222', upiId: 'ravi@paytm', hasPalmId: false, avatar: 'R' },
-  { id: '3', name: 'Neha Gupta', phone: '+91 98765 33333', upiId: 'neha@palmpay', hasPalmId: true, avatar: 'N' },
-  { id: '4', name: 'Amit Singh', phone: '+91 98765 44444', upiId: 'amit@oksbi', hasPalmId: false, avatar: 'A' },
-  { id: '5', name: 'Anjali Reddy', phone: '+91 98765 55555', upiId: 'anjali@palmpay', hasPalmId: true, avatar: 'A' },
+export const mockNotifications = [
+  {
+    id: 'notif-1',
+    type: 'login',
+    title: 'Successful Login',
+    message: 'You logged in from a new device - iPhone 15',
+    time: '5 min ago',
+    unread: true,
+    color: '#10B981'
+  },
+  {
+    id: 'notif-2',
+    type: 'sent',
+    title: 'Payment Sent',
+    message: 'Money sent to Priya Sharma via UPI',
+    amount: '500',
+    time: '1 hour ago',
+    unread: true,
+    color: '#F59E0B'
+  },
+  {
+    id: 'notif-3',
+    type: 'received',
+    title: 'Payment Received',
+    message: 'Received from Rohit Kumar',
+    amount: '1,200',
+    time: '3 hours ago',
+    unread: true,
+    color: '#10B981'
+  },
+  {
+    id: 'notif-4',
+    type: 'bill',
+    title: 'Electricity Bill Paid',
+    message: 'BESCOM bill payment successful - Consumer ID: 12345',
+    amount: '1,450',
+    time: '5 hours ago',
+    unread: false,
+    color: '#3B82F6'
+  },
+  {
+    id: 'notif-5',
+    type: 'recharge',
+    title: 'Mobile Recharge',
+    message: 'Airtel prepaid recharge completed for 9876543210',
+    amount: '299',
+    time: '1 day ago',
+    unread: false,
+    color: '#8B5CF6'
+  }
 ];
 
 export const mockTransactions = [
   {
-    id: 'txn1',
+    id: 'txn-001',
     type: 'sent',
-    amount: 850,
     recipient: 'Priya Sharma',
-    upiId: 'priya@palmpay',
-    date: '2025-01-28',
-    time: '15:30',
-    status: 'success',
-    category: 'palm2qr',
-    method: 'Palm Biometric',
-    walletType: 'upi',
-    location: 'Cafe Coffee Day, Bangalore',
-    receiptId: 'rcpt-001',
-    tripleHash: '0xabcdef123456789...',
-    deviceSignature: '0x9876543210fedcba...'
-  },
-  {
-    id: 'txn1a',
-    type: 'sent',
     amount: 500,
-    recipient: 'Metro Card Recharge',
-    upiId: 'metro@payment',
-    date: '2025-01-28',
-    time: '14:00',
+    date: '2025-01-29',
+    time: '10:30 AM',
     status: 'success',
-    category: 'recharge',
-    method: 'e-Money',
-    walletType: 'e-money',
-    receiptId: 'rcpt-001a'
-  },
-  {
-    id: 'txn1b',
-    type: 'sent',
-    amount: 250,
-    recipient: 'Coffee Shop',
-    upiId: 'shop@palmpay',
-    date: '2025-01-28',
-    time: '12:30',
-    status: 'success',
-    category: 'retail',
-    method: 'CBDC (Offline)',
-    walletType: 'cbdc',
-    location: 'StarBucks, Delhi',
-    receiptId: 'rcpt-001b',
-    consentToken: '0xcbdc123456...',
-    deviceSignature: '0xdevice789...',
-    isOffline: true
-  },
-  {
-    id: 'txn2',
-    type: 'received',
-    amount: 2500,
-    recipient: 'Ravi Kumar',
-    upiId: 'ravi@paytm',
-    date: '2025-01-28',
-    time: '11:15',
-    status: 'success',
-    category: 'upi',
     method: 'UPI',
-    walletType: 'upi',
-    receiptId: 'rcpt-002'
+    category: 'transfer'
   },
   {
-    id: 'txn2a',
-    type: 'topup',
-    amount: 2000,
-    recipient: 'Bank Transfer',
-    bankName: 'HDFC Bank',
-    date: '2025-01-28',
-    time: '10:00',
-    status: 'success',
-    category: 'topup',
-    method: 'e-Money Top-up',
-    walletType: 'e-money',
-    receiptId: 'rcpt-002a'
-  },
-  {
-    id: 'txn3',
-    type: 'sent',
-    amount: 350,
-    recipient: 'PalmPe POS - Retail Store',
-    upiId: 'merchant@palmpay',
-    date: '2025-01-27',
-    time: '18:45',
-    status: 'success',
-    category: 'pos',
-    method: 'Palm Biometric (Phone-less)',
-    walletType: 'upi',
-    location: 'BigBazaar, Mumbai',
-    receiptId: 'rcpt-003',
-    tripleHash: '0x123abc456def789...',
-    deviceSignature: '0xfedcba9876543210...'
-  },
-  {
-    id: 'txn3a',
-    type: 'topup',
-    amount: 1500,
-    recipient: 'CBDC Top-up',
-    bankName: 'SBI',
-    date: '2025-01-27',
-    time: '14:20',
-    status: 'success',
-    category: 'topup',
-    method: 'CBDC Top-up (KYC)',
-    walletType: 'cbdc',
-    receiptId: 'rcpt-003a',
-    kycVerified: true
-  },
-  {
-    id: 'txn4',
-    type: 'sent',
+    id: 'txn-002',
+    type: 'received',
+    recipient: 'Rohit Kumar',
     amount: 1200,
-    recipient: 'Electricity Bill - BESCOM',
-    upiId: 'bescom@bill',
-    date: '2025-01-26',
-    time: '09:20',
+    date: '2025-01-29',
+    time: '09:15 AM',
     status: 'success',
-    category: 'billpay',
     method: 'UPI',
-    walletType: 'upi',
-    receiptId: 'rcpt-004'
+    category: 'transfer'
   },
   {
-    id: 'txn5',
-    type: 'received',
-    amount: 5000,
-    recipient: 'Neha Gupta',
-    upiId: 'neha@palmpay',
-    date: '2025-01-25',
-    time: '16:00',
+    id: 'txn-003',
+    type: 'bill',
+    recipient: 'BESCOM',
+    amount: 1450,
+    date: '2025-01-28',
+    time: '08:00 PM',
     status: 'success',
-    category: 'upi',
-    method: 'Palm Biometric',
-    walletType: 'upi',
-    receiptId: 'rcpt-005',
-    tripleHash: '0xaaa111bbb222ccc...',
-    deviceSignature: '0x333ddd444eee555...'
+    method: 'UPI',
+    category: 'electricity'
   },
   {
-    id: 'txn6',
+    id: 'txn-004',
+    type: 'recharge',
+    recipient: 'Airtel Prepaid',
+    amount: 299,
+    date: '2025-01-28',
+    time: '02:30 PM',
+    status: 'success',
+    method: 'UPI',
+    category: 'mobile'
+  },
+  {
+    id: 'txn-005',
     type: 'sent',
-    amount: 499,
-    recipient: 'Amazon India',
-    upiId: 'amazon@icici',
-    date: '2025-01-24',
-    time: '12:30',
+    recipient: 'Amit Singh',
+    amount: 750,
+    date: '2025-01-27',
+    time: '06:45 PM',
     status: 'success',
-    category: 'shopping',
-    method: 'Palm2QR',
-    receiptId: 'rcpt-006'
+    method: 'e-Money',
+    category: 'transfer'
+  },
+];
+
+export const mockLinkedBanks = [
+  {
+    id: 'bank-1',
+    name: 'HDFC Bank',
+    accountNumber: '**** **** 1234',
+    ifsc: 'HDFC0001234',
+    linked: true,
+    primary: true,
+    type: 'Savings Account'
+  },
+  {
+    id: 'bank-2',
+    name: 'ICICI Bank',
+    accountNumber: '**** **** 5678',
+    ifsc: 'ICIC0005678',
+    linked: true,
+    primary: false,
+    type: 'Current Account'
   },
 ];
 
 export const mockDevices = [
   {
     id: 'device-001',
-    name: 'PalmPe Terminal - MG Road',
-    address: 'MG Road Metro Station, Bangalore',
-    lat: 12.9716,
-    lng: 77.5946,
-    status: 'active',
-    distance: '0.5 km',
-    type: 'registration',
-    availability: 'Walk-in available'
+    name: 'PalmPe Device - MG Road',
+    location: '123 MG Road, Bangalore, Karnataka 560001',
+    coordinates: { lat: 12.9716, lng: 77.5946 },
+    status: 'online',
+    merchant: 'Cafe Coffee Day',
+    lastActive: '2 mins ago',
+    scansToday: 142,
+    distance: '0.5 km'
   },
   {
     id: 'device-002',
-    name: 'PalmPe Kiosk - Indiranagar',
-    address: '100 Feet Road, Indiranagar, Bangalore',
-    lat: 12.9784,
-    lng: 77.6408,
-    status: 'active',
-    distance: '2.3 km',
-    type: 'registration',
-    availability: 'Appointment only'
+    name: 'PalmPe Device - Phoenix Mall',
+    location: 'Phoenix Marketcity Mall, Whitefield, Bangalore 560066',
+    coordinates: { lat: 12.9975, lng: 77.6969 },
+    status: 'online',
+    merchant: 'Lifestyle Store',
+    lastActive: '5 mins ago',
+    scansToday: 98,
+    distance: '3.2 km'
   },
   {
     id: 'device-003',
-    name: 'PalmPe - Koramangala',
-    address: '5th Block, Koramangala, Bangalore',
-    lat: 12.9352,
-    lng: 77.6245,
-    status: 'active',
-    distance: '3.8 km',
-    type: 'payment',
-    availability: 'Walk-in available'
-  },
-  {
-    id: 'device-004',
-    name: 'PalmPe Terminal - Whitefield',
-    address: 'Phoenix Marketcity, Whitefield, Bangalore',
-    lat: 12.9975,
-    lng: 77.6969,
-    status: 'maintenance',
-    distance: '8.1 km',
-    type: 'registration',
-    availability: 'Under maintenance'
-  },
-];
-
-export const mockReceipts = [
-  {
-    id: 'rcpt-001',
-    txId: 'txn1',
-    merchantName: 'Cafe Coffee Day',
-    merchantId: 'merchant-555',
-    amount: 850,
-    currency: 'INR',
-    timestamp: '2025-01-28T15:30:00Z',
-    status: 'authorized',
-    deviceId: 'device-987',
-    userId: 'user-123',
-    tripleHash: '0xabcdef123456789abcdef123456789abcdef123456789abcdef123456789abc',
-    deviceSignature: '0x9876543210fedcba9876543210fedcba9876543210fedcba9876543210fedc',
-    signedBlob: 'base64_encoded_signed_data_here...',
-    verificationStatus: 'verified',
-    bankLastFour: '1234',
-    location: 'Cafe Coffee Day, Bangalore',
-    receiptUrl: null
-  },
-  {
-    id: 'rcpt-003',
-    txId: 'txn3',
-    merchantName: 'BigBazaar',
-    merchantId: 'merchant-789',
-    amount: 350,
-    currency: 'INR',
-    timestamp: '2025-01-27T18:45:00Z',
-    status: 'authorized',
-    deviceId: 'device-987',
-    userId: 'user-123',
-    tripleHash: '0x123abc456def789123abc456def789123abc456def789123abc456def78912',
-    deviceSignature: '0xfedcba9876543210fedcba9876543210fedcba9876543210fedcba987654321',
-    signedBlob: 'base64_encoded_signed_data_here...',
-    verificationStatus: 'verified',
-    bankLastFour: '1234',
-    location: 'BigBazaar, Mumbai',
-    receiptUrl: null
-  },
-];
-
-export const services = [
-  { id: 'recharge', label: 'Mobile Recharge', icon: 'Smartphone', color: '#64E8FF', route: '/recharge' },
-  { id: 'electricity', label: 'Electricity', icon: 'Zap', color: '#586BFF', route: '/bills/electricity' },
-  { id: 'gas', label: 'Gas', icon: 'Flame', color: '#9B62FF', route: '/bills/gas' },
-  { id: 'dth', label: 'DTH', icon: 'Tv', color: '#64E8FF', route: '/recharge/dth' },
-  { id: 'fastag', label: 'FASTag', icon: 'Car', color: '#586BFF', route: '/fastag' },
-  { id: 'flights', label: 'Flights', icon: 'Plane', color: '#9B62FF', route: '/travel/flights' },
-  { id: 'hotels', label: 'Hotels', icon: 'Hotel', color: '#64E8FF', route: '/travel/hotels' },
-  { id: 'broadband', label: 'Broadband', icon: 'Wifi', color: '#586BFF', route: '/bills/broadband' },
-  { id: 'education', label: 'Education', icon: 'GraduationCap', color: '#9B62FF', route: '/education' },
-  { id: 'water', label: 'Water', icon: 'Droplet', color: '#64E8FF', route: '/bills/water' },
-  { id: 'subscriptions', label: 'Subscriptions', icon: 'Repeat', color: '#586BFF', route: '/subscriptions' },
-  { id: 'wallet', label: 'Wallet Recharge', icon: 'Wallet', color: '#9B62FF', route: '/wallet' },
-];
-
-export const mockMandates = [
-  {
-    id: 'mandate-001',
-    merchantName: 'Netflix',
-    amount: 649,
-    frequency: 'monthly',
-    nextPayment: '2025-02-01',
-    status: 'active',
-    startDate: '2024-06-01'
-  },
-  {
-    id: 'mandate-002',
-    merchantName: 'Spotify Premium',
-    amount: 119,
-    frequency: 'monthly',
-    nextPayment: '2025-02-05',
-    status: 'active',
-    startDate: '2024-08-05'
+    name: 'PalmPe Device - Indiranagar',
+    location: '100 Feet Road, Indiranagar, Bangalore 560038',
+    coordinates: { lat: 12.9784, lng: 77.6408 },
+    status: 'offline',
+    merchant: 'Barbeque Nation',
+    lastActive: '1 hour ago',
+    scansToday: 67,
+    distance: '2.8 km'
   },
 ];
