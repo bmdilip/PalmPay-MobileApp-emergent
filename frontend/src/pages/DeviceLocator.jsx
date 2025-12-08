@@ -64,13 +64,21 @@ const DeviceLocator = () => {
       </div>
 
       {/* Info Banner */}
-      <div className="px-5 py-4">
+      <div className="px-5 py-4 space-y-3">
         <Card className="bg-[#586BFF]/10 border-[#586BFF]/30 p-4">
           <p className="text-sm text-white/80">
             <span className="font-semibold text-[#64E8FF]">Important:</span> Palm registration must be completed at a PalmPe terminal. 
             Walk-in or book a slot at any active device below.
           </p>
         </Card>
+
+        {/* PalmPe Enroll CTA */}
+        <Button 
+          onClick={() => navigate('/palm-enrollment')}
+          className="w-full h-14 bg-gradient-to-r from-[#64E8FF] to-[#586BFF] hover:from-[#50d4f0] hover:to-[#4a5ceb] text-white font-semibold text-base shadow-lg shadow-[#586BFF]/30 transition-all"
+        >
+          🖐️ Start PalmPe Enrollment
+        </Button>
       </div>
 
       {/* Device List */}
