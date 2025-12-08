@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { WalletProvider } from "./contexts/WalletContext";
+import { AuthProvider } from "./contexts/AuthContext";
 import Onboarding from "./pages/Onboarding";
 import PalmRegister from "./pages/PalmRegister";
 import PalmHome from "./pages/PalmHome";
