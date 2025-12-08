@@ -281,10 +281,11 @@ const PalmProfile = () => {
           Logout
         </Button>
 
-        <div className="mt-6 text-center space-y-2">
-          <p className="text-xs text-gray-400">PalmPay v1.0.0</p>
-          <p className="text-xs text-gray-400">By Lumioria Innovations Pvt. Ltd.</p>
+        <div className="mt-6 text-center space-y-1">
+          <p className="text-xs text-gray-600 font-medium">PalmPe™ | PalmPay™</p>
+          <p className="text-xs text-gray-500">© 2025 Lumioria Innovations Pvt. Ltd. All Rights Reserved.</p>
           <p className="text-xs text-gray-400">RBI Compliant • UPI Enabled</p>
+          <p className="text-xs text-gray-400 mt-2">v1.0.0</p>
         </div>
       </div>
     </div>
