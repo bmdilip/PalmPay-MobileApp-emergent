@@ -62,6 +62,8 @@ const AnimatedHome = () => {
   const [scrolled, setScrolled] = useState(false);
   const [showWalletSelector, setShowWalletSelector] = useState(false);
   const [copiedPalmId, setCopiedPalmId] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [notifications, setNotifications] = useState(mockNotifications);
   const navigate = useNavigate();
   const { selectedWallet, wallets, switchWallet, getTotalBalance } = useWallet();
   
