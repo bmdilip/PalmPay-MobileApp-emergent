@@ -119,7 +119,7 @@ const Auth = () => {
           } 
         });
       } else {
-        // For email login or signup, simulate success
+        // For email login or signup, redirect to palm registration
         const mockUser = {
           id: 'user-' + Date.now(),
           name: formData.name || 'User',
@@ -127,7 +127,11 @@ const Auth = () => {
           mobile: formData.countryCode + formData.mobile
         };
         const mockToken = 'mock-jwt-token-' + Date.now();
-        login(mockUser, mockToken);
+        // Store user and token
+        localStorage.setItem('palmpay_user', JSON.stringify(mockUser));
+        localStorage.setItem('palmpay_token', mockToken);
+        // Redirect to palm registration
+        navigate('/palm-register');
       }
       setIsLoading(false);
     }, 1500);
