@@ -121,7 +121,7 @@ const Onboarding = () => {
                 Get Started
               </Button>
               <Button 
-                onClick={() => navigate('/home')}
+                onClick={() => navigate('/auth')}
                 variant="outline"
                 className="w-full border-[#586BFF] text-[#586BFF] hover:bg-[#586BFF]/10 h-12"
               >
