@@ -193,10 +193,20 @@ const PalmRegister = () => {
         </div>
 
         {/* Footer */}
-        <p className="text-xs text-gray-500 mt-8 text-center max-w-md">
-          By Lumioria Innovations Pvt. Ltd. • RBI Compliant • UPI Enabled<br/>
-          Palm biometrics performed only at authorized PalmPe devices
-        </p>
+        <div className="mt-8 text-center max-w-md">
+          <p className="text-xs text-gray-600 font-medium mb-1">
+            PalmPe™ | PalmPay™
+          </p>
+          <p className="text-xs text-gray-500 mb-1">
+            © 2025 Lumioria Innovations Pvt. Ltd. All Rights Reserved.
+          </p>
+          <p className="text-xs text-gray-400">
+            RBI Compliant • UPI Enabled
+          </p>
+          <p className="text-xs text-gray-400 mt-2">
+            Palm biometrics performed only at authorized PalmPe™ devices
+          </p>
+        </div>
       </div>
     </div>
   );
