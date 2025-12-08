@@ -224,14 +224,22 @@ const VerifyOTP = () => {
         </motion.div>
 
         {/* Footer */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="text-xs text-white/40 mt-6 text-center"
+          className="mt-6 text-center"
         >
-          Didn't receive code? Check your SMS inbox
-        </motion.p>
+          <p className="text-xs text-white/40 mb-4">
+            Didn't receive code? Check your SMS inbox
+          </p>
+          <p className="text-xs text-white/70 font-medium mb-1">
+            PalmPe™ | PalmPay™
+          </p>
+          <p className="text-xs text-white/50">
+            © 2025 Lumioria Innovations Pvt. Ltd. All Rights Reserved.
+          </p>
+        </motion.div>
       </div>
     </div>
   );
