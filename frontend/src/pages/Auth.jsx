@@ -184,7 +184,7 @@ const Auth = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <Logo size="lg" variant="full" withGlow={true} />
+          <Logo size="xl" withGlow={true} />
         </motion.div>
 
         {/* Auth Card with 3D Hover */}
