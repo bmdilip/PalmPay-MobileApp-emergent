@@ -84,7 +84,7 @@ const VerifyOTP = () => {
     setOtp('');
     setError('');
     // Simulate resend API call
-    console.log('Resending OTP to:', mobile);
+    console.log('Resending OTP to:', identifier);
   };
 
   return (
