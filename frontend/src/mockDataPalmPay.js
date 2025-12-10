@@ -7,7 +7,7 @@ export const mockUser = {
   email: 'arjun@example.com',
   upiId: 'arjun@palmpay',
   palmId: 'palm-0xabc123',
-  palmEnabled: true,
+  palmEnabled: false, // Toggle to false to see unregistered state
   walletBalance: 12450.75, // UPI Wallet
   eMoneyBalance: 5000.00, // e-Money Wallet
   cbdcBalance: 2500.00, // CBDC Wallet (sandbox)
