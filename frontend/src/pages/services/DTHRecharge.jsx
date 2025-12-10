@@ -85,44 +85,45 @@ const DTHRecharge = () => {
       headerGradient="from-[#9B62FF] via-[#A875FF] to-[#B88FFF]"
     >
       {step === 1 && (
-        <Card className="p-5 space-y-5">
-          <div>
-            <Label>Select Provider</Label>
-            <div className="grid grid-cols-2 gap-3 mt-2">
-              {providers.map((provider) => (
-                <button
-                  key={provider.id}
-                  onClick={() => setFormData({ ...formData, provider: provider.id })}
-                  className={`p-4 rounded-xl border-2 transition-all ${
-                    formData.provider === provider.id
-                      ? 'border-[#9B62FF] bg-[#9B62FF]/5'
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
-                >
-                  <div className="text-2xl mb-2">{provider.icon}</div>
-                  <p className="text-sm font-medium text-gray-800">{provider.name}</p>
-                </button>
-              ))}
+        <HoverCard3D>
+          <Card className="p-5 space-y-5">
+            <div>
+              <Label>Select Provider</Label>
+              <div className="grid grid-cols-2 gap-3 mt-2">
+                {providers.map((provider) => (
+                  <button
+                    key={provider.id}
+                    onClick={() => setFormData({ ...formData, provider: provider.id })}
+                    className={`p-4 rounded-xl border-2 transition-all ${
+                      formData.provider === provider.id
+                        ? 'border-[#9B62FF] bg-[#9B62FF]/5'
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                  >
+                    <div className="text-2xl mb-2">{provider.icon}</div>
+                    <p className="text-sm font-medium text-gray-800">{provider.name}</p>
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div>
-            <Label htmlFor="subscriberId">Subscriber ID / RMN</Label>
-            <Input
-              id="subscriberId"
-              type="text"
-              placeholder="Enter subscriber ID"
-              value={formData.subscriberId}
-              onChange={(e) => setFormData({ ...formData, subscriberId: e.target.value })}
-              className="mt-2"
-            />
-          </div>
-
-          {error && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-600">
-              {error}
+            <div>
+              <Label htmlFor="subscriberId">Subscriber ID / RMN</Label>
+              <Input
+                id="subscriberId"
+                type="text"
+                placeholder="Enter subscriber ID"
+                value={formData.subscriberId}
+                onChange={(e) => setFormData({ ...formData, subscriberId: e.target.value })}
+                className="mt-2"
+              />
             </div>
-          )}
+
+            {error && (
+              <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-600">
+                {error}
+              </div>
+            )}
 
           <Button onClick={handleNext} className="w-full bg-[#9B62FF] hover:bg-[#8B4FEF] h-12">
             Browse Plans
