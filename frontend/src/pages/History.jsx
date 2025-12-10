@@ -138,14 +138,23 @@ const History = () => {
                         <p className="text-xs text-green-600 capitalize mt-1">{transaction.status}</p>
                       </div>
                     </div>
-                  </div>
-                ))
-              ) : (
-                <div className="p-8 text-center text-gray-500">
-                  No transactions found
-                </div>
-              )}
-            </Card>
+                  </motion.div>
+                    ))}
+                  </AnimatePresence>
+                ) : (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="p-8 text-center text-gray-500"
+                  >
+                    <p className="text-lg mb-2">No transactions found</p>
+                    <p className="text-sm">
+                      {searchQuery ? 'Try a different search term' : 'Your transaction history will appear here'}
+                    </p>
+                  </motion.div>
+                )}
+              </Card>
+            )}
           </TabsContent>
         </Tabs>
       </div>
