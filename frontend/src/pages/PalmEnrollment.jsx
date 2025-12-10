@@ -5,6 +5,7 @@ import { ArrowLeft, Check, Smartphone, Wifi, AlertCircle, CheckCircle2, Loader2,
 import { Card } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import Logo from '../components/Logo';
+import PalmNFCIcon from '../components/icons/PalmNFCIcon';
 
 const PalmEnrollment = () => {
   const navigate = useNavigate();
