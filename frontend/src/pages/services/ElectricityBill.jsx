@@ -97,49 +97,51 @@ const ElectricityBill = () => {
     >
       {/* Step 1: Enter Details */}
       {step === 1 && !loading && (
-        <Card className="p-5 space-y-5">
-          <div>
-            <Label>Select Provider</Label>
-            <select
-              value={formData.provider}
-              onChange={(e) => setFormData({ ...formData, provider: e.target.value })}
-              className="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F59E0B]"
-            >
-              <option value="">Select electricity board</option>
-              {providers.map((provider) => (
-                <option key={provider.id} value={provider.id}>
-                  {provider.name} ({provider.region})
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <Label htmlFor="consumerId">Consumer ID / Account Number</Label>
-            <Input
-              id="consumerId"
-              type="text"
-              placeholder="Enter your consumer ID"
-              value={formData.consumerId}
-              onChange={(e) => setFormData({ ...formData, consumerId: e.target.value })}
-              className="mt-2"
-            />
-            <p className="text-xs text-gray-500 mt-2">
-              Consumer ID can be found on your electricity bill
-            </p>
-          </div>
-
-          {error && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-600">
-              {error}
+        <HoverCard3D>
+          <Card className="p-5 space-y-5">
+            <div>
+              <Label>Select Provider</Label>
+              <select
+                value={formData.provider}
+                onChange={(e) => setFormData({ ...formData, provider: e.target.value })}
+                className="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F59E0B]"
+              >
+                <option value="">Select electricity board</option>
+                {providers.map((provider) => (
+                  <option key={provider.id} value={provider.id}>
+                    {provider.name} ({provider.region})
+                  </option>
+                ))}
+              </select>
             </div>
-          )}
 
-          <Button onClick={handleFetchBill} className="w-full bg-[#F59E0B] hover:bg-[#D97706] h-12">
-            Fetch Bill Details
-            <ChevronRight className="w-5 h-5 ml-2" />
-          </Button>
-        </Card>
+            <div>
+              <Label htmlFor="consumerId">Consumer ID / Account Number</Label>
+              <Input
+                id="consumerId"
+                type="text"
+                placeholder="Enter your consumer ID"
+                value={formData.consumerId}
+                onChange={(e) => setFormData({ ...formData, consumerId: e.target.value })}
+                className="mt-2"
+              />
+              <p className="text-xs text-gray-500 mt-2">
+                Consumer ID can be found on your electricity bill
+              </p>
+            </div>
+
+            {error && (
+              <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-600">
+                {error}
+              </div>
+            )}
+
+            <Button onClick={handleFetchBill} className="w-full bg-[#F59E0B] hover:bg-[#D97706] h-12">
+              Fetch Bill Details
+              <ChevronRight className="w-5 h-5 ml-2" />
+            </Button>
+          </Card>
+        </HoverCard3D>
       )}
 
       {loading && step === 1 && <LoadingSpinner message="Fetching bill details..." />}
