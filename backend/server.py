@@ -75,6 +75,10 @@ async def get_status_checks():
 # Include the API routes
 api_router.include_router(api_routes_router)
 api_router.include_router(travel_router)
+api_router.include_router(recharge_router)
+api_router.include_router(utilities_router)
+api_router.include_router(transportation_router)
+api_router.include_router(other_services_router)
 
 # Include the router in the main app
 app.include_router(api_router)
