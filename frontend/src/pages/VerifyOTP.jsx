@@ -156,7 +156,7 @@ const VerifyOTP = () => {
             <p className="text-white/60 text-sm text-center mb-8">
               Enter the 6-digit code sent to
               <br />
-              <span className="text-white font-medium">{mobile}</span>
+              <span className="text-white font-medium">{identifier}</span>
             </p>
 
             {/* OTP Input */}
