@@ -15,6 +15,9 @@ import {
   LogOut
 } from 'lucide-react';
 import { mockUser } from '../mockData';
+import { motion } from 'framer-motion';
+import HoverCard3D from '../components/premium/HoverCard3D';
+import StatusBadge from '../components/StatusBadge';
 
 const Profile = () => {
   const menuItems = [
