@@ -5,6 +5,8 @@ import { ArrowLeft, ArrowUpRight, ArrowDownLeft, Filter, Download, Search, X } f
 import { mockTransactions } from '../mockData';
 import { SkeletonTransaction } from '../components/Skeleton';
 import { motion, AnimatePresence } from 'framer-motion';
+import StatusBadge from '../components/StatusBadge';
+import EmptyState from '../components/EmptyState';
 
 const History = () => {
   const [activeTab, setActiveTab] = useState('all');
