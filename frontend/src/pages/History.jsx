@@ -8,10 +8,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const History = () => {
   const [activeTab, setActiveTab] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const filteredTransactions = activeTab === 'all' 
-    ? mockTransactions 
-    : mockTransactions.filter(t => t.type === activeTab);
+  const filteredTransactions = mockTransactions
+    .filter(t => activeTab === 'all' || t.type === activeTab)
+    .filter(t => 
+      searchQuery === '' || 
+      t.recipient?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      t.amount?.toString().includes(searchQuery)
+    );
 
   const getCategoryBadge = (category) => {
     const colors = {
