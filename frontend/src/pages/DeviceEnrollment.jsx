@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Card } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
-import { ArrowLeft, QrCode, Hand, CheckCircle2, Shield, Smartphone } from 'lucide-react';
+import { ArrowLeft, QrCode, CheckCircle2, Shield, Smartphone } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
 import Logo from '../components/Logo';
 
