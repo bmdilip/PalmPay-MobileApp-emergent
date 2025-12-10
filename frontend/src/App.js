@@ -47,6 +47,7 @@ import PremiumComponentsDemo from "./pages/PremiumComponentsDemo";
 import AllComponentsDemo from "./pages/AllComponentsDemo";
 import PatentBadgesOnboarding from "./pages/PatentBadgesOnboarding";
 import WalletPage from "./pages/WalletPage";
+import PalmScan from "./pages/PalmScan";
 import AdminDashboard from "./admin/pages/AdminDashboard";
 import UserManagement from "./admin/pages/UserManagement";
 import DeviceManagement from "./admin/pages/DeviceManagement";
