@@ -130,8 +130,8 @@ function App() {
             <div className="max-w-md mx-auto bg-white min-h-screen relative">
             <AppRouter>
             <Routes>
-              {/* Root path - handles initial routing */}
-              <Route path="/" element={<Navigate to="/onboarding" replace />} />
+              {/* Root path - handles initial routing via AppRouter */}
+              <Route path="/" element={<div />} />
               
               {/* Public Routes - No Authentication Required */}
               <Route path="/onboarding" element={<Onboarding />} />
