@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { services } from '../mockDataPalmPay';
 import PalmNFCIcon from '../components/icons/PalmNFCIcon';
+import { motion } from 'framer-motion';
 
 const Services = () => {
   const getIcon = (iconName) => {
