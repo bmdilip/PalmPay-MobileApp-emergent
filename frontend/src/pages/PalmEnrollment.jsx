@@ -133,7 +133,7 @@ const PalmEnrollment = () => {
                     transition={{ type: 'spring', stiffness: 200 }}
                     className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-[#586BFF] to-[#64E8FF] flex items-center justify-center"
                   >
-                    <Hand className="w-10 h-10 text-white" />
+                    <PalmNFCIcon className="w-10 h-10" style={{ filter: 'brightness(0) invert(1)' }} />
                   </motion.div>
 
                   <h2 className="text-2xl font-bold text-white text-center mb-2">
