@@ -90,20 +90,47 @@ const HotelBooking = () => {
     setStep(3);
   };
 
-  const handleBooking = () => {
+  const handleBooking = async () => {
     if (!guestData.name || !guestData.email || !guestData.phone) {
       setError('Please fill all guest details');
       return;
     }
+    if (!/^\d{10}$/.test(guestData.phone)) {
+      setError('Please enter a valid 10-digit mobile number');
+      return;
+    }
     setError(null);
     setLoading(true);
-    setTimeout(() => {
-      const nights = Math.ceil((new Date(searchData.checkout) - new Date(searchData.checkin)) / (1000 * 60 * 60 * 24));
+    
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/travel/hotels/book`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          hotel_id: selectedHotel.id,
+          guest_name: guestData.name,
+          guest_email: guestData.email,
+          guest_phone: guestData.phone,
+          checkin: searchData.checkin,
+          checkout: searchData.checkout,
+          guests: parseInt(searchData.guests)
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to book hotel');
+      }
+      
+      const booking = await response.json();
+      const nights = booking.details.nights;
+      
       const receipt = {
-        transactionId: `HTL${Date.now()}`,
+        transactionId: booking.booking_id,
         date: new Date().toLocaleDateString('en-IN'),
         time: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
-        amount: selectedHotel.price * nights,
+        amount: booking.amount,
         serviceName: 'Hotel Booking',
         details: [
           { label: 'Guest Name', value: guestData.name },
@@ -116,9 +143,13 @@ const HotelBooking = () => {
         ]
       };
       setReceiptData(receipt);
-      setLoading(false);
       setStep(4);
-    }, 2000);
+    } catch (err) {
+      setError('Failed to book hotel. Please try again.');
+      console.error('Hotel booking error:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (step === 4 && receiptData) {
