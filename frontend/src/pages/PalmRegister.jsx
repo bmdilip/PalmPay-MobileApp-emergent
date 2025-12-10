@@ -58,38 +58,65 @@ const PalmRegister = () => {
         </div>
 
         {/* Warning Banner */}
-        <Card className="bg-[#64E8FF]/10 border-[#64E8FF]/30 p-4 mb-8 max-w-md">
-          <div className="flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-[#64E8FF] flex-shrink-0 mt-0.5" />
-            <div>
-              <p className="font-semibold text-white text-sm">Important Notice</p>
-              <p className="text-xs text-white/80 mt-1">
-                This app does not capture palm biometrics. All biometric registration happens at PalmPe devices with hardware-level security (SE/TEE).
-              </p>
-            </div>
-          </div>
-        </Card>
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          <HoverCard3D>
+            <Card className="bg-[#64E8FF]/10 border-[#64E8FF]/30 p-4 mb-8 max-w-md">
+              <div className="flex items-start gap-3">
+                <AlertCircle className="w-5 h-5 text-[#64E8FF] flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-semibold text-white text-sm">Important Notice</p>
+                  <p className="text-xs text-white/80 mt-1">
+                    This app does not capture palm biometrics. All biometric registration happens at PalmPe devices with hardware-level security (SE/TEE).
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </HoverCard3D>
+        </motion.div>
 
         {/* Icon with Glow */}
-        <div className="relative mb-8">
-          <div 
-            className="absolute inset-0 rounded-full blur-2xl opacity-50 transition-all duration-1000 animate-pulse"
-            style={{ backgroundColor: currentStepData.color }}
-          ></div>
-          <div 
-            className="relative w-32 h-32 rounded-full flex items-center justify-center"
-            style={{ backgroundColor: `${currentStepData.color}20` }}
+        <AnimatePresence mode="wait">
+          <motion.div 
+            key={currentStep}
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ scale: 1, rotate: 0 }}
+            exit={{ scale: 0, rotate: 180 }}
+            transition={{ type: "spring", stiffness: 200, damping: 20 }}
+            className="relative mb-8"
           >
-            <IconComponent className="w-16 h-16" style={{ color: currentStepData.color }} />
-          </div>
-        </div>
+            <div 
+              className="absolute inset-0 rounded-full blur-2xl opacity-50 transition-all duration-1000 animate-pulse"
+              style={{ backgroundColor: currentStepData.color }}
+            ></div>
+            <motion.div 
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              className="relative w-32 h-32 rounded-full flex items-center justify-center"
+              style={{ backgroundColor: `${currentStepData.color}20` }}
+            >
+              <IconComponent className="w-16 h-16" style={{ color: currentStepData.color }} />
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
 
         {/* Step Content */}
-        <div className="text-center mb-8 max-w-md">
-          <div className="text-sm text-[#64E8FF] mb-2">Step {currentStep + 1} of {steps.length}</div>
-          <h2 className="text-2xl font-bold mb-4">{currentStepData.title}</h2>
-          <p className="text-gray-300 leading-relaxed">{currentStepData.description}</p>
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.div 
+            key={currentStep}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.3 }}
+            className="text-center mb-8 max-w-md"
+          >
+            <div className="text-sm text-[#64E8FF] mb-2">Step {currentStep + 1} of {steps.length}</div>
+            <h2 className="text-2xl font-bold mb-4">{currentStepData.title}</h2>
+            <p className="text-gray-300 leading-relaxed">{currentStepData.description}</p>
+          </motion.div>
+        </AnimatePresence>
 
         {/* Device Registration Process */}
         {currentStep === 2 && (
