@@ -33,7 +33,12 @@ const Profile = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white pb-20">
+    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white pb-20 relative overflow-x-hidden">
+      {/* SAME Background Layers from Home Page */}
+      <MeshGradientBackground />
+      <DotGridBackground />
+      <ParticleField count={20} />
+      
       {/* Header */}
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
