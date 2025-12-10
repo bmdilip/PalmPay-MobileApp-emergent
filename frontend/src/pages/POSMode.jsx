@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
-import { ArrowLeft, Hand, Smartphone, MapPin, Shield, Zap } from 'lucide-react';
+import { ArrowLeft, Smartphone, MapPin, Shield, Zap } from 'lucide-react';
+import Logo from '../components/Logo';
+import PalmNFCIcon from '../components/icons/PalmNFCIcon';
 
 const POSMode = () => {
   const navigate = useNavigate();
