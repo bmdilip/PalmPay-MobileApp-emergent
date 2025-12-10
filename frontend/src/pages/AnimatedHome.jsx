@@ -206,7 +206,7 @@ const AnimatedHome = () => {
                   >
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-1.5">
-                        <Hand className="w-3.5 h-3.5 text-white/80" />
+                        <PalmNFCIcon className="w-3.5 h-3.5" style={{ filter: 'brightness(0) invert(1) opacity(0.8)' }} />
                         <span className="text-xs font-semibold text-white/90">Your Palm ID</span>
                       </div>
                       <span className="text-[10px] font-medium text-green-300 bg-green-500/20 px-2 py-0.5 rounded-full">
