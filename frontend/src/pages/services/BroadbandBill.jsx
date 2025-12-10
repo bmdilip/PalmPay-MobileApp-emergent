@@ -94,46 +94,48 @@ const BroadbandBill = () => {
       headerGradient="from-[#64E8FF] via-[#7BE9FF] to-[#91EBFF]"
     >
       {step === 1 && !loading && (
-        <Card className="p-5 space-y-5">
-          <div>
-            <Label>Select Provider</Label>
-            <select
-              value={formData.provider}
-              onChange={(e) => setFormData({ ...formData, provider: e.target.value })}
-              className="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#64E8FF]"
-            >
-              <option value="">Select broadband provider</option>
-              {providers.map((provider) => (
-                <option key={provider.id} value={provider.id}>
-                  {provider.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <Label htmlFor="accountNumber">Account Number / Customer ID</Label>
-            <Input
-              id="accountNumber"
-              type="text"
-              placeholder="Enter your account number"
-              value={formData.accountNumber}
-              onChange={(e) => setFormData({ ...formData, accountNumber: e.target.value })}
-              className="mt-2"
-            />
-          </div>
-
-          {error && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-600">
-              {error}
+        <HoverCard3D>
+          <Card className="p-5 space-y-5">
+            <div>
+              <Label>Select Provider</Label>
+              <select
+                value={formData.provider}
+                onChange={(e) => setFormData({ ...formData, provider: e.target.value })}
+                className="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#64E8FF]"
+              >
+                <option value="">Select broadband provider</option>
+                {providers.map((provider) => (
+                  <option key={provider.id} value={provider.id}>
+                    {provider.name}
+                  </option>
+                ))}
+              </select>
             </div>
-          )}
 
-          <Button onClick={handleFetchBill} className="w-full bg-[#64E8FF] hover:bg-[#50D5E8] text-gray-900 h-12">
-            Fetch Bill Details
-            <ChevronRight className="w-5 h-5 ml-2" />
-          </Button>
-        </Card>
+            <div>
+              <Label htmlFor="accountNumber">Account Number / Customer ID</Label>
+              <Input
+                id="accountNumber"
+                type="text"
+                placeholder="Enter your account number"
+                value={formData.accountNumber}
+                onChange={(e) => setFormData({ ...formData, accountNumber: e.target.value })}
+                className="mt-2"
+              />
+            </div>
+
+            {error && (
+              <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-600">
+                {error}
+              </div>
+            )}
+
+            <Button onClick={handleFetchBill} className="w-full bg-[#64E8FF] hover:bg-[#50D5E8] text-gray-900 h-12">
+              Fetch Bill Details
+              <ChevronRight className="w-5 h-5 ml-2" />
+            </Button>
+          </Card>
+        </HoverCard3D>
       )}
 
       {loading && step === 1 && <LoadingSpinner message="Fetching bill details..." />}
