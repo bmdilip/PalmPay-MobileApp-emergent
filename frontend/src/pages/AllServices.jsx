@@ -56,41 +56,41 @@ const AllServices = () => {
 
   const allServices = [
     // Recharge & Bills
-    { id: 'mobile', name: 'Mobile Recharge', icon: Smartphone, color: '#586BFF', category: 'recharge', path: '/services/mobile-recharge' },
-    { id: 'dth', name: 'DTH', icon: Repeat, color: '#9B62FF', category: 'recharge', path: '/services/dth' },
-    { id: 'datacard', name: 'Data Card', icon: Wifi, color: '#4ECDC4', category: 'recharge', path: '/services/datacard' },
-    { id: 'cable', name: 'Cable TV', icon: Tv, color: '#FF6B6B', category: 'recharge', path: '/services/cable-tv' },
+    { id: 'mobile', name: 'Mobile Recharge', icon: Smartphone, color: '#586BFF', category: 'recharge', path: '/services/mobile-recharge', gradient: 'from-blue-500 to-indigo-600' },
+    { id: 'dth', name: 'DTH', icon: Satellite, color: '#9B62FF', category: 'recharge', path: '/services/dth', gradient: 'from-purple-500 to-pink-600' },
+    { id: 'datacard', name: 'Data Card', icon: Wifi, color: '#4ECDC4', category: 'recharge', path: '/services/datacard', gradient: 'from-cyan-500 to-blue-600' },
+    { id: 'cable', name: 'Cable TV', icon: Tv, color: '#FF6B6B', category: 'recharge', path: '/services/cable-tv', gradient: 'from-red-500 to-pink-600' },
     
     // Utilities
-    { id: 'electricity', name: 'Electricity Bill', icon: Zap, color: '#FF6B35', category: 'utilities', path: '/services/electricity' },
-    { id: 'water', name: 'Water Bill', icon: Droplet, color: '#4ECDC4', category: 'utilities', path: '/services/water' },
-    { id: 'gas', name: 'Gas Bill', icon: Zap, color: '#F7931E', category: 'utilities', path: '/services/gas' },
-    { id: 'broadband', name: 'Broadband', icon: Wifi, color: '#64E8FF', category: 'utilities', path: '/services/broadband' },
-    { id: 'landline', name: 'Landline', icon: Phone, color: '#95A5A6', category: 'utilities', path: '/services/landline' },
-    { id: 'postpaid', name: 'Mobile Postpaid', icon: Phone, color: '#E74C3C', category: 'utilities', path: '/services/postpaid' },
+    { id: 'electricity', name: 'Electricity Bill', icon: Zap, color: '#FF6B35', category: 'utilities', path: '/services/electricity', gradient: 'from-orange-500 to-yellow-500' },
+    { id: 'water', name: 'Water Bill', icon: Droplet, color: '#4ECDC4', category: 'utilities', path: '/services/water', gradient: 'from-blue-400 to-cyan-500' },
+    { id: 'gas', name: 'Gas Bill', icon: Flame, color: '#F7931E', category: 'utilities', path: '/services/gas', gradient: 'from-orange-600 to-red-500' },
+    { id: 'broadband', name: 'Broadband', icon: Network, color: '#64E8FF', category: 'utilities', path: '/services/broadband', gradient: 'from-sky-500 to-blue-600' },
+    { id: 'landline', name: 'Landline', icon: Phone, color: '#95A5A6', category: 'utilities', path: '/services/landline', gradient: 'from-gray-500 to-slate-600' },
+    { id: 'postpaid', name: 'Mobile Postpaid', icon: Smartphone, color: '#E74C3C', category: 'utilities', path: '/services/postpaid', gradient: 'from-red-500 to-rose-600' },
     
     // Housing & Society
-    { id: 'housing', name: 'Housing Society', icon: Building2, color: '#3498DB', category: 'housing', path: '/services/housing' },
-    { id: 'municipal', name: 'Municipal Tax', icon: Home, color: '#16A085', category: 'housing', path: '/services/municipal' },
-    { id: 'rental', name: 'Rental', icon: Building2, color: '#8E44AD', category: 'housing', path: '/services/rental' },
-    { id: 'clubs', name: 'Clubs & Associations', icon: Users, color: '#E67E22', category: 'housing', path: '/services/clubs' },
+    { id: 'housing', name: 'Housing Society', icon: Building2, color: '#3498DB', category: 'housing', path: '/services/housing', gradient: 'from-blue-600 to-indigo-600' },
+    { id: 'municipal', name: 'Municipal Tax', icon: Landmark, color: '#16A085', category: 'housing', path: '/services/municipal', gradient: 'from-teal-600 to-emerald-600' },
+    { id: 'rental', name: 'Rental', icon: Home, color: '#8E44AD', category: 'housing', path: '/services/rental', gradient: 'from-purple-600 to-violet-600' },
+    { id: 'clubs', name: 'Clubs & Associations', icon: Users, color: '#E67E22', category: 'housing', path: '/services/clubs', gradient: 'from-orange-600 to-amber-600' },
     
     // Travel
-    { id: 'fastag', name: 'FASTag', icon: Truck, color: '#9C27B0', category: 'travel', path: '/services/fastag' },
-    { id: 'flights', name: 'Flights', icon: Plane, color: '#2196F3', category: 'travel', path: '/services/flights' },
-    { id: 'hotels', name: 'Hotels', icon: Hotel, color: '#FF9800', category: 'travel', path: '/services/hotels' },
-    { id: 'metro', name: 'Metro Card', icon: Truck, color: '#673AB7', category: 'travel', path: '/services/metro' },
+    { id: 'fastag', name: 'FASTag', icon: Car, color: '#9C27B0', category: 'travel', path: '/services/fastag', gradient: 'from-purple-600 to-fuchsia-600' },
+    { id: 'flights', name: 'Flights', icon: Plane, color: '#2196F3', category: 'travel', path: '/services/flights', gradient: 'from-blue-600 to-sky-500' },
+    { id: 'hotels', name: 'Hotels', icon: Hotel, color: '#FF9800', category: 'travel', path: '/services/hotels', gradient: 'from-orange-500 to-amber-500' },
+    { id: 'metro', name: 'Metro Card', icon: Train, color: '#673AB7', category: 'travel', path: '/services/metro', gradient: 'from-violet-600 to-purple-600' },
     
     // Financial
-    { id: 'insurance', name: 'Insurance', icon: Shield, color: '#00BCD4', category: 'financial', path: '/services/insurance' },
-    { id: 'loan', name: 'Loan Repayment', icon: CreditCard, color: '#9C27B0', category: 'financial', path: '/services/loan-repayment' },
-    { id: 'lic', name: 'LIC Premium', icon: Shield, color: '#4CAF50', category: 'financial', path: '/services/lic' },
+    { id: 'insurance', name: 'Insurance', icon: Shield, color: '#00BCD4', category: 'financial', path: '/services/insurance', gradient: 'from-cyan-600 to-blue-500' },
+    { id: 'loan', name: 'Loan Repayment', icon: BadgeDollarSign, color: '#9C27B0', category: 'financial', path: '/services/loan-repayment', gradient: 'from-purple-600 to-pink-600' },
+    { id: 'lic', name: 'LIC Premium', icon: FileText, color: '#4CAF50', category: 'financial', path: '/services/lic', gradient: 'from-green-600 to-emerald-600' },
     
     // Others
-    { id: 'education', name: 'Education Fee', icon: GraduationCap, color: '#FF5722', category: 'others', path: '/services/education' },
-    { id: 'donation', name: 'Donation', icon: Heart, color: '#E91E63', category: 'others', path: '/services/donation' },
-    { id: 'echallan', name: 'eChallan', icon: Receipt, color: '#607D8B', category: 'others', path: '/services/echallan' },
-    { id: 'cylinder', name: 'Book Cylinder', icon: Package, color: '#FF9800', category: 'others', path: '/services/cylinder' }
+    { id: 'education', name: 'Education Fee', icon: School, color: '#FF5722', category: 'others', path: '/services/education', gradient: 'from-red-600 to-orange-500' },
+    { id: 'donation', name: 'Donation', icon: HeartHandshake, color: '#E91E63', category: 'others', path: '/services/donation', gradient: 'from-pink-600 to-rose-600' },
+    { id: 'echallan', name: 'eChallan', icon: ReceiptText, color: '#607D8B', category: 'others', path: '/services/echallan', gradient: 'from-slate-600 to-gray-600' },
+    { id: 'cylinder', name: 'Book Cylinder', icon: Gas, color: '#FF9800', category: 'others', path: '/services/cylinder', gradient: 'from-orange-600 to-red-500' }
   ];
 
   const filteredServices = selectedCategory === 'all' 
