@@ -6,6 +6,7 @@ import { Input } from '../components/ui/input';
 import { ArrowLeft, QrCode, CheckCircle2, Shield, Smartphone } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
 import Logo from '../components/Logo';
+import PalmNFCIcon from '../components/icons/PalmNFCIcon';
 
 const DeviceEnrollment = () => {
   const navigate = useNavigate();
