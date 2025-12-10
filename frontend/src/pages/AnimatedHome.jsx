@@ -60,6 +60,7 @@ import {
 } from '../lib/animations';
 
 const AnimatedHome = () => {
+  const [loading, setLoading] = useState(true);
   const [showBalance, setShowBalance] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   const [showWalletSelector, setShowWalletSelector] = useState(false);
