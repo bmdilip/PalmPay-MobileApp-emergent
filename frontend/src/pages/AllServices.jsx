@@ -146,15 +146,13 @@ const AllServices = () => {
                 }}
               >
                 <div
-                  className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-md group-hover:shadow-xl transition-all"
-                  style={{ 
-                    backgroundColor: `${service.color}15`,
-                    boxShadow: `0 4px 12px ${service.color}25`
-                  }}
+                  className={`w-16 h-16 rounded-2xl flex items-center justify-center shadow-md group-hover:shadow-xl transition-all bg-gradient-to-br ${service.gradient} relative overflow-hidden`}
                 >
-                  <Icon className="w-7 h-7" style={{ color: service.color }} />
+                  {/* Shine effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <Icon className="w-7 h-7 text-white relative z-10" />
                 </div>
-                <span className="text-xs font-medium text-gray-700 text-center leading-tight">
+                <span className="text-xs font-medium text-gray-700 text-center leading-tight group-hover:text-gray-900 transition-colors">
                   {service.name}
                 </span>
               </button>
