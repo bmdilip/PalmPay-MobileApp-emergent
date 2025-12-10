@@ -7,6 +7,10 @@ import {
 import { services } from '../mockDataPalmPay';
 import PalmNFCIcon from '../components/icons/PalmNFCIcon';
 import { motion } from 'framer-motion';
+import MeshGradientBackground from '../components/animated/MeshGradientBackground';
+import DotGridBackground from '../components/animated/DotGridBackground';
+import ParticleField from '../components/animated/ParticleField';
+import { SpotlightCard } from '../components/premium';
 
 const Services = () => {
   const getIcon = (iconName) => {
