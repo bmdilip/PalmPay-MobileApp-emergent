@@ -54,15 +54,27 @@ const VerifyOTP = () => {
       const mockUser = {
         id: 'user-' + Date.now(),
         name: 'User',
-        mobile: mobile
+        email: authMethod === 'email' ? identifier : '',
+        mobile: authMethod === 'mobile' ? identifier : ''
       };
       const mockToken = 'mock-jwt-token-' + Date.now();
-      // Store user and token
+      
+      // Store using old method for compatibility
       localStorage.setItem('palmpay_user', JSON.stringify(mockUser));
       localStorage.setItem('palmpay_token', mockToken);
+      
+      // Store using new auth system
+      setUserLoggedIn(mockUser);
+      setOnboardingCompleted();
+      
       setIsVerifying(false);
-      // Redirect to palm registration
-      navigate('/palm-register');
+      
+      // Check if palm is already registered
+      if (isPalmRegistered()) {
+        navigate('/home'); // Go straight to home if palm already registered
+      } else {
+        navigate('/palm-register'); // Show palm registration if not done
+      }
     }, 1500);
   };
 
