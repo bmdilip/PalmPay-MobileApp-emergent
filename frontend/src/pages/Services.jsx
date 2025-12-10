@@ -94,6 +94,7 @@ const Services = () => {
                     {service.label}
                   </span>
                 </Card>
+                </SpotlightCard>
               </motion.div>
             );
           })}
