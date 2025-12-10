@@ -128,16 +128,38 @@ function App() {
           <WalletProvider>
             <div className="App">
             <div className="max-w-md mx-auto bg-white min-h-screen relative">
+            <AppRouter>
             <Routes>
-            <Route path="/" element={<Onboarding />} />
-            <Route path="/onboarding" element={<Onboarding />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/verify-otp" element={<VerifyOTP />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/palm-register" element={<PalmRegister />} />
-            <Route path="/palm-enrollment" element={<PalmEnrollment />} />
-            <Route path="/palm-scan" element={<PalmScan />} />
-            <Route path="/home" element={<AnimatedHome />} />
+              {/* Root path - handles initial routing */}
+              <Route path="/" element={<Navigate to="/onboarding" replace />} />
+              
+              {/* Public Routes - No Authentication Required */}
+              <Route path="/onboarding" element={<Onboarding />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/verify-otp" element={<VerifyOTP />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              
+              {/* Protected Routes - Require Authentication */}
+              <Route path="/palm-register" element={
+                <ProtectedRoute>
+                  <PalmRegister />
+                </ProtectedRoute>
+              } />
+              <Route path="/palm-enrollment" element={
+                <ProtectedRoute>
+                  <PalmEnrollment />
+                </ProtectedRoute>
+              } />
+              <Route path="/palm-scan" element={
+                <ProtectedRoute>
+                  <PalmScan />
+                </ProtectedRoute>
+              } />
+              <Route path="/home" element={
+                <ProtectedRoute>
+                  <AnimatedHome />
+                </ProtectedRoute>
+              } />
             <Route path="/home-old" element={<PremiumHome />} />
             <Route path="/services" element={<PremiumServices />} />
             <Route path="/palm2qr" element={<Palm2QR />} />
