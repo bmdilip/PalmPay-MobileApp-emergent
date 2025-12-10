@@ -17,6 +17,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { mockContacts } from '../mockDataPalmPay';
 import { LoadingSpinner } from '../components/StateComponents';
+import { motion } from 'framer-motion';
 
 const CollectRequest = () => {
   const navigate = useNavigate();
