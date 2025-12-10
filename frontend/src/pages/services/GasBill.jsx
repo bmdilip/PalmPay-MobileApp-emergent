@@ -104,37 +104,41 @@ const GasBill = () => {
       {/* Step 1: Select Gas Type */}
       {step === 1 && (
         <div className="space-y-4">
-          <Card
-            className="p-6 cursor-pointer transition-all hover:shadow-lg hover:border-[#EF4444]"
-            onClick={() => handleTypeSelect('cylinder')}
-          >
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center">
-                <Flame className="w-7 h-7 text-red-600" />
+          <HoverCard3D>
+            <Card
+              className="p-6 cursor-pointer transition-all hover:shadow-lg hover:border-[#EF4444]"
+              onClick={() => handleTypeSelect('cylinder')}
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center">
+                  <Flame className="w-7 h-7 text-red-600" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold text-lg text-gray-800">LPG Cylinder</h3>
+                  <p className="text-sm text-gray-500">Book new cylinder</p>
+                </div>
+                <ChevronRight className="w-6 h-6 text-gray-400" />
               </div>
-              <div className="flex-1">
-                <h3 className="font-bold text-lg text-gray-800">LPG Cylinder</h3>
-                <p className="text-sm text-gray-500">Book new cylinder</p>
-              </div>
-              <ChevronRight className="w-6 h-6 text-gray-400" />
-            </div>
-          </Card>
+            </Card>
+          </HoverCard3D>
 
-          <Card
-            className="p-6 cursor-pointer transition-all hover:shadow-lg hover:border-[#EF4444]"
-            onClick={() => handleTypeSelect('piped')}
-          >
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center">
-                <Flame className="w-7 h-7 text-red-600" />
+          <HoverCard3D>
+            <Card
+              className="p-6 cursor-pointer transition-all hover:shadow-lg hover:border-[#EF4444]"
+              onClick={() => handleTypeSelect('piped')}
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center">
+                  <Flame className="w-7 h-7 text-red-600" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold text-lg text-gray-800">Piped Gas</h3>
+                  <p className="text-sm text-gray-500">Pay piped gas bill</p>
+                </div>
+                <ChevronRight className="w-6 h-6 text-gray-400" />
               </div>
-              <div className="flex-1">
-                <h3 className="font-bold text-lg text-gray-800">Piped Gas</h3>
-                <p className="text-sm text-gray-500">Pay piped gas bill</p>
-              </div>
-              <ChevronRight className="w-6 h-6 text-gray-400" />
-            </div>
-          </Card>
+            </Card>
+          </HoverCard3D>
         </div>
       )}
 
