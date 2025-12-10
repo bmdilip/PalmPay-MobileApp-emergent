@@ -239,7 +239,8 @@ const AnimatedHome = () => {
                     className="mt-3 bg-white/15 backdrop-blur-sm border border-white/30 rounded-xl p-3"
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
+                    exit={{ opacity: 0, y: -10, height: 0 }}
+                    transition={{ duration: 0.3 }}
                   >
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-1.5">
