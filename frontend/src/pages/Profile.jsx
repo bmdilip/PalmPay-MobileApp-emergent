@@ -18,6 +18,10 @@ import { mockUser } from '../mockData';
 import { motion } from 'framer-motion';
 import HoverCard3D from '../components/premium/HoverCard3D';
 import StatusBadge from '../components/StatusBadge';
+import MeshGradientBackground from '../components/animated/MeshGradientBackground';
+import DotGridBackground from '../components/animated/DotGridBackground';
+import ParticleField from '../components/animated/ParticleField';
+import { SpotlightCard } from '../components/premium';
 
 const Profile = () => {
   const menuItems = [
