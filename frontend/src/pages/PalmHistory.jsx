@@ -36,7 +36,18 @@ const PalmHistory = () => {
   ];
 
   const filteredTransactions = mockTransactions.filter(t => {
+    // Apply tab filter
     if (activeTab !== 'all' && t.type !== activeTab) return false;
+    
+    // Apply search query filter
+    if (searchQuery !== '' && 
+        !t.recipient?.toLowerCase().includes(searchQuery.toLowerCase()) &&
+        !t.amount?.toString().includes(searchQuery) &&
+        !t.upiId?.toLowerCase().includes(searchQuery.toLowerCase())) {
+      return false;
+    }
+    
+    // Apply category/type filter
     if (filterType === 'all') return true;
     if (filterType === 'device' && t.method.includes('Palm')) return true;
     if (filterType === 'upi' && t.method.includes('UPI')) return true;
