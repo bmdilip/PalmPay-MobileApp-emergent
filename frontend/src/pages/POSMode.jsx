@@ -23,7 +23,7 @@ const POSMode = () => {
             <Card className="relative bg-gradient-to-br from-[#1a1f3a] to-[#0A0F1F] border-[#586BFF]/50 p-8 w-64 h-80 flex flex-col items-center justify-center">
               {/* POS Screen */}
               <div className="w-full h-40 bg-[#0A0F1F] rounded-lg border-2 border-[#586BFF]/30 mb-4 flex items-center justify-center">
-                <Hand className="w-16 h-16 text-[#586BFF] animate-pulse" />
+                <PalmNFCIcon className="w-16 h-16 animate-pulse" style={{ filter: 'brightness(0) saturate(100%) invert(43%) sepia(71%) saturate(1805%) hue-rotate(215deg) brightness(99%) contrast(103%)' }} />
               </div>
               {/* POS Base */}
               <div className="text-center">
