@@ -33,7 +33,7 @@ const Services = () => {
         <div className="relative">
           <div className="absolute inset-0 rounded-full bg-[#586BFF] blur-xl opacity-40 animate-pulse"></div>
           <div className="relative bg-gradient-to-r from-[#586BFF] to-[#9B62FF] text-white rounded-full p-6 shadow-2xl">
-            <Hand className="w-12 h-12" />
+            <PalmNFCIcon className="w-12 h-12" style={{ filter: 'brightness(0) invert(1)' }} />
           </div>
           
           {/* Connection Lines */}
