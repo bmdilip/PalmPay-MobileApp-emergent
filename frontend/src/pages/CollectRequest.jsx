@@ -145,18 +145,21 @@ const CollectRequest = () => {
             </div>
 
             <div>
-              <Label htmlFor="recipient">From (Phone / UPI ID)</Label>
+              <Label htmlFor="recipient">From (Phone / UPI ID / Email)</Label>
               <div className="relative mt-2">
                 <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <Input
                   id="recipient"
                   type="text"
-                  placeholder="9876543210 or name@upi"
+                  placeholder="9876543210 or name@upi or email@example.com"
                   value={formData.recipient}
                   onChange={(e) => setFormData({ ...formData, recipient: e.target.value })}
                   className="pl-10"
                 />
               </div>
+              <p className="text-xs text-gray-500 mt-1">
+                Enter phone number, UPI ID, or email address
+              </p>
             </div>
 
             <div>
