@@ -22,6 +22,8 @@ import MeshGradientBackground from '../components/animated/MeshGradientBackgroun
 import DotGridBackground from '../components/animated/DotGridBackground';
 import ParticleField from '../components/animated/ParticleField';
 import { SpotlightCard } from '../components/premium';
+import { useNavigate } from 'react-router-dom';
+import { logoutUser } from '../utils/auth';
 
 const Profile = () => {
   const menuItems = [
