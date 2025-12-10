@@ -137,7 +137,13 @@ const History = () => {
                         }`}>
                           {transaction.type === 'received' ? '+' : '-'}₹{transaction.amount}
                         </p>
-                        <p className="text-xs text-green-600 capitalize mt-1">{transaction.status}</p>
+                        <div className="mt-1">
+                          <StatusBadge 
+                            status={transaction.status === 'success' ? 'success' : transaction.status === 'pending' ? 'pending' : 'failed'}
+                            size="xs"
+                            showIcon={false}
+                          />
+                        </div>
                       </div>
                     </div>
                   </motion.div>
