@@ -166,6 +166,7 @@ const HotelBooking = () => {
       headerGradient="from-[#8B5CF6] via-[#A78BFA] to-[#C4B5FD]"
     >
       {step === 1 && !loading && (
+        <HoverCard3D>
         <Card className="p-5 space-y-5">
           <div>
             <Label htmlFor="city">City</Label>
