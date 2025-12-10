@@ -1,8 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card } from '../ui/card';
-import { Hand, Shield, CheckCircle2, Copy, ExternalLink } from 'lucide-react';
+import { Shield, CheckCircle2, Copy, ExternalLink } from 'lucide-react';
 import { mockUser } from '../../mockDataPalmPay';
+import PalmNFCIcon from '../icons/PalmNFCIcon';
 
 const PalmIDCard = ({ className = '' }) => {
   const [copied, setCopied] = React.useState(false);
