@@ -160,13 +160,41 @@ function App() {
                   <AnimatedHome />
                 </ProtectedRoute>
               } />
-            <Route path="/home-old" element={<PremiumHome />} />
-            <Route path="/services" element={<PremiumServices />} />
-            <Route path="/palm2qr" element={<Palm2QR />} />
-            <Route path="/pos-mode" element={<POSMode />} />
-            <Route path="/transfer" element={<PalmTransfer />} />
-            <Route path="/history" element={<PalmHistory />} />
-            <Route path="/profile" element={<PalmProfile />} />
+            <Route path="/home-old" element={
+              <ProtectedRoute>
+                <PremiumHome />
+              </ProtectedRoute>
+            } />
+            <Route path="/services" element={
+              <ProtectedRoute>
+                <PremiumServices />
+              </ProtectedRoute>
+            } />
+            <Route path="/palm2qr" element={
+              <ProtectedRoute>
+                <Palm2QR />
+              </ProtectedRoute>
+            } />
+            <Route path="/pos-mode" element={
+              <ProtectedRoute>
+                <POSMode />
+              </ProtectedRoute>
+            } />
+            <Route path="/transfer" element={
+              <ProtectedRoute>
+                <PalmTransfer />
+              </ProtectedRoute>
+            } />
+            <Route path="/history" element={
+              <ProtectedRoute>
+                <PalmHistory />
+              </ProtectedRoute>
+            } />
+            <Route path="/profile" element={
+              <ProtectedRoute>
+                <PalmProfile />
+              </ProtectedRoute>
+            } />
             <Route path="/device-locator" element={<DeviceLocator />} />
             <Route path="/device-enrollment" element={<DeviceEnrollment />} />
             <Route path="/receipt/:receiptId" element={<ReceiptViewer />} />
