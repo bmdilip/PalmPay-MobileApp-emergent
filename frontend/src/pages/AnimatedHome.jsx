@@ -183,7 +183,7 @@ const AnimatedHome = () => {
                 
                 {/* Palm Status Badge with Animation */}
                 <motion.button 
-                  onClick={() => navigate('/device-center')}
+                  onClick={() => navigate(mockUser.palmEnabled ? '/device-center' : '/palm-enrollment')}
                   className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 transition-all border border-white/20"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -198,13 +198,13 @@ const AnimatedHome = () => {
                   <span className="text-xs font-medium">
                     {mockUser.palmEnabled 
                       ? `Palm Registered • Last used ${mockUser.lastDeviceUsed || '2h ago'}` 
-                      : 'Palm Not Registered • Pair a device'}
+                      : 'Palm Not Registered • Register Now'}
                   </span>
                   <ChevronRight className="w-3 h-3" />
                 </motion.button>
                 
-                {/* Palm ID Display - Integrated below Palm Registered badge */}
-                {mockUser.palmEnabled && (
+                {/* Palm ID Display - Shows both Left & Right Palms */}
+                {mockUser.palmEnabled ? (
                   <motion.div 
                     className="mt-3 bg-white/15 backdrop-blur-sm border border-white/30 rounded-xl p-3"
                     initial={{ opacity: 0, y: -10 }}
@@ -221,10 +221,42 @@ const AnimatedHome = () => {
                       </span>
                     </div>
                     
+                    {/* Hand Selector */}
+                    <div className="flex gap-2 mb-2">
+                      <motion.button
+                        onClick={() => setSelectedHand('left')}
+                        className={`flex-1 py-1.5 px-2 rounded-lg text-[10px] font-semibold transition-all ${
+                          selectedHand === 'left' 
+                            ? 'bg-[#00C8D6] text-white' 
+                            : 'bg-white/10 text-white/60 hover:bg-white/20'
+                        }`}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        🤚 Left Palm
+                      </motion.button>
+                      <motion.button
+                        onClick={() => setSelectedHand('right')}
+                        className={`flex-1 py-1.5 px-2 rounded-lg text-[10px] font-semibold transition-all ${
+                          selectedHand === 'right' 
+                            ? 'bg-[#00C8D6] text-white' 
+                            : 'bg-white/10 text-white/60 hover:bg-white/20'
+                        }`}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        Right Palm 🤚
+                      </motion.button>
+                    </div>
+                    
                     <div className="flex items-center justify-between bg-white/10 rounded-lg p-2">
                       <div className="flex-1">
-                        <p className="text-[10px] text-white/60 mb-0.5">ID Number</p>
-                        <p className="text-xs font-mono font-bold text-white tracking-wide">{palmId}</p>
+                        <p className="text-[10px] text-white/60 mb-0.5">
+                          {selectedHand === 'left' ? 'Left' : 'Right'} Palm ID
+                        </p>
+                        <p className="text-xs font-mono font-bold text-white tracking-wide">
+                          {selectedHand === 'left' ? palmIdLeft : palmIdRight}
+                        </p>
                       </div>
                       <motion.button
                         onClick={handleCopyPalmId}
@@ -241,8 +273,37 @@ const AnimatedHome = () => {
                     </div>
                     
                     <p className="text-[10px] text-white/60 mt-2">
-                      Registered: Nov 15, 2024 • Right Palm
+                      Registered: Nov 15, 2024 • {selectedHand === 'left' ? 'Left' : 'Right'} Palm
                     </p>
+                  </motion.div>
+                ) : (
+                  /* Unregistered State - Dark Card with Register Button */
+                  <motion.div 
+                    className="mt-3 bg-[#0A0F1F]/80 backdrop-blur-sm border border-red-400/30 rounded-xl p-3"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                  >
+                    <div className="space-y-2 mb-3">
+                      <div className="flex items-center justify-between">
+                        <p className="text-[10px] text-white/60">Palmpay Left ID:</p>
+                        <p className="text-xs font-semibold text-red-400">Not Registered</p>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <p className="text-[10px] text-white/60">Palmpay Right ID:</p>
+                        <p className="text-xs font-semibold text-red-400">Not Registered</p>
+                      </div>
+                    </div>
+                    
+                    <motion.button
+                      onClick={() => navigate('/palm-enrollment')}
+                      className="w-full py-2 px-3 bg-[#00C8D6] hover:bg-[#00B8C6] text-white rounded-lg text-xs font-semibold flex items-center justify-center gap-2 transition-all"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <PalmNFCIcon className="w-4 h-4" />
+                      Register Palm
+                    </motion.button>
                   </motion.div>
                 )}
               </motion.div>
