@@ -93,40 +93,41 @@ const WaterBill = () => {
       headerGradient="from-[#3B82F6] via-[#60A5FA] to-[#93C5FD]"
     >
       {step === 1 && !loading && (
-        <Card className="p-5 space-y-5">
-          <div>
-            <Label>Select Water Board</Label>
-            <select
-              value={formData.provider}
-              onChange={(e) => setFormData({ ...formData, provider: e.target.value })}
-              className="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
-            >
-              <option value="">Select water board</option>
-              {providers.map((provider) => (
-                <option key={provider.id} value={provider.id}>
-                  {provider.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <Label htmlFor="accountNumber">Account Number / RR Number</Label>
-            <Input
-              id="accountNumber"
-              type="text"
-              placeholder="Enter your account number"
-              value={formData.accountNumber}
-              onChange={(e) => setFormData({ ...formData, accountNumber: e.target.value })}
-              className="mt-2"
-            />
-          </div>
-
-          {error && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-600">
-              {error}
+        <HoverCard3D>
+          <Card className="p-5 space-y-5">
+            <div>
+              <Label>Select Water Board</Label>
+              <select
+                value={formData.provider}
+                onChange={(e) => setFormData({ ...formData, provider: e.target.value })}
+                className="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
+              >
+                <option value="">Select water board</option>
+                {providers.map((provider) => (
+                  <option key={provider.id} value={provider.id}>
+                    {provider.name}
+                  </option>
+                ))}
+              </select>
             </div>
-          )}
+
+            <div>
+              <Label htmlFor="accountNumber">Account Number / RR Number</Label>
+              <Input
+                id="accountNumber"
+                type="text"
+                placeholder="Enter your account number"
+                value={formData.accountNumber}
+                onChange={(e) => setFormData({ ...formData, accountNumber: e.target.value })}
+                className="mt-2"
+              />
+            </div>
+
+            {error && (
+              <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-600">
+                {error}
+              </div>
+            )}
 
           <Button onClick={handleFetchBill} className="w-full bg-[#3B82F6] hover:bg-[#2563EB] h-12">
             Fetch Bill Details
