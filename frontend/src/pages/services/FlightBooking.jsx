@@ -248,6 +248,7 @@ const FlightBooking = () => {
             <ChevronRight className="w-5 h-5 ml-2" />
           </Button>
         </Card>
+        </HoverCard3D>
       )}
 
       {loading && step === 1 && <LoadingSpinner message="Searching flights..." />}
