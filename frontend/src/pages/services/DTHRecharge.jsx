@@ -130,6 +130,7 @@ const DTHRecharge = () => {
             <ChevronRight className="w-5 h-5 ml-2" />
           </Button>
         </Card>
+        </HoverCard3D>
       )}
 
       {step === 2 && (
