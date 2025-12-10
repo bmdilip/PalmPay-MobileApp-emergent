@@ -7,6 +7,7 @@ import { Card } from '../components/ui/card';
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '../components/ui/input-otp';
 import Logo from '../components/Logo';
 import { useAuth } from '../contexts/AuthContext';
+import { setUserLoggedIn, setOnboardingCompleted, isPalmRegistered } from '../utils/auth';
 
 const VerifyOTP = () => {
   const [otp, setOtp] = useState('');
