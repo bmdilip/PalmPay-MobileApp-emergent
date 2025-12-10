@@ -33,14 +33,7 @@ const FlightBooking = () => {
 
   const cities = ['Delhi', 'Mumbai', 'Bangalore', 'Chennai', 'Kolkata', 'Hyderabad', 'Pune', 'Ahmedabad'];
 
-  const mockFlights = [
-    { id: 1, airline: 'IndiGo', flightNo: '6E-2175', departure: '06:00', arrival: '08:30', duration: '2h 30m', price: 4500, stops: 'Non-stop' },
-    { id: 2, airline: 'Air India', flightNo: 'AI-804', departure: '08:15', arrival: '10:50', duration: '2h 35m', price: 5200, stops: 'Non-stop' },
-    { id: 3, airline: 'SpiceJet', flightNo: 'SG-8147', departure: '12:30', arrival: '15:15', duration: '2h 45m', price: 3800, stops: 'Non-stop' },
-    { id: 4, airline: 'Vistara', flightNo: 'UK-863', departure: '18:00', arrival: '20:30', duration: '2h 30m', price: 6500, stops: 'Non-stop' },
-  ];
-
-  const handleSearch = () => {
+  const handleSearch = async () => {
     if (!searchData.from || !searchData.to || !searchData.date) {
       setError('Please fill all search fields');
       return;
@@ -51,11 +44,48 @@ const FlightBooking = () => {
     }
     setError(null);
     setLoading(true);
-    setTimeout(() => {
-      setSearchResults(mockFlights);
-      setLoading(false);
+    
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/travel/flights/search`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          origin: searchData.from,
+          destination: searchData.to,
+          date: searchData.date,
+          passengers: parseInt(searchData.passengers),
+          travel_class: searchData.class
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch flights');
+      }
+      
+      const flights = await response.json();
+      
+      // Transform API response to match component expectations
+      const transformedFlights = flights.map(flight => ({
+        id: flight.id,
+        airline: flight.airline,
+        flightNo: flight.flight_number,
+        departure: flight.departure_time,
+        arrival: flight.arrival_time,
+        duration: flight.duration,
+        price: flight.price,
+        stops: flight.stops
+      }));
+      
+      setSearchResults(transformedFlights);
       setStep(2);
-    }, 1500);
+    } catch (err) {
+      setError('Failed to search flights. Please try again.');
+      console.error('Flight search error:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleFlightSelect = (flight) => {
