@@ -33,11 +33,10 @@ import {
   Train,
   Banknote,
   FileText,
-  BadgeDollarSign,
+  DollarSign,
   School,
-  HeartHandshake,
-  ReceiptText,
-  Gas
+  Handshake,
+  FileCheck
 } from 'lucide-react';
 
 const AllServices = () => {
