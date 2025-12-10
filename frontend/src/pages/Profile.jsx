@@ -139,22 +139,43 @@ const Profile = () => {
         </motion.div>
 
         {/* Menu Items */}
-        <div className="mb-6">
-          <Card className="divide-y">
-            {menuItems.map((item, index) => (
-              <button
-                key={index}
-                className="w-full p-4 flex items-center gap-4 hover:bg-gray-50 transition-colors"
-              >
-                <div className={`w-10 h-10 ${item.bg} rounded-full flex items-center justify-center`}>
-                  <item.icon className={`w-5 h-5 ${item.color}`} />
-                </div>
-                <span className="flex-1 text-left font-medium text-gray-800">{item.label}</span>
-                <ChevronRight className="w-5 h-5 text-gray-400" />
-              </button>
-            ))}
-          </Card>
-        </div>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mb-6"
+        >
+          <HoverCard3D>
+            <Card className="divide-y">
+              {menuItems.map((item, index) => (
+                <motion.button
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.5 + index * 0.1 }}
+                  whileHover={{ x: 10, backgroundColor: '#f9fafb' }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full p-4 flex items-center gap-4 transition-colors text-left group"
+                >
+                  <motion.div 
+                    whileHover={{ scale: 1.2, rotate: 10 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                    className={`w-10 h-10 ${item.bg} rounded-full flex items-center justify-center`}
+                  >
+                    <item.icon className={`w-5 h-5 ${item.color}`} />
+                  </motion.div>
+                  <span className="flex-1 font-medium text-gray-800 group-hover:text-purple-600 transition-colors">{item.label}</span>
+                  <motion.div
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.5 }}
+                  >
+                    <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-purple-600 transition-colors" />
+                  </motion.div>
+                </motion.button>
+              ))}
+            </Card>
+          </HoverCard3D>
+        </motion.div>
 
         {/* Logout Button */}
         <Button 
