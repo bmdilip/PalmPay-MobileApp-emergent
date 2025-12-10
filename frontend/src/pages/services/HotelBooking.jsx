@@ -29,25 +29,60 @@ const HotelBooking = () => {
     phone: ''
   });
 
-  const mockHotels = [
-    { id: 1, name: 'Taj Palace', rating: 5, price: 8500, image: '🏨', amenities: ['WiFi', 'Pool', 'Spa'] },
-    { id: 2, name: 'ITC Grand', rating: 5, price: 7200, image: '🏨', amenities: ['WiFi', 'Gym', 'Restaurant'] },
-    { id: 3, name: 'Lemon Tree', rating: 4, price: 3500, image: '🏨', amenities: ['WiFi', 'Breakfast'] },
-    { id: 4, name: 'Treebo Hotel', rating: 3, price: 2200, image: '🏨', amenities: ['WiFi', 'AC'] },
-  ];
-
-  const handleSearch = () => {
+  const handleSearch = async () => {
     if (!searchData.city || !searchData.checkin || !searchData.checkout) {
       setError('Please fill all fields');
       return;
     }
+    
+    const checkinDate = new Date(searchData.checkin);
+    const checkoutDate = new Date(searchData.checkout);
+    if (checkoutDate <= checkinDate) {
+      setError('Checkout date must be after check-in date');
+      return;
+    }
+    
     setError(null);
     setLoading(true);
-    setTimeout(() => {
-      setHotels(mockHotels);
-      setLoading(false);
+    
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/travel/hotels/search`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          city: searchData.city,
+          checkin: searchData.checkin,
+          checkout: searchData.checkout,
+          guests: parseInt(searchData.guests)
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch hotels');
+      }
+      
+      const hotelsData = await response.json();
+      
+      // Transform API response to match component expectations
+      const transformedHotels = hotelsData.map(hotel => ({
+        id: hotel.id,
+        name: hotel.name,
+        rating: hotel.rating,
+        price: hotel.price,
+        amenities: hotel.amenities,
+        image: '🏨'
+      }));
+      
+      setHotels(transformedHotels);
       setStep(2);
-    }, 1500);
+    } catch (err) {
+      setError('Failed to search hotels. Please try again.');
+      console.error('Hotel search error:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleHotelSelect = (hotel) => {
