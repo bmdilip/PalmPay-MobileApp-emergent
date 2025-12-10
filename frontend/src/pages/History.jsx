@@ -89,10 +89,25 @@ const History = () => {
           </TabsList>
 
           <TabsContent value={activeTab} className="mt-4">
-            <Card className="divide-y">
-              {filteredTransactions.length > 0 ? (
-                filteredTransactions.map((transaction) => (
-                  <div key={transaction.id} className="p-4 hover:bg-gray-50 transition-colors cursor-pointer">
+            {loading ? (
+              <div className="space-y-3">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <SkeletonTransaction key={i} />
+                ))}
+              </div>
+            ) : (
+              <Card className="divide-y">
+                {filteredTransactions.length > 0 ? (
+                  <AnimatePresence>
+                    {filteredTransactions.map((transaction, index) => (
+                      <motion.div
+                        key={transaction.id}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 20 }}
+                        transition={{ delay: index * 0.05 }}
+                        className="p-4 hover:bg-gray-50 transition-colors cursor-pointer"
+                      >
                     <div className="flex items-start justify-between">
                       <div className="flex items-start gap-3 flex-1">
                         <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
