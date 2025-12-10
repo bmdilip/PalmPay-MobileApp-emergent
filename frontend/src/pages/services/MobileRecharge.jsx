@@ -73,13 +73,33 @@ const MobileRecharge = () => {
 
   const handlePayment = async () => {
     setLoading(true);
-    // Mock API call
-    setTimeout(() => {
+    setError(null);
+    
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/recharge/mobile/recharge`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          mobile_number: formData.mobileNumber,
+          operator_id: formData.operator,
+          amount: formData.amount,
+          circle: formData.circle
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to process recharge');
+      }
+      
+      const result = await response.json();
+      
       const receipt = {
-        transactionId: `TXN${Date.now()}`,
-        date: new Date().toLocaleDateString('en-IN'),
-        time: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
-        amount: formData.amount,
+        transactionId: result.transaction_id,
+        date: new Date(result.timestamp).toLocaleDateString('en-IN'),
+        time: new Date(result.timestamp).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
+        amount: result.amount,
         serviceName: 'Mobile Recharge',
         details: [
           { label: 'Mobile Number', value: formData.mobileNumber },
@@ -89,9 +109,13 @@ const MobileRecharge = () => {
         ]
       };
       setReceiptData(receipt);
-      setLoading(false);
       setStep(4);
-    }, 2000);
+    } catch (err) {
+      setError('Failed to process recharge. Please try again.');
+      console.error('Recharge error:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (step === 4 && receiptData) {
