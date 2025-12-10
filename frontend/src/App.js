@@ -76,6 +76,8 @@ import DataCard from "./pages/services/DataCard";
 import LandlineBill from "./pages/services/LandlineBill";
 import HousingSociety from "./pages/services/HousingSociety";
 import CableTVBill from "./pages/services/CableTVBill";
+import MutualFunds from "./pages/services/MutualFunds";
+import DigitalGold from "./pages/services/DigitalGold";
 
 const BottomNavigation = () => {
   const navigate = useNavigate();
