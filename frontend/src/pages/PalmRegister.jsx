@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
-import { Hand, MapPin, Shield, AlertCircle, CheckCircle2, QrCode } from 'lucide-react';
+import { MapPin, Shield, AlertCircle, CheckCircle2, QrCode } from 'lucide-react';
 import Logo from '../components/Logo';
+import PalmNFCIcon from '../components/icons/PalmNFCIcon';
 
 const PalmRegister = () => {
   const navigate = useNavigate();
