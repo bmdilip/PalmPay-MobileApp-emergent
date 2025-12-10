@@ -101,7 +101,8 @@ const FASTagRecharge = () => {
     >
       {/* Step 1: Enter Details */}
       {step === 1 && !loading && (
-        <Card className="p-5 space-y-5">
+        <HoverCard3D>
+          <Card className="p-5 space-y-5">
           <div>
             <Label>FASTag Provider</Label>
             <select
