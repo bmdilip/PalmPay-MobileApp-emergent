@@ -78,9 +78,10 @@ const Services = () => {
                 whileHover={{ y: -5, scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Card 
-                  className="p-4 flex flex-col items-center gap-3 hover:shadow-lg transition-all cursor-pointer border border-gray-200 hover:border-[#586BFF]/30 group"
-                >
+                <SpotlightCard>
+                  <Card 
+                    className="p-4 flex flex-col items-center gap-3 hover:shadow-lg transition-all cursor-pointer border border-gray-200 hover:border-[#586BFF]/30 group"
+                  >
                   <motion.div 
                     className="w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-md"
                     style={{ backgroundColor: service.color }}
