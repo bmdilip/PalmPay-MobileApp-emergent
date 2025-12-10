@@ -15,6 +15,7 @@ from routes.recharge import router as recharge_router
 from routes.utilities import router as utilities_router
 from routes.transportation import router as transportation_router
 from routes.other_services import router as other_services_router
+from routes.investments import router as investments_router
 
 
 ROOT_DIR = Path(__file__).parent
