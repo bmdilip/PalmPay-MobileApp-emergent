@@ -204,6 +204,7 @@ const Profile = () => {
           whileTap={{ scale: 0.98 }}
         >
           <Button 
+            onClick={handleLogout}
             variant="outline" 
             className="w-full border-red-500 text-red-500 hover:bg-red-50 font-semibold h-12"
           >
