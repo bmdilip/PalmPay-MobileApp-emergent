@@ -65,11 +65,16 @@ const CollectRequest = () => {
       return;
     }
 
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setView('success');
-    }, 2000);
+    // Navigate to palm scan page for authentication
+    navigate('/palm-scan', { 
+      state: { 
+        type: 'request',
+        recipient: formData.recipient,
+        amount: formData.amount,
+        note: formData.note,
+        returnTo: '/collect'
+      } 
+    });
   };
 
   const handleAccept = (requestId) => {
