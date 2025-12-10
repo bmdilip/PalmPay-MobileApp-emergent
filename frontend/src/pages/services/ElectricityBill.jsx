@@ -61,26 +61,50 @@ const ElectricityBill = () => {
 
   const handlePayment = async () => {
     setLoading(true);
+    setError(null);
     
-    setTimeout(() => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/utilities/electricity/pay`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          consumer_number: formData.consumerId,
+          provider_id: formData.provider,
+          amount: parseFloat(formData.amount),
+          state: providers.find(p => p.id === formData.provider)?.region || 'India'
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Payment failed');
+      }
+      
+      const data = await response.json();
+      
       const receipt = {
-        transactionId: `TXN${Date.now()}`,
-        date: new Date().toLocaleDateString('en-IN'),
-        time: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
-        amount: formData.amount,
+        transactionId: data.transaction_id,
+        date: new Date(data.timestamp).toLocaleDateString('en-IN'),
+        time: new Date(data.timestamp).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
+        amount: data.amount,
         serviceName: 'Electricity Bill Payment',
+        status: data.status,
         details: [
-          { label: 'Consumer Name', value: billDetails.consumerName },
-          { label: 'Consumer ID', value: billDetails.consumerId },
-          { label: 'Bill Number', value: billDetails.billNumber },
-          { label: 'Units Consumed', value: `${billDetails.units} kWh` },
-          { label: 'Provider', value: providers.find(p => p.id === formData.provider)?.name }
+          { label: 'Consumer ID', value: data.details.consumer_number },
+          { label: 'Provider', value: providers.find(p => p.id === formData.provider)?.name },
+          { label: 'Units Consumed', value: data.details.units_consumed || 'N/A' },
+          { label: 'Billing Period', value: data.details.billing_period }
         ]
       };
       setReceiptData(receipt);
-      setLoading(false);
       setStep(4);
-    }, 2000);
+    } catch (err) {
+      setError('Payment failed. Please try again.');
+      console.error('Electricity bill payment error:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (step === 4 && receiptData) {
