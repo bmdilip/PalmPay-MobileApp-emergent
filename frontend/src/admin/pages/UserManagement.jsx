@@ -10,7 +10,6 @@ import {
   CheckCircle2,
   XCircle,
   AlertCircle,
-  Hand,
   ChevronDown,
   ArrowUpDown,
   Eye,
@@ -19,6 +18,7 @@ import {
 } from 'lucide-react';
 import { mockAdminUsers } from '../mockData';
 import AdminLayout from '../AdminLayout';
+import PalmNFCIcon from '../../components/icons/PalmNFCIcon';
 
 const UserManagement = () => {
   const [users, setUsers] = useState(mockAdminUsers);
