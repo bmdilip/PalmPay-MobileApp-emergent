@@ -95,7 +95,7 @@ const PalmIDCard = ({ className = '' }) => {
             </div>
             <div className="bg-white rounded-lg p-3 border border-gray-100">
               <div className="flex items-center gap-2 mb-1">
-                <Hand className="w-3 h-3 text-[#586BFF]" />
+                <PalmNFCIcon className="w-3 h-3" style={{ filter: 'brightness(0) saturate(100%) invert(43%) sepia(71%) saturate(1805%) hue-rotate(215deg) brightness(99%) contrast(103%)' }} />
                 <p className="text-xs text-gray-500">Registered</p>
               </div>
               <p className="text-sm font-semibold text-gray-800">{registeredDate}</p>
