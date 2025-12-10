@@ -396,7 +396,8 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Authentication Flow Testing Complete"
+    - "API Integration Testing for Top 5 Services"
+    - "Wallet Dropdown Functionality Testing"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
