@@ -80,38 +80,63 @@ const Profile = () => {
 
       <div className="px-4 mt-6">
         {/* Account Details */}
-        <div className="mb-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="mb-6"
+        >
           <h3 className="text-lg font-semibold text-gray-800 mb-3">Account Details</h3>
-          <Card className="divide-y">
-            <div className="p-4 flex items-center gap-4">
-              <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                <User className="w-5 h-5 text-purple-600" />
-              </div>
-              <div className="flex-1">
-                <p className="text-sm text-gray-500">Full Name</p>
-                <p className="font-medium text-gray-800">{mockUser.name}</p>
-              </div>
-            </div>
-            <div className="p-4 flex items-center gap-4">
-              <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                <Phone className="w-5 h-5 text-blue-600" />
-              </div>
-              <div className="flex-1">
-                <p className="text-sm text-gray-500">Phone Number</p>
-                <p className="font-medium text-gray-800">{mockUser.phone}</p>
-              </div>
-            </div>
-            <div className="p-4 flex items-center gap-4">
-              <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                <AtSign className="w-5 h-5 text-green-600" />
-              </div>
-              <div className="flex-1">
-                <p className="text-sm text-gray-500">UPI ID</p>
-                <p className="font-medium text-gray-800">{mockUser.upiId}</p>
-              </div>
-            </div>
-          </Card>
-        </div>
+          <HoverCard3D>
+            <Card className="divide-y">
+              <motion.div 
+                whileHover={{ x: 5 }}
+                className="p-4 flex items-center gap-4"
+              >
+                <motion.div 
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center"
+                >
+                  <User className="w-5 h-5 text-purple-600" />
+                </motion.div>
+                <div className="flex-1">
+                  <p className="text-sm text-gray-500">Full Name</p>
+                  <p className="font-medium text-gray-800">{mockUser.name}</p>
+                </div>
+              </motion.div>
+              <motion.div 
+                whileHover={{ x: 5 }}
+                className="p-4 flex items-center gap-4"
+              >
+                <motion.div 
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center"
+                >
+                  <Phone className="w-5 h-5 text-blue-600" />
+                </motion.div>
+                <div className="flex-1">
+                  <p className="text-sm text-gray-500">Phone Number</p>
+                  <p className="font-medium text-gray-800">{mockUser.phone}</p>
+                </div>
+              </motion.div>
+              <motion.div 
+                whileHover={{ x: 5 }}
+                className="p-4 flex items-center gap-4"
+              >
+                <motion.div 
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center"
+                >
+                  <AtSign className="w-5 h-5 text-green-600" />
+                </motion.div>
+                <div className="flex-1">
+                  <p className="text-sm text-gray-500">UPI ID</p>
+                  <p className="font-medium text-gray-800">{mockUser.upiId}</p>
+                </div>
+              </motion.div>
+            </Card>
+          </HoverCard3D>
+        </motion.div>
 
         {/* Menu Items */}
         <div className="mb-6">
