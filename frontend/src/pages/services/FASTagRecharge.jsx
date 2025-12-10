@@ -65,26 +65,49 @@ const FASTagRecharge = () => {
     setLoading(true);
     setError(null);
 
-    setTimeout(() => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/transportation/fastag/recharge`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          vehicle_number: formData.vehicleNumber,
+          tag_id: vehicleDetails.tagId,
+          amount: parseFloat(formData.amount),
+          bank: formData.provider
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Recharge failed');
+      }
+      
+      const data = await response.json();
+      
       const receipt = {
-        transactionId: `TXN${Date.now()}`,
-        date: new Date().toLocaleDateString('en-IN'),
-        time: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
-        amount: parseFloat(formData.amount),
+        transactionId: data.transaction_id,
+        date: new Date(data.timestamp).toLocaleDateString('en-IN'),
+        time: new Date(data.timestamp).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
+        amount: data.amount,
         serviceName: 'FASTag Recharge',
+        status: data.status,
         details: [
-          { label: 'Vehicle Number', value: vehicleDetails.vehicleNumber },
-          { label: 'Owner Name', value: vehicleDetails.ownerName },
-          { label: 'Tag ID', value: vehicleDetails.tagId },
-          { label: 'Previous Balance', value: `₹${vehicleDetails.currentBalance}` },
-          { label: 'New Balance', value: `₹${vehicleDetails.currentBalance + parseFloat(formData.amount)}` },
-          { label: 'Provider', value: providers.find(p => p.id === formData.provider)?.name }
+          { label: 'Vehicle Number', value: data.details.vehicle_number },
+          { label: 'Tag ID', value: data.details.tag_id },
+          { label: 'Bank', value: data.details.bank },
+          { label: 'New Balance', value: `₹${data.details.new_balance.toFixed(2)}` },
+          { label: 'Valid Till', value: data.details.valid_till }
         ]
       };
       setReceiptData(receipt);
-      setLoading(false);
       setStep(4);
-    }, 2000);
+    } catch (err) {
+      setError('Recharge failed. Please try again.');
+      console.error('FASTag recharge error:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (step === 4 && receiptData) {
