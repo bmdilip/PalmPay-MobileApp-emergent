@@ -5,6 +5,7 @@ import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import ServiceLayout from '../../components/ServiceLayout';
+import HoverCard3D from '../../components/premium/HoverCard3D';
 import ServiceReceipt from '../../components/ServiceReceipt';
 import { LoadingSpinner } from '../../components/StateComponents';
 
