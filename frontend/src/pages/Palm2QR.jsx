@@ -186,7 +186,7 @@ const Palm2QR = () => {
                 <div className="flex justify-between">
                   <span className="text-gray-400">Payment Method</span>
                   <span className="text-white flex items-center gap-1">
-                    <Hand className="w-4 h-4 text-[#64E8FF]" />
+                    <PalmNFCIcon className="w-4 h-4" style={{ filter: 'brightness(0) saturate(100%) invert(76%) sepia(86%) saturate(3068%) hue-rotate(154deg) brightness(101%) contrast(101%)' }} />
                     Palm Biometric
                   </span>
                 </div>
