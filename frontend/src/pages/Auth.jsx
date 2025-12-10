@@ -125,8 +125,8 @@ const Auth = () => {
         const mockUser = {
           id: 'user-' + Date.now(),
           name: formData.name || 'User',
-          email: formData.email || formData.countryCode + formData.mobile,
-          mobile: formData.countryCode + formData.mobile
+          email: authMethod === 'email' ? formData.email : (formData.countryCode + formData.mobile),
+          mobile: authMethod === 'mobile' ? (formData.countryCode + formData.mobile) : ''
         };
         const mockToken = 'mock-jwt-token-' + Date.now();
         
