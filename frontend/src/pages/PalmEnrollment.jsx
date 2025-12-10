@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Check, Hand, Smartphone, Wifi, AlertCircle, CheckCircle2, Loader2, X } from 'lucide-react';
+import { ArrowLeft, Check, Smartphone, Wifi, AlertCircle, CheckCircle2, Loader2, X } from 'lucide-react';
 import { Card } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import Logo from '../components/Logo';
