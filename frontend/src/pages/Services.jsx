@@ -2,9 +2,10 @@ import React from 'react';
 import { Card } from '../components/ui/card';
 import { 
   Smartphone, Zap, Flame, Tv, Car, Plane, Hotel, Wifi, 
-  GraduationCap, Droplet, Repeat, Wallet, Hand
+  GraduationCap, Droplet, Repeat, Wallet
 } from 'lucide-react';
 import { services } from '../mockDataPalmPay';
+import PalmNFCIcon from '../components/icons/PalmNFCIcon';
 
 const Services = () => {
   const getIcon = (iconName) => {
