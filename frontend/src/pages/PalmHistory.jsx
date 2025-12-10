@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Card } from '../components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
-import { ArrowLeft, ArrowUpRight, ArrowDownLeft, Filter, Download, Hand, Smartphone } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, ArrowDownLeft, Filter, Download, Smartphone } from 'lucide-react';
 import { mockTransactions } from '../mockDataPalmPay';
 import { LayoutSwitcher, ThreeDHoverCard, GlowBorderCard } from '../components/premium';
 import { fadeInUp, staggerContainer, staggerItem } from '../lib/animations';
+import PalmNFCIcon from '../components/icons/PalmNFCIcon';
 
 const PalmHistory = () => {
   const navigate = useNavigate();
