@@ -129,9 +129,21 @@ const Auth = () => {
           mobile: formData.countryCode + formData.mobile
         };
         const mockToken = 'mock-jwt-token-' + Date.now();
+        
+        // Save to localStorage (old method - keep for compatibility)
         localStorage.setItem('palmpay_user', JSON.stringify(mockUser));
         localStorage.setItem('palmpay_token', mockToken);
-        navigate('/palm-register');
+        
+        // Mark as logged in using new auth system
+        setUserLoggedIn(mockUser);
+        setOnboardingCompleted(); // Ensure onboarding is marked complete
+        
+        // Check if palm is already registered
+        if (isPalmRegistered()) {
+          navigate('/home'); // Go straight to home if palm already registered
+        } else {
+          navigate('/palm-register'); // Show palm registration if not done
+        }
       }
       setIsLoading(false);
     }, 1500);
