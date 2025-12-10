@@ -68,25 +68,50 @@ const GasBill = () => {
 
   const handlePayment = async () => {
     setLoading(true);
-    setTimeout(() => {
+    setError(null);
+    
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/utilities/gas/pay`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          consumer_number: formData.customerId,
+          provider_id: formData.provider,
+          amount: parseFloat(formData.amount),
+          city: 'Bangalore'
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Payment failed');
+      }
+      
+      const data = await response.json();
+      
       const receipt = {
-        transactionId: `TXN${Date.now()}`,
-        date: new Date().toLocaleDateString('en-IN'),
-        time: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
-        amount: formData.amount,
+        transactionId: data.transaction_id,
+        date: new Date(data.timestamp).toLocaleDateString('en-IN'),
+        time: new Date(data.timestamp).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
+        amount: data.amount,
         serviceName: gasType === 'cylinder' ? 'LPG Cylinder Booking' : 'Piped Gas Bill Payment',
+        status: data.status,
         details: [
-          { label: 'Customer Name', value: bookingDetails.customerName },
-          { label: 'Customer ID', value: bookingDetails.customerId },
-          { label: 'Booking Number', value: bookingDetails.bookingNumber },
-          ...(gasType === 'cylinder' ? [{ label: 'Expected Delivery', value: bookingDetails.deliveryDate }] : []),
-          { label: 'Provider', value: (gasType === 'cylinder' ? cylinderProviders : pipedGasProviders).find(p => p.id === formData.provider)?.name }
+          { label: 'Customer ID', value: data.details.consumer_number },
+          { label: 'Provider', value: (gasType === 'cylinder' ? cylinderProviders : pipedGasProviders).find(p => p.id === formData.provider)?.name },
+          { label: 'Consumption', value: data.details.consumption },
+          { label: 'Billing Period', value: data.details.billing_period }
         ]
       };
       setReceiptData(receipt);
-      setLoading(false);
       setStep(4);
-    }, 2000);
+    } catch (err) {
+      setError('Payment failed. Please try again.');
+      console.error('Gas bill payment error:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (step === 4 && receiptData) {
