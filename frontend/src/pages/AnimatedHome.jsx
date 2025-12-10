@@ -182,14 +182,29 @@ const AnimatedHome = () => {
                 >
                   Welcome back,
                 </motion.p>
-                <motion.h2 
-                  className="text-2xl font-bold tracking-tight"
+                <motion.div
+                  className="flex items-center gap-2"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2 }}
                 >
-                  {mockUser.name}
-                </motion.h2>
+                  <h2 className="text-2xl font-bold tracking-tight">
+                    {mockUser.name}
+                  </h2>
+                  <motion.button
+                    onClick={() => setShowPalmIdSection(!showPalmIdSection)}
+                    className="p-1 hover:bg-white/10 rounded-full transition-colors"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <motion.div
+                      animate={{ rotate: showPalmIdSection ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <ChevronDown className="w-5 h-5" />
+                    </motion.div>
+                  </motion.button>
+                </motion.div>
                 
                 {/* Palm Status Badge with Animation */}
                 <motion.button 
