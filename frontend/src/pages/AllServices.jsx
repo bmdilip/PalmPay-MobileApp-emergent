@@ -24,7 +24,20 @@ import {
   Heart,
   GraduationCap,
   Receipt,
-  Package
+  Package,
+  Flame,
+  Satellite,
+  Radio,
+  Network,
+  MapPin,
+  Train,
+  Banknote,
+  FileText,
+  BadgeDollarSign,
+  School,
+  HeartHandshake,
+  ReceiptText,
+  Gas
 } from 'lucide-react';
 
 const AllServices = () => {
