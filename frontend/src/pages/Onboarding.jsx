@@ -6,6 +6,7 @@ import Logo from '../components/Logo';
 import PalmScanAnimation from '../components/premium/PalmScanAnimation';
 import { PatentPendingBadge } from '../components/premium';
 import PalmNFCIcon from '../components/icons/PalmNFCIcon';
+import { setOnboardingCompleted } from '../utils/auth';
 
 const Onboarding = () => {
   const navigate = useNavigate();
