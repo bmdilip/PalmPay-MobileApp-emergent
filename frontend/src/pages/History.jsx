@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Card } from '../components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
-import { ArrowLeft, ArrowUpRight, ArrowDownLeft, Filter, Download } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, ArrowDownLeft, Filter, Download, Search, X } from 'lucide-react';
 import { mockTransactions } from '../mockData';
+import { SkeletonTransaction } from '../components/Skeleton';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const History = () => {
   const [activeTab, setActiveTab] = useState('all');
