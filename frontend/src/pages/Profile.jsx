@@ -144,7 +144,7 @@ const Profile = () => {
                 </div>
               </motion.div>
             </Card>
-          </HoverCard3D>
+          </SpotlightCard>
         </motion.div>
 
         {/* Menu Items */}
@@ -154,7 +154,7 @@ const Profile = () => {
           transition={{ delay: 0.4 }}
           className="mb-6"
         >
-          <HoverCard3D>
+          <SpotlightCard>
             <Card className="divide-y">
               {menuItems.map((item, index) => (
                 <motion.button
