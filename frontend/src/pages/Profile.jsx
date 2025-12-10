@@ -31,30 +31,52 @@ const Profile = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white pb-20">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-4 py-6 rounded-b-3xl shadow-lg">
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-4 py-6 rounded-b-3xl shadow-lg"
+      >
         <div className="flex items-center gap-4 mb-6">
-          <button className="p-2 hover:bg-purple-500 rounded-full transition-colors">
+          <motion.button 
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="p-2 hover:bg-purple-500 rounded-full transition-colors"
+          >
             <ArrowLeft className="w-6 h-6" />
-          </button>
+          </motion.button>
           <h1 className="text-xl font-semibold">My Profile</h1>
         </div>
 
         {/* Profile Info */}
-        <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-6">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center text-purple-600 font-bold text-3xl">
-              {mockUser.name.charAt(0)}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-6">
+            <div className="flex items-center gap-4 mb-4">
+              <motion.div 
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                className="w-20 h-20 bg-white rounded-full flex items-center justify-center text-purple-600 font-bold text-3xl shadow-lg"
+              >
+                {mockUser.name.charAt(0)}
+              </motion.div>
+              <div className="flex-1">
+                <h2 className="text-xl font-semibold">{mockUser.name}</h2>
+                <div className="mt-2">
+                  <StatusBadge status="success" text="Gold Member" size="sm" />
+                </div>
+              </div>
             </div>
-            <div className="flex-1">
-              <h2 className="text-xl font-semibold">{mockUser.name}</h2>
-              <p className="text-purple-200 text-sm mt-1">Gold Member</p>
-            </div>
-          </div>
-          <Button className="w-full bg-white text-purple-600 hover:bg-purple-50 font-semibold">
-            Edit Profile
-          </Button>
-        </Card>
-      </div>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Button className="w-full bg-white text-purple-600 hover:bg-purple-50 font-semibold">
+                Edit Profile
+              </Button>
+            </motion.div>
+          </Card>
+        </motion.div>
+      </motion.div>
 
       <div className="px-4 mt-6">
         {/* Account Details */}
