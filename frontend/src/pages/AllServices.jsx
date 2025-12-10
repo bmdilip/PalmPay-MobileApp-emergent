@@ -82,14 +82,14 @@ const AllServices = () => {
     
     // Financial
     { id: 'insurance', name: 'Insurance', icon: Shield, color: '#00BCD4', category: 'financial', path: '/services/insurance', gradient: 'from-cyan-600 to-blue-500' },
-    { id: 'loan', name: 'Loan Repayment', icon: BadgeDollarSign, color: '#9C27B0', category: 'financial', path: '/services/loan-repayment', gradient: 'from-purple-600 to-pink-600' },
-    { id: 'lic', name: 'LIC Premium', icon: FileText, color: '#4CAF50', category: 'financial', path: '/services/lic', gradient: 'from-green-600 to-emerald-600' },
+    { id: 'loan', name: 'Loan Repayment', icon: DollarSign, color: '#9C27B0', category: 'financial', path: '/services/loan-repayment', gradient: 'from-purple-600 to-pink-600' },
+    { id: 'lic', name: 'LIC Premium', icon: FileCheck, color: '#4CAF50', category: 'financial', path: '/services/lic', gradient: 'from-green-600 to-emerald-600' },
     
     // Others
-    { id: 'education', name: 'Education Fee', icon: School, color: '#FF5722', category: 'others', path: '/services/education', gradient: 'from-red-600 to-orange-500' },
-    { id: 'donation', name: 'Donation', icon: HeartHandshake, color: '#E91E63', category: 'others', path: '/services/donation', gradient: 'from-pink-600 to-rose-600' },
-    { id: 'echallan', name: 'eChallan', icon: ReceiptText, color: '#607D8B', category: 'others', path: '/services/echallan', gradient: 'from-slate-600 to-gray-600' },
-    { id: 'cylinder', name: 'Book Cylinder', icon: Gas, color: '#FF9800', category: 'others', path: '/services/cylinder', gradient: 'from-orange-600 to-red-500' }
+    { id: 'education', name: 'Education Fee', icon: GraduationCap, color: '#FF5722', category: 'others', path: '/services/education', gradient: 'from-red-600 to-orange-500' },
+    { id: 'donation', name: 'Donation', icon: Handshake, color: '#E91E63', category: 'others', path: '/services/donation', gradient: 'from-pink-600 to-rose-600' },
+    { id: 'echallan', name: 'eChallan', icon: Receipt, color: '#607D8B', category: 'others', path: '/services/echallan', gradient: 'from-slate-600 to-gray-600' },
+    { id: 'cylinder', name: 'Book Cylinder', icon: Package, color: '#FF9800', category: 'others', path: '/services/cylinder', gradient: 'from-orange-600 to-red-500' }
   ];
 
   const filteredServices = selectedCategory === 'all' 
