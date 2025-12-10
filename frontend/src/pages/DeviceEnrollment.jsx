@@ -55,7 +55,7 @@ const DeviceEnrollment = () => {
             <div className="relative mb-8">
               <div className="absolute inset-0 rounded-full bg-[#586BFF] blur-3xl opacity-40 animate-pulse"></div>
               <div className="relative w-32 h-32 bg-[#586BFF]/20 rounded-full flex items-center justify-center">
-                <Hand className="w-16 h-16 text-[#586BFF]" />
+                <PalmNFCIcon className="w-16 h-16" style={{ filter: 'brightness(0) saturate(100%) invert(43%) sepia(71%) saturate(1805%) hue-rotate(215deg) brightness(99%) contrast(103%)' }} />
               </div>
             </div>
 
