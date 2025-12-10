@@ -58,23 +58,33 @@ const Services = () => {
       {/* Services Grid */}
       <div className="px-5">
         <div className="grid grid-cols-3 gap-4">
-          {services.map((service) => {
+          {services.map((service, index) => {
             const IconComp = getIcon(service.icon);
             return (
-              <Card 
+              <motion.div
                 key={service.id}
-                className="p-4 flex flex-col items-center gap-3 hover:shadow-lg transition-all cursor-pointer border border-gray-200 hover:border-[#586BFF]/30 group"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05 }}
+                whileHover={{ y: -5, scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <div 
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform"
-                  style={{ backgroundColor: service.color }}
+                <Card 
+                  className="p-4 flex flex-col items-center gap-3 hover:shadow-lg transition-all cursor-pointer border border-gray-200 hover:border-[#586BFF]/30 group"
                 >
-                  <IconComp className="w-7 h-7" />
-                </div>
-                <span className="text-xs font-medium text-gray-800 text-center leading-tight">
-                  {service.label}
-                </span>
-              </Card>
+                  <motion.div 
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-md"
+                    style={{ backgroundColor: service.color }}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <IconComp className="w-7 h-7" />
+                  </motion.div>
+                  <span className="text-xs font-medium text-gray-800 text-center leading-tight group-hover:text-[#586BFF] transition-colors">
+                    {service.label}
+                  </span>
+                </Card>
+              </motion.div>
             );
           })}
         </div>
