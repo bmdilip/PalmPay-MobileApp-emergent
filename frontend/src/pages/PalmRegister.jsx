@@ -5,6 +5,8 @@ import { Card } from '../components/ui/card';
 import { MapPin, Shield, AlertCircle, CheckCircle2, QrCode } from 'lucide-react';
 import Logo from '../components/Logo';
 import PalmNFCIcon from '../components/icons/PalmNFCIcon';
+import { motion, AnimatePresence } from 'framer-motion';
+import HoverCard3D from '../components/premium/HoverCard3D';
 
 const PalmRegister = () => {
   const navigate = useNavigate();
