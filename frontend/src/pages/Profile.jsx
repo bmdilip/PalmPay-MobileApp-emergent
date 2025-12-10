@@ -178,13 +178,21 @@ const Profile = () => {
         </motion.div>
 
         {/* Logout Button */}
-        <Button 
-          variant="outline" 
-          className="w-full border-red-500 text-red-500 hover:bg-red-50 font-semibold h-12"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.0 }}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
         >
-          <LogOut className="w-5 h-5 mr-2" />
-          Logout
-        </Button>
+          <Button 
+            variant="outline" 
+            className="w-full border-red-500 text-red-500 hover:bg-red-50 font-semibold h-12"
+          >
+            <LogOut className="w-5 h-5 mr-2" />
+            Logout
+          </Button>
+        </motion.div>
 
         <p className="text-center text-gray-400 text-sm mt-6">Version 25.01.28.0</p>
       </div>
