@@ -183,7 +183,7 @@ const Profile = () => {
                 </motion.button>
               ))}
             </Card>
-          </HoverCard3D>
+          </SpotlightCard>
         </motion.div>
 
         {/* Logout Button */}
