@@ -21,6 +21,7 @@ import { mockUser, mockBanks } from '../mockDataPalmPay';
 import { motion } from 'framer-motion';
 import HoverCard3D from '../components/premium/HoverCard3D';
 import StatusBadge from '../components/StatusBadge';
+import { logoutUser } from '../utils/auth';
 
 const PalmProfile = () => {
   const navigate = useNavigate();
