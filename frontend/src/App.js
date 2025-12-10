@@ -273,6 +273,7 @@ function App() {
             {/* All Components Demo */}
             <Route path="/all-components" element={<AllComponentsDemo />} />
             </Routes>
+            </AppRouter>
             <BottomNavigation />
             </div>
             <Toaster />
