@@ -215,7 +215,10 @@ const PalmRegister = () => {
             </>
           )}
           <Button 
-            onClick={() => navigate('/home')}
+            onClick={() => {
+              setPalmRegistered();
+              navigate('/home');
+            }}
             variant="ghost"
             className="w-full text-white/60 hover:text-white hover:bg-white/5"
           >
