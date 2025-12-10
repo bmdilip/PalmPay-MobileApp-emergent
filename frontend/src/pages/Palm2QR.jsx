@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Input } from '../components/ui/input';
-import { Hand, QrCode, ArrowLeft, CheckCircle2, Scan } from 'lucide-react';
+import { QrCode, ArrowLeft, CheckCircle2, Scan } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
+import PalmNFCIcon from '../components/icons/PalmNFCIcon';
 
 const Palm2QR = () => {
   const navigate = useNavigate();
