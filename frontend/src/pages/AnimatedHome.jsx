@@ -125,6 +125,10 @@ const AnimatedHome = () => {
     { id: 'rewards', label: 'Rewards', desc: 'Cashback & Offers', icon: Gift, color: '#FF6B35', path: '/cashback-rewards' },
   ];
 
+  if (loading) {
+    return <SkeletonHome />;
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 pb-20 relative overflow-x-hidden">
       {/* SECTION 1: Background Layers */}
