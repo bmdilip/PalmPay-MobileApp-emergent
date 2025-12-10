@@ -65,14 +65,21 @@ const AnimatedHome = () => {
   const [copiedPalmId, setCopiedPalmId] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [notifications, setNotifications] = useState(mockNotifications);
+  const [selectedHand, setSelectedHand] = useState('right'); // 'left' or 'right'
   const navigate = useNavigate();
   const { selectedWallet, wallets, switchWallet, getTotalBalance } = useWallet();
   
-  // Generate Palm ID
-  const palmId = `PLM-${mockUser.id.toUpperCase().slice(0, 8)}-${Date.now().toString().slice(-4)}`;
+  // Generate Palm IDs for both hands
+  const palmIdLeft = `PLM-${mockUser.id.toUpperCase().slice(0, 8)}-L${Date.now().toString().slice(-3)}`;
+  const palmIdRight = `PLM-${mockUser.id.toUpperCase().slice(0, 8)}-R${Date.now().toString().slice(-3)}`;
+  
+  // Mock data for palm registration status
+  const leftPalmRegistered = mockUser.palmEnabled; // You can customize this
+  const rightPalmRegistered = mockUser.palmEnabled; // You can customize this
   
   const handleCopyPalmId = () => {
-    navigator.clipboard.writeText(palmId);
+    const idToCopy = selectedHand === 'left' ? palmIdLeft : palmIdRight;
+    navigator.clipboard.writeText(idToCopy);
     setCopiedPalmId(true);
     setTimeout(() => setCopiedPalmId(false), 2000);
   };
