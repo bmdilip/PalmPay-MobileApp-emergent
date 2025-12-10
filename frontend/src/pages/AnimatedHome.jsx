@@ -93,6 +93,15 @@ const AnimatedHome = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Auto-hide Palm ID section after 10 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowPalmIdSection(false);
+    }, 10000); // 10 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
+
   // Quick actions are now defined inline with premium styling
 
   const rechargeServices = [
