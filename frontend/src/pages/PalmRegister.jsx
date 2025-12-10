@@ -26,7 +26,7 @@ const PalmRegister = () => {
     {
       title: 'Complete Registration at Device',
       description: 'Follow the on-screen instructions at the PalmPe device to register your palm biometric securely.',
-      icon: Hand,
+      icon: PalmNFCIcon,
       color: '#9B62FF'
     },
     {
