@@ -19,7 +19,8 @@ const VerifyOTP = () => {
   const location = useLocation();
   const { login } = useAuth();
 
-  const mobile = location.state?.mobile || '+91-XXXXXXXXXX';
+  const identifier = location.state?.identifier || '+91-XXXXXXXXXX';
+  const authMethod = location.state?.authMethod || 'mobile';
 
   // Countdown timer for resend OTP
   useEffect(() => {
