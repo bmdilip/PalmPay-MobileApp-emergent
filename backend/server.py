@@ -11,6 +11,10 @@ import uuid
 from datetime import datetime, timezone
 from api_routes import router as api_routes_router
 from routes.travel import router as travel_router
+from routes.recharge import router as recharge_router
+from routes.utilities import router as utilities_router
+from routes.transportation import router as transportation_router
+from routes.other_services import router as other_services_router
 
 
 ROOT_DIR = Path(__file__).parent
