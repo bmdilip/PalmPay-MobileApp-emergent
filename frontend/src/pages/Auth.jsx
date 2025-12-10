@@ -7,6 +7,7 @@ import { Card } from '../components/ui/card';
 import Logo from '../components/Logo';
 import { useAuth } from '../contexts/AuthContext';
 import HoverCard3D from '../components/premium/HoverCard3D';
+import { setUserLoggedIn, setOnboardingCompleted, isPalmRegistered } from '../utils/auth';
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
