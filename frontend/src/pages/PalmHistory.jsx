@@ -147,54 +147,82 @@ const PalmHistory = () => {
           </TabsList>
 
           <TabsContent value={activeTab} className="mt-4">
-            <Card className="divide-y">
-              {filteredTransactions.length > 0 ? (
-                filteredTransactions.map((transaction) => (
-                  <div key={transaction.id} className="p-4 hover:bg-gray-50 transition-colors cursor-pointer">
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-start gap-3 flex-1">
-                        <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
-                          transaction.type === 'received' ? 'bg-green-100 text-green-600' : 'bg-[#586BFF]/10 text-[#586BFF]'
-                        }`}>
-                          {transaction.type === 'received' ? 
-                            <ArrowDownLeft className="w-5 h-5" /> : 
-                            <ArrowUpRight className="w-5 h-5" />
-                          }
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-1">
-                            <p className="font-medium text-gray-800">{transaction.recipient}</p>
-                            <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${getCategoryBadge(transaction.category)}`}>
-                              {transaction.category}
-                            </span>
+            <HoverCard3D>
+              <Card className="divide-y">
+                {filteredTransactions.length > 0 ? (
+                  <AnimatePresence>
+                    {filteredTransactions.map((transaction, index) => (
+                      <motion.div 
+                        key={transaction.id}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 20 }}
+                        transition={{ delay: index * 0.05 }}
+                        whileHover={{ x: 5, backgroundColor: '#f9fafb' }}
+                        className="p-4 cursor-pointer transition-colors"
+                      >
+                        <div className="flex items-start justify-between">
+                          <div className="flex items-start gap-3 flex-1">
+                            <motion.div 
+                              whileHover={{ scale: 1.2, rotate: 10 }}
+                              className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
+                                transaction.type === 'received' ? 'bg-green-100 text-green-600' : 'bg-[#586BFF]/10 text-[#586BFF]'
+                              }`}
+                            >
+                              {transaction.type === 'received' ? 
+                                <ArrowDownLeft className="w-5 h-5" /> : 
+                                <ArrowUpRight className="w-5 h-5" />
+                              }
+                            </motion.div>
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-1">
+                                <p className="font-medium text-gray-800">{transaction.recipient}</p>
+                                <motion.span 
+                                  whileHover={{ scale: 1.1 }}
+                                  className={`px-2 py-0.5 rounded-full text-xs font-medium ${getCategoryBadge(transaction.category)}`}
+                                >
+                                  {transaction.category}
+                                </motion.span>
+                              </div>
+                              <div className="flex items-center gap-2 mb-1">
+                                {getMethodIcon(transaction.method)}
+                                <p className="text-sm text-gray-600">{transaction.method}</p>
+                              </div>
+                              {transaction.location && (
+                                <p className="text-xs text-gray-400">{transaction.location}</p>
+                              )}
+                              <p className="text-xs text-gray-400 mt-1">{transaction.date} at {transaction.time}</p>
+                            </div>
                           </div>
-                          <div className="flex items-center gap-2 mb-1">
-                            {getMethodIcon(transaction.method)}
-                            <p className="text-sm text-gray-600">{transaction.method}</p>
+                          <div className="text-right">
+                            <motion.p 
+                              whileHover={{ scale: 1.1 }}
+                              className={`font-semibold text-lg ${
+                                transaction.type === 'received' ? 'text-green-600' : 'text-gray-700'
+                              }`}
+                            >
+                              {transaction.type === 'received' ? '+' : '-'}₹{transaction.amount}
+                            </motion.p>
+                            <div className="mt-1">
+                              <StatusBadge 
+                                status={transaction.status === 'success' ? 'success' : transaction.status === 'pending' ? 'pending' : 'failed'}
+                                size="xs"
+                              />
+                            </div>
                           </div>
-                          {transaction.location && (
-                            <p className="text-xs text-gray-400">{transaction.location}</p>
-                          )}
-                          <p className="text-xs text-gray-400 mt-1">{transaction.date} at {transaction.time}</p>
                         </div>
-                      </div>
-                      <div className="text-right">
-                        <p className={`font-semibold text-lg ${
-                          transaction.type === 'received' ? 'text-green-600' : 'text-gray-700'
-                        }`}>
-                          {transaction.type === 'received' ? '+' : '-'}₹{transaction.amount}
-                        </p>
-                        <p className="text-xs text-green-600 capitalize mt-1">{transaction.status}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <div className="p-8 text-center text-gray-500">
-                  No transactions found
-                </div>
-              )}
-            </Card>
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                ) : (
+                  <EmptyState
+                    type="history"
+                    title="No transactions yet"
+                    description="Your transaction history will appear here"
+                  />
+                )}
+              </Card>
+            </HoverCard3D>
           </TabsContent>
         </Tabs>
       </div>
