@@ -87,6 +87,11 @@ const AnimatedHome = () => {
     setTimeout(() => setCopiedPalmId(false), 2000);
   };
 
+  // Simulate loading
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 1500);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
