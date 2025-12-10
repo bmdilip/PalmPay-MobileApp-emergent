@@ -57,7 +57,7 @@ const PalmHistory = () => {
   };
 
   const getMethodIcon = (method) => {
-    if (method.includes('Palm')) return <Hand className="w-4 h-4" />;
+    if (method.includes('Palm')) return <PalmNFCIcon className="w-4 h-4" />;
     return <Smartphone className="w-4 h-4" />;
   };
 
