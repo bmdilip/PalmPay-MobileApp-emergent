@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card } from '../components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
-import { ArrowLeft, ArrowUpRight, ArrowDownLeft, Filter, Download, Smartphone } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, ArrowDownLeft, Filter, Download, Smartphone, Search, X } from 'lucide-react';
 import { mockTransactions } from '../mockDataPalmPay';
 import { LayoutSwitcher, ThreeDHoverCard, GlowBorderCard } from '../components/premium';
 import { fadeInUp, staggerContainer, staggerItem } from '../lib/animations';
