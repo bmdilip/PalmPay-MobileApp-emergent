@@ -168,6 +168,7 @@ const FlightBooking = () => {
     >
       {/* Step 1: Search */}
       {step === 1 && !loading && (
+        <HoverCard3D>
         <Card className="p-5 space-y-5">
           <div className="grid grid-cols-2 gap-4">
             <div>
