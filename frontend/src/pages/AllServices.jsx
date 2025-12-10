@@ -130,34 +130,48 @@ const AllServices = () => {
         </div>
       </div>
 
-      {/* Services Grid */}
+      {/* Services Grid with Layout */}
       <div className="px-5 py-6">
-        <div className="grid grid-cols-3 gap-4">
-          {filteredServices.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <button
-                key={service.id}
-                onClick={() => navigate(service.path)}
-                className="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-white hover:shadow-lg transition-all duration-300 transform hover:scale-105 group"
-                style={{
-                  animation: `fadeInUp 0.5s ease-out ${index * 0.05}s backwards`
-                }}
-              >
-                <div
-                  className={`w-16 h-16 rounded-2xl flex items-center justify-center shadow-md group-hover:shadow-xl transition-all bg-gradient-to-br ${service.gradient} relative overflow-hidden`}
-                >
-                  {/* Shine effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <Icon className="w-7 h-7 text-white relative z-10" />
-                </div>
-                <span className="text-xs font-medium text-gray-700 text-center leading-tight group-hover:text-gray-900 transition-colors">
-                  {service.name}
-                </span>
-              </button>
-            );
-          })}
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          <HoverCard3D>
+            <Card className="p-5 bg-white shadow-lg">
+              <div className="grid grid-cols-3 gap-4">
+                {filteredServices.map((service, index) => {
+                  const Icon = service.icon;
+                  return (
+                    <motion.button
+                      key={service.id}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.05 }}
+                      whileHover={{ y: -5, scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => navigate(service.path)}
+                      className="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-gray-50 transition-all duration-300 group"
+                    >
+                      <motion.div
+                        whileHover={{ rotate: 360, scale: 1.1 }}
+                        transition={{ duration: 0.6 }}
+                        className={`w-16 h-16 rounded-2xl flex items-center justify-center shadow-md group-hover:shadow-xl transition-all bg-gradient-to-br ${service.gradient} relative overflow-hidden`}
+                      >
+                        {/* Shine effect */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <Icon className="w-7 h-7 text-white relative z-10" />
+                      </motion.div>
+                      <span className="text-xs font-medium text-gray-700 text-center leading-tight group-hover:text-[#586BFF] transition-colors">
+                        {service.name}
+                      </span>
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </Card>
+          </HoverCard3D>
+        </motion.div>
       </div>
 
       {/* CSS Animation */}
