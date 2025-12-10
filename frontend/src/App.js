@@ -258,11 +258,29 @@ function App() {
             <Route path="/service/cable" element={<CableTVBill />} />
             <Route path="/services/cable-tv" element={<CableTVBill />} />
             
+            {/* Investment Services */}
+            <Route path="/service/mutual" element={
+              <ProtectedRoute>
+                <MutualFunds />
+              </ProtectedRoute>
+            } />
+            <Route path="/services/mutual-funds" element={
+              <ProtectedRoute>
+                <MutualFunds />
+              </ProtectedRoute>
+            } />
+            <Route path="/service/gold" element={
+              <ProtectedRoute>
+                <DigitalGold />
+              </ProtectedRoute>
+            } />
+            <Route path="/services/digital-gold" element={
+              <ProtectedRoute>
+                <DigitalGold />
+              </ProtectedRoute>
+            } />
+            
             {/* Service Routes - Coming Soon */}
-            <Route path="/service/mutual" element={<ComingSoon />} />
-            <Route path="/services/mutual-funds" element={<ComingSoon />} />
-            <Route path="/service/gold" element={<ComingSoon />} />
-            <Route path="/services/digital-gold" element={<ComingSoon />} />
             <Route path="/service/loan" element={<ComingSoon />} />
             <Route path="/services/loans" element={<ComingSoon />} />
             <Route path="/services/loan-repayment" element={<ComingSoon />} />
