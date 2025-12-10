@@ -47,7 +47,7 @@ const PalmIDCard = ({ className = '' }) => {
           <div className="flex items-start justify-between mb-4">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <Hand className="w-4 h-4 text-[#586BFF]" />
+                <PalmNFCIcon className="w-4 h-4" style={{ filter: 'brightness(0) saturate(100%) invert(43%) sepia(71%) saturate(1805%) hue-rotate(215deg) brightness(99%) contrast(103%)' }} />
                 <h3 className="text-base font-bold text-gray-800">Your Palm ID</h3>
               </div>
               <p className="text-xs text-gray-500">Verified biometric identity</p>
