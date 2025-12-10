@@ -7,6 +7,7 @@ import { Label } from '../../components/ui/label';
 import ServiceLayout from '../../components/ServiceLayout';
 import ServiceReceipt from '../../components/ServiceReceipt';
 import { LoadingSpinner } from '../../components/StateComponents';
+import HoverCard3D from '../../components/premium/HoverCard3D';
 
 const HotelBooking = () => {
   const [step, setStep] = useState(1);
