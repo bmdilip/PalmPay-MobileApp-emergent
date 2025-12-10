@@ -10,6 +10,7 @@ from typing import List
 import uuid
 from datetime import datetime, timezone
 from api_routes import router as api_routes_router
+from routes.travel import router as travel_router
 
 
 ROOT_DIR = Path(__file__).parent
