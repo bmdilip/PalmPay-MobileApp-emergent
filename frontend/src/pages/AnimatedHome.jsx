@@ -31,6 +31,7 @@ import { useNavigate } from 'react-router-dom';
 import { useWallet } from '../contexts/WalletContext';
 import Logo from '../components/Logo';
 import NotificationPanel from '../components/NotificationPanel';
+import { SkeletonHome } from '../components/Skeleton';
 
 // Animated Background Components
 import MeshGradientBackground from '../components/animated/MeshGradientBackground';
