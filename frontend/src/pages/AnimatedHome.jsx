@@ -206,30 +206,35 @@ const AnimatedHome = () => {
                   </motion.button>
                 </motion.div>
                 
-                {/* Palm Status Badge with Animation */}
-                <motion.button 
-                  onClick={() => navigate(mockUser.palmEnabled ? '/device-center' : '/palm-enrollment')}
-                  className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 transition-all border border-white/20"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <motion.div 
-                    className={`w-2 h-2 rounded-full ${mockUser.palmEnabled ? 'bg-green-400' : 'bg-red-400'}`}
-                    {...pulseAnimation}
-                  />
-                  <span className="text-xs font-medium">
-                    {mockUser.palmEnabled 
-                      ? `Palm Registered • Last used ${mockUser.lastDeviceUsed || '2h ago'}` 
-                      : 'Palm Not Registered • Register Now'}
-                  </span>
-                  <ChevronRight className="w-3 h-3" />
-                </motion.button>
-                
-                {/* Palm ID Display - Shows both Left & Right Palms */}
-                {mockUser.palmEnabled ? (
+                {/* Collapsible Palm ID Section */}
+                <AnimatePresence>
+                  {showPalmIdSection && (
+                    <>
+                      {/* Palm Status Badge with Animation */}
+                      <motion.button 
+                        onClick={() => navigate(mockUser.palmEnabled ? '/device-center' : '/palm-enrollment')}
+                        className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 transition-all border border-white/20"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        initial={{ opacity: 0, x: -20, height: 0 }}
+                        animate={{ opacity: 1, x: 0, height: 'auto' }}
+                        exit={{ opacity: 0, x: -20, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <motion.div 
+                          className={`w-2 h-2 rounded-full ${mockUser.palmEnabled ? 'bg-green-400' : 'bg-red-400'}`}
+                          {...pulseAnimation}
+                        />
+                        <span className="text-xs font-medium">
+                          {mockUser.palmEnabled 
+                            ? `Palm Registered • Last used ${mockUser.lastDeviceUsed || '2h ago'}` 
+                            : 'Palm Not Registered • Register Now'}
+                        </span>
+                        <ChevronRight className="w-3 h-3" />
+                      </motion.button>
+                      
+                      {/* Palm ID Display - Shows both Left & Right Palms */}
+                      {mockUser.palmEnabled ? (
                   <motion.div 
                     className="mt-3 bg-white/15 backdrop-blur-sm border border-white/30 rounded-xl p-3"
                     initial={{ opacity: 0, y: -10 }}
