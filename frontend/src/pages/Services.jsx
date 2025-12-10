@@ -22,7 +22,12 @@ const Services = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white pb-20">
+    <div className="min-h-screen bg-white pb-20 relative overflow-x-hidden">
+      {/* SAME Background Layers from Home Page */}
+      <MeshGradientBackground />
+      <DotGridBackground />
+      <ParticleField count={20} />
+      
       {/* Header */}
       <div className="bg-gradient-to-br from-[#0A0F1F] via-[#1a1f3a] to-[#0A0F1F] text-white px-5 py-6 rounded-b-[2.5rem] shadow-2xl relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-[#586BFF] rounded-full blur-3xl opacity-20 animate-pulse"></div>
