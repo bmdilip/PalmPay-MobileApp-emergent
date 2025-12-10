@@ -26,6 +26,13 @@ import { useNavigate } from 'react-router-dom';
 import { logoutUser } from '../utils/auth';
 
 const Profile = () => {
+  const navigate = useNavigate();
+  
+  const handleLogout = () => {
+    logoutUser();
+    navigate('/auth', { replace: true });
+  };
+  
   const menuItems = [
     { icon: CreditCard, label: 'Payment Methods', color: 'text-blue-600', bg: 'bg-blue-100' },
     { icon: Shield, label: 'Security & Privacy', color: 'text-green-600', bg: 'bg-green-100' },
