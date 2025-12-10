@@ -96,7 +96,7 @@ const Profile = () => {
           className="mb-6"
         >
           <h3 className="text-lg font-semibold text-gray-800 mb-3">Account Details</h3>
-          <HoverCard3D>
+          <SpotlightCard>
             <Card className="divide-y">
               <motion.div 
                 whileHover={{ x: 5 }}
