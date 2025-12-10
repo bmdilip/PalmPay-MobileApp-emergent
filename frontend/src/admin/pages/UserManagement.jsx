@@ -403,7 +403,7 @@ const UserManagement = () => {
             <Card className="max-w-md w-full p-6 space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
-                  <Hand className="w-6 h-6 text-blue-600" />
+                  <PalmNFCIcon className="w-6 h-6" style={{ filter: 'brightness(0) saturate(100%) invert(41%) sepia(84%) saturate(1663%) hue-rotate(198deg) brightness(95%) contrast(101%)' }} />
                 </div>
                 <div>
                   <h3 className="font-bold text-gray-800">Register {palmHand} Palm</h3>
