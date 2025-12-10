@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card } from '../components/ui/card';
+import { motion } from 'framer-motion';
+import HoverCard3D from '../components/premium/HoverCard3D';
 import {
   ArrowLeft,
   Smartphone,
