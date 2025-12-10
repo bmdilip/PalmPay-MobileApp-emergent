@@ -236,25 +236,48 @@ const PalmProfile = () => {
         </div>
 
         {/* Linked Banks */}
-        <div className="mb-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="mb-6"
+        >
           <h3 className="text-lg font-bold text-gray-800 mb-3">Linked Bank Accounts</h3>
-          <Card className="divide-y">
-            {mockBanks.map((bank) => (
-              <div key={bank.id} className="p-4 flex items-center gap-4">
-                <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                  <Building2 className="w-5 h-5 text-blue-600" />
-                </div>
-                <div className="flex-1">
-                  <p className="font-medium text-gray-800">{bank.name}</p>
-                  <p className="text-sm text-gray-500">{bank.accountNumber}</p>
-                </div>
-                {bank.isPrimary && (
-                  <div className="text-xs bg-[#586BFF]/10 text-[#586BFF] px-2 py-1 rounded-full font-medium">Primary</div>
-                )}
-              </div>
-            ))}
-          </Card>
-        </div>
+          <HoverCard3D>
+            <Card className="divide-y">
+              {mockBanks.map((bank, index) => (
+                <motion.div 
+                  key={bank.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.6 + index * 0.1 }}
+                  whileHover={{ x: 10, backgroundColor: '#f9fafb' }}
+                  className="p-4 flex items-center gap-4 group"
+                >
+                  <motion.div 
+                    whileHover={{ scale: 1.2, rotate: 10 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center"
+                  >
+                    <Building2 className="w-5 h-5 text-blue-600" />
+                  </motion.div>
+                  <div className="flex-1">
+                    <p className="font-medium text-gray-800 group-hover:text-[#586BFF] transition-colors">{bank.name}</p>
+                    <p className="text-sm text-gray-500">{bank.accountNumber}</p>
+                  </div>
+                  {bank.isPrimary && (
+                    <motion.div 
+                      whileHover={{ scale: 1.1 }}
+                      className="text-xs bg-[#586BFF]/10 text-[#586BFF] px-2 py-1 rounded-full font-medium"
+                    >
+                      Primary
+                    </motion.div>
+                  )}
+                </motion.div>
+              ))}
+            </Card>
+          </HoverCard3D>
+        </motion.div>
 
         {/* Menu Items */}
         <div className="mb-6">
