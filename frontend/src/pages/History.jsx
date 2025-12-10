@@ -150,16 +150,11 @@ const History = () => {
                     ))}
                   </AnimatePresence>
                 ) : (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="p-8 text-center text-gray-500"
-                  >
-                    <p className="text-lg mb-2">No transactions found</p>
-                    <p className="text-sm">
-                      {searchQuery ? 'Try a different search term' : 'Your transaction history will appear here'}
-                    </p>
-                  </motion.div>
+                  <EmptyState
+                    type={searchQuery ? 'search' : 'history'}
+                    title={searchQuery ? 'No results found' : 'No transactions yet'}
+                    description={searchQuery ? 'Try adjusting your search terms' : 'Your transaction history will appear here once you start making payments'}
+                  />
                 )}
               </Card>
             )}
