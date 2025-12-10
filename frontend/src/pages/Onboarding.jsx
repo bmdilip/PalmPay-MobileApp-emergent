@@ -117,13 +117,19 @@ const Onboarding = () => {
           {currentSlide === slides.length - 1 ? (
             <>
               <Button 
-                onClick={() => navigate('/auth')}
+                onClick={() => {
+                  setOnboardingCompleted();
+                  navigate('/auth');
+                }}
                 className="w-full bg-gradient-to-r from-[#586BFF] to-[#9B62FF] hover:from-[#4a5ceb] hover:to-[#8a51eb] h-14 text-lg font-semibold"
               >
                 Get Started
               </Button>
               <Button 
-                onClick={() => navigate('/auth')}
+                onClick={() => {
+                  setOnboardingCompleted();
+                  navigate('/auth');
+                }}
                 variant="outline"
                 className="w-full border-[#586BFF] text-[#586BFF] hover:bg-[#586BFF]/10 h-12"
               >
