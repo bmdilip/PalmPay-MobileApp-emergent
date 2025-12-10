@@ -134,6 +134,7 @@ function App() {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/palm-register" element={<PalmRegister />} />
             <Route path="/palm-enrollment" element={<PalmEnrollment />} />
+            <Route path="/palm-scan" element={<PalmScan />} />
             <Route path="/home" element={<AnimatedHome />} />
             <Route path="/home-old" element={<PremiumHome />} />
             <Route path="/services" element={<PremiumServices />} />
