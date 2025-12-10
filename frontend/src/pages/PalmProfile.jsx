@@ -26,6 +26,13 @@ import { logoutUser } from '../utils/auth';
 const PalmProfile = () => {
   const navigate = useNavigate();
 
+  const handleLogout = () => {
+    // Clear user session but keep onboarding flag
+    logoutUser();
+    // Redirect to auth page
+    navigate('/auth');
+  };
+
   const menuItems = [
     { icon: CreditCard, label: 'Auto-Pay / Mandates', color: 'text-[#586BFF]', bg: 'bg-[#586BFF]/10', path: '/autopay' },
     { icon: Shield, label: 'Limit Settings', color: 'text-[#9B62FF]', bg: 'bg-[#9B62FF]/10', path: '/limit-settings' },
