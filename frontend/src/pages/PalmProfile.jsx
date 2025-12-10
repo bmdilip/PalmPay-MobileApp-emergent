@@ -18,6 +18,9 @@ import {
   Building2
 } from 'lucide-react';
 import { mockUser, mockBanks } from '../mockDataPalmPay';
+import { motion } from 'framer-motion';
+import HoverCard3D from '../components/premium/HoverCard3D';
+import StatusBadge from '../components/StatusBadge';
 
 const PalmProfile = () => {
   const navigate = useNavigate();
