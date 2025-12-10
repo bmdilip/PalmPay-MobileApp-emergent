@@ -121,7 +121,7 @@ const Palm2QR = () => {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative">
                   <QrCode className="w-32 h-32 text-[#586BFF]/50" />
-                  <Hand className="w-20 h-20 text-[#64E8FF] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+                  <PalmNFCIcon className="w-20 h-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style={{ filter: 'brightness(0) saturate(100%) invert(76%) sepia(86%) saturate(3068%) hue-rotate(154deg) brightness(101%) contrast(101%)' }} />
                 </div>
               </div>
 
