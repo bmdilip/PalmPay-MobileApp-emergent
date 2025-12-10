@@ -66,6 +66,7 @@ const AnimatedHome = () => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [notifications, setNotifications] = useState(mockNotifications);
   const [selectedHand, setSelectedHand] = useState('right'); // 'left' or 'right'
+  const [showPalmIdSection, setShowPalmIdSection] = useState(true); // Palm ID section visibility
   const navigate = useNavigate();
   const { selectedWallet, wallets, switchWallet, getTotalBalance } = useWallet();
   
