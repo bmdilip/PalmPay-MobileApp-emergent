@@ -93,7 +93,7 @@ const FlightBooking = () => {
     setStep(3);
   };
 
-  const handleBooking = () => {
+  const handleBooking = async () => {
     if (!passengerData.name || !passengerData.age || !passengerData.email || !passengerData.phone) {
       setError('Please fill all passenger details');
       return;
@@ -104,12 +104,34 @@ const FlightBooking = () => {
     }
     setError(null);
     setLoading(true);
-    setTimeout(() => {
+    
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/travel/flights/book`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          flight_id: selectedFlight.id,
+          passenger_name: passengerData.name,
+          passenger_age: parseInt(passengerData.age),
+          passenger_email: passengerData.email,
+          passenger_phone: passengerData.phone,
+          passengers_count: parseInt(searchData.passengers)
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to book flight');
+      }
+      
+      const booking = await response.json();
+      
       const receipt = {
-        transactionId: `FLT${Date.now()}`,
+        transactionId: booking.booking_id,
         date: new Date().toLocaleDateString('en-IN'),
         time: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
-        amount: selectedFlight.price * parseInt(searchData.passengers),
+        amount: booking.amount,
         serviceName: 'Flight Booking',
         details: [
           { label: 'Passenger', value: passengerData.name },
@@ -122,9 +144,13 @@ const FlightBooking = () => {
         ]
       };
       setReceiptData(receipt);
-      setLoading(false);
       setStep(4);
-    }, 2000);
+    } catch (err) {
+      setError('Failed to book flight. Please try again.');
+      console.error('Flight booking error:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (step === 4 && receiptData) {
