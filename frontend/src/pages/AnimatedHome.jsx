@@ -24,7 +24,9 @@ import {
   Plane,
   Users,
   HelpCircle,
-  CheckCircle2
+  CheckCircle2,
+  X,
+  Check
 } from 'lucide-react';
 import { mockUser, mockTransactions, mockNotifications } from '../mockDataPalmPay';
 import { useNavigate } from 'react-router-dom';
