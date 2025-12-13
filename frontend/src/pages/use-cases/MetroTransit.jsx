@@ -164,12 +164,29 @@ const MetroTransit = () => {
       </div>
 
       <div className="p-5">
+        {/* Search Bar */}
+        <div className="mb-4">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <Input
+              type="text"
+              placeholder="Search cities, stations, or lines..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:border-blue-400 focus:ring-2 focus:ring-blue-100"
+            />
+          </div>
+        </div>
+
         {/* Step 1: City Selection */}
         {step === 1 && (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <h2 className="text-xl font-bold text-gray-800 mb-4">Select Your City</h2>
             <div className="grid grid-cols-2 gap-3">
-              {cities.map((city, idx) => (
+              {cities.filter(city => 
+                city.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                city.state.toLowerCase().includes(searchQuery.toLowerCase())
+              ).map((city, idx) => (
                 <motion.div
                   key={city.id}
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -226,7 +243,10 @@ const MetroTransit = () => {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <h2 className="text-xl font-bold text-gray-800 mb-4">PalmPe Enabled Stations</h2>
             <div className="space-y-3 mb-6">
-              {stations.map((station, idx) => (
+              {stations.filter(station =>
+                station.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                station.line.toLowerCase().includes(searchQuery.toLowerCase())
+              ).map((station, idx) => (
                 <motion.div
                   key={station.id}
                   initial={{ opacity: 0, x: -20 }}
