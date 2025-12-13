@@ -308,6 +308,21 @@ function App() {
                 <PalmCircle />
               </ProtectedRoute>
             } />
+            <Route path="/use-cases/hospitals" element={
+              <ProtectedRoute>
+                <Hospitals />
+              </ProtectedRoute>
+            } />
+            <Route path="/use-cases/retail" element={
+              <ProtectedRoute>
+                <Retail />
+              </ProtectedRoute>
+            } />
+            <Route path="/use-cases/smart-city" element={
+              <ProtectedRoute>
+                <SmartCity />
+              </ProtectedRoute>
+            } />
             
             {/* Service Routes - Coming Soon */}
             <Route path="/service/loan" element={<ComingSoon />} />
