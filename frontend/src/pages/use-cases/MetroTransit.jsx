@@ -112,6 +112,8 @@ const MetroTransit = () => {
     let total = baseFare * passengers;
     if (ticketType === 'return') total *= 1.9;
     return { baseFare, total: Math.round(total), distance: Math.floor(baseFare / 3) + 3 };
+  }, [fromStation, toStation, passengers, ticketType]);
+
   // Metro lines and stations (based on Namma Metro Bangalore)
   const metroLines = [
     {
