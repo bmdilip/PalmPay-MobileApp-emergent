@@ -97,10 +97,10 @@ const UseCaseGrid = () => {
       {/* Section Header */}
       <div className="mb-5">
         <h2 className="text-xl font-bold text-gray-800 mb-1">
-          PalmPay Use Cases
+          PalmPe Use Cases
         </h2>
         <p className="text-sm text-gray-500">
-          Palm authentication across every touchpoint
+          Where you can use PalmPe
         </p>
       </div>
 
