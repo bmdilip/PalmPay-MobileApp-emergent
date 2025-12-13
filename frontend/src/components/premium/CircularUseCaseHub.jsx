@@ -74,23 +74,23 @@ const CircularUseCaseHub = () => {
   const cardSize = 80; // Use-case card size
 
   return (
-    <div className="relative w-full py-8">
+    <div className="relative w-full py-8 px-5">
       {/* Section Title */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-8"
       >
-        <h2 className="text-2xl font-bold text-gray-800 mb-2">
+        <h2 className="text-xl font-bold text-gray-800 mb-1">
           PalmPay Use-Case Hub
         </h2>
         <p className="text-sm text-gray-500">
-          Experience palm-based authentication across industries
+          Palm-based authentication across industries
         </p>
       </motion.div>
 
-      {/* Circular Hub Container */}
-      <div className="relative w-full h-[400px] flex items-center justify-center">
+      {/* Static 3D Circular Hub */}
+      <div className="relative w-full h-[380px] flex items-center justify-center mb-6">
         {/* Center Palm Device */}
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
