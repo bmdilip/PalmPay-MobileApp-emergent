@@ -578,13 +578,13 @@ const AnimatedHome = () => {
               path: '/scan' 
             },
             { 
-              id: 'wallet', 
-              label: 'Quick Wallet', 
-              icon: Zap, 
-              gradient: 'from-[#f093fb] via-[#f5576c] to-[#f093fb]',
-              shadow: 'shadow-[0_8px_30px_rgba(240,147,251,0.4)]',
-              glow: 'group-hover:shadow-[0_8px_40px_rgba(240,147,251,0.6)]',
-              path: '/digital-wallet' 
+              id: 'palm-circle', 
+              label: 'Palm Circle', 
+              icon: Users, 
+              gradient: 'from-[#ec4899] via-[#f43f5e] to-[#ec4899]',
+              shadow: 'shadow-[0_8px_30px_rgba(236,72,153,0.4)]',
+              glow: 'group-hover:shadow-[0_8px_40px_rgba(236,72,153,0.6)]',
+              path: '/use-cases/palm-circle' 
             }
           ].map((action) => {
             const Icon = action.icon;
