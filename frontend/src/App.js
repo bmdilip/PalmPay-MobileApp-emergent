@@ -78,6 +78,10 @@ import HousingSociety from "./pages/services/HousingSociety";
 import CableTVBill from "./pages/services/CableTVBill";
 import MutualFunds from "./pages/services/MutualFunds";
 import DigitalGold from "./pages/services/DigitalGold";
+import MetroTransit from "./pages/use-cases/MetroTransit";
+import Schools from "./pages/use-cases/Schools";
+import Offices from "./pages/use-cases/Offices";
+import PalmCircle from "./pages/use-cases/PalmCircle";
 
 const BottomNavigation = () => {
   const navigate = useNavigate();
