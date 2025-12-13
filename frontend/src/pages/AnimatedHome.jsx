@@ -46,7 +46,7 @@ import {
   AdvertisementBanner
 } from '../components/premium';
 import HoverCard3D from '../components/premium/HoverCard3D';
-import CircularUseCaseHub from '../components/premium/CircularUseCaseHub';
+import UseCaseGrid from '../components/premium/UseCaseGrid';
 import { Copy } from 'lucide-react';
 import PalmNFCIcon from '../components/icons/PalmNFCIcon';
 
