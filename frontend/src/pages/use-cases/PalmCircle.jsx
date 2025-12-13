@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Users, Plus, ArrowLeft, Shield, TrendingDown, Lock, Check, IndianRupee, AlertTriangle } from 'lucide-react';
+import { Users, Plus, ArrowLeft, Shield, TrendingDown, Lock, Check, IndianRupee, AlertTriangle, Search } from 'lucide-react';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
@@ -18,6 +18,7 @@ const PalmCircle = () => {
   const [showAddForm, setShowAddForm] = useState(false);
   const [showLimitForm, setShowLimitForm] = useState(null);
   const [emergencyLocked, setEmergencyLocked] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const [newMember, setNewMember] = useState({
     name: '',
     relationship: '',
@@ -126,6 +127,20 @@ const PalmCircle = () => {
       </div>
 
       <div className="p-5">
+        {/* Search Bar */}
+        <div className="mb-4">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <Input
+              type="text"
+              placeholder="Search family members..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:border-pink-400 focus:ring-2 focus:ring-pink-100"
+            />
+          </div>
+        </div>
+
         {/* Emergency Lock Button */}
         <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
           <Button onClick={handleEmergencyLock} disabled={loading || emergencyLocked} className="w-full mb-4 bg-red-600 hover:bg-red-700 h-12 flex items-center justify-center gap-2">
@@ -146,7 +161,10 @@ const PalmCircle = () => {
           </Card>
         ) : (
           <div className="space-y-3">
-            {members.map((member, idx) => (
+            {members.filter(member =>
+              member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+              member.relationship.toLowerCase().includes(searchQuery.toLowerCase())
+            ).map((member, idx) => (
               <motion.div key={member.member_id} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.05 }}>
                 <HoverCard3D>
                   <Card className="p-4">
