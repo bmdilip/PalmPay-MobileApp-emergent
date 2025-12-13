@@ -15,7 +15,7 @@ const PalmRegister = () => {
 
   const steps = [
     {
-      title: 'PalmPay Device Required',
+      title: 'PalmPe Device Required',
       description: 'Palm biometric registration can only be completed at authorized PalmPe devices. Your phone cannot capture palm biometrics.',
       icon: AlertCircle,
       color: '#64E8FF'
@@ -34,7 +34,7 @@ const PalmRegister = () => {
     },
     {
       title: 'Return to App & Activate',
-      description: 'After registration, return to the app and enter the enrollment code to activate PalmPay features.',
+      description: 'After registration, return to the app and enter the enrollment code to activate PalmPe features.',
       icon: CheckCircle2,
       color: '#64E8FF'
     }
