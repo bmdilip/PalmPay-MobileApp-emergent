@@ -82,6 +82,7 @@ api_router.include_router(utilities_router)
 api_router.include_router(transportation_router)
 api_router.include_router(other_services_router)
 api_router.include_router(investments_router)
+api_router.include_router(use_cases_router)
 
 # Include the router in the main app
 app.include_router(api_router)
