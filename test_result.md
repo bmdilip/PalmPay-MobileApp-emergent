@@ -754,9 +754,9 @@ test_plan:
 
   - task: "PalmPay Use-Case Hub - Circular Rotating UI & All Flows"
     implemented: true
-    working: true
+    working: false
     file: "/app/frontend/src/components/premium/CircularUseCaseHub.jsx, /app/frontend/src/pages/use-cases/"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
     needs_retesting: false
     status_history:
@@ -766,6 +766,9 @@ test_plan:
       - working: true
         agent: "testing"
         comment: "✅ PALMPAY USE-CASE HUB COMPREHENSIVE TESTING COMPLETE - BACKEND APIs 100% FUNCTIONAL: All 4 use-case backend APIs tested and working perfectly. METRO API: Cities endpoint returns 3 cities (Bangalore, Mumbai, Delhi), stations endpoint returns 5 stations with 4 PalmPay-enabled, registration API successful with transaction ID format MTRIQ1M8C1CZTK4. SCHOOLS API: Cities endpoint working, institutions endpoint returns 3 institutions (Bangalore International School, IISc, Ryan International), registration API successful with transaction ID SCHXA6O2AV3O47K, proper service linking (attendance, canteen, fees). OFFICES API: Cities endpoint working, offices list returns 3 offices (Tech Park Manyata, Infosys Campus, Brigade Gateway), registration API successful with transaction ID OFC16GQP8LXOOA5, access levels and services properly configured. PALM CIRCLE API: Members endpoint working, add member API successful with member ID FAM42031059, proper family wallet structure with daily limits and allowed categories. FRONTEND COMPONENTS VERIFIED: CircularUseCaseHub component properly integrated in AnimatedHome.jsx at line 738, contains all 7 use-cases (Metro & Transit, Schools & Colleges, Offices & Workplaces, Hospitals, Retail & Campuses, Palm Circle, Events & Smart City), proper status badges (Live/Soon), rotation animations, hover effects, and navigation paths configured. All use-case pages (MetroTransit.jsx, Schools.jsx, Offices.jsx, PalmCircle.jsx) implement complete multi-step flows with proper API integration, form validation, success screens, and responsive design. ⚠️ AUTHENTICATION BLOCKING UI TESTING: Protected routes redirect to onboarding preventing direct UI testing of circular hub animations and interactions, but code analysis confirms all required features implemented correctly including 30s rotation duration, hover pause mechanism, icon enlargement, status badges, and navigation routing."
+      - working: false
+        agent: "testing"
+        comment: "❌ PALMPAY USE-CASE HUB UI TESTING BLOCKED - AUTHENTICATION INTEGRATION ISSUE: Comprehensive testing attempted but CRITICAL BLOCKER found. AUTHENTICATION FLOW BROKEN: Multiple login attempts (Email+Password: test@example.com/Test@1234, Mobile OTP: 9876543210/123456) all fail and redirect back to onboarding page instead of reaching /home where Use-Case Hub is located. TESTING RESULTS: ❌ Cannot access home page to verify circular hub UI, ❌ Cannot test 7 use-case icons arrangement, ❌ Cannot verify PalmPe NFC logo at center, ❌ Cannot test preview panels and interactions, ❌ Cannot verify glass morphism design, ❌ Cannot test location-based features in hospitals page, ❌ Cannot test complete end-to-end flows. CODE ANALYSIS CONFIRMS IMPLEMENTATION: CircularUseCaseHub component exists at /app/frontend/src/components/premium/CircularUseCaseHub.jsx with all required features (center logo, 7 use-cases, glass morphism, preview panels, navigation), integrated in AnimatedHome.jsx at line 738, all use-case pages implemented with complete flows. CRITICAL ISSUE: Authentication system prevents UI testing - users cannot reach home page where Use-Case Hub is displayed. RECOMMENDATION: Fix authentication flow to allow access to /home page for proper UI testing of the world-class Use-Case Hub implementation."
 
 agent_communication:
   - agent: "main"
