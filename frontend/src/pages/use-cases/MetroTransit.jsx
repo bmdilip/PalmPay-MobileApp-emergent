@@ -222,7 +222,7 @@ const MetroTransit = () => {
         {/* Step 3: Station List & Register */}
         {step === 3 && (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <h2 className="text-xl font-bold text-gray-800 mb-4">PalmPay Enabled Stations</h2>
+            <h2 className="text-xl font-bold text-gray-800 mb-4">PalmPe Enabled Stations</h2>
             <div className="space-y-3 mb-6">
               {stations.map((station, idx) => (
                 <motion.div

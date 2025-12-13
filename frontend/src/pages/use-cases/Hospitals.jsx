@@ -139,7 +139,7 @@ const Hospitals = () => {
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
                             <h3 className="font-bold text-gray-800">{hospital.name}</h3>
-                            {hospital.palmPay && <div className="px-2 py-0.5 bg-green-500 text-white text-[10px] font-bold rounded-full">PalmPay</div>}
+                            {hospital.palmPay && <div className="px-2 py-0.5 bg-green-500 text-white text-[10px] font-bold rounded-full">PalmPe</div>}
                           </div>
                           <p className="text-xs text-gray-500 mb-1">{hospital.address}</p>
                           <div className="flex items-center gap-3 text-xs">
