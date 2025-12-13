@@ -10,7 +10,7 @@ import sys
 from datetime import datetime
 
 # Get backend URL from environment
-BACKEND_URL = "https://handprint-pay.preview.emergentagent.com/api"
+BACKEND_URL = "https://palmpe-preview.preview.emergentagent.com/api"
 
 class PalmPayAPITester:
     def __init__(self):
