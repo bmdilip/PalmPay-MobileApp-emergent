@@ -257,18 +257,58 @@ const CircularUseCaseHub = () => {
         </motion.div>
       </div>
 
-      {/* Coming Soon Notification */}
+      {/* Bottom Preview Panel */}
       <AnimatePresence>
-        {selectedCase && useCases.find(uc => uc.id === selectedCase)?.status === 'coming-soon' && (
+        {selectedCase && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed bottom-20 left-1/2 transform -translate-x-1/2 z-50"
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            className="relative"
           >
-            <div className="bg-gray-900 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-2">
-              <Globe className="w-5 h-5" />
-              <p className="text-sm font-medium">Coming Soon! Stay Tuned 🚀</p>
+            {/* Frosted Glass Panel */}
+            <div className="relative bg-white/90 backdrop-blur-xl border border-gray-200 rounded-2xl p-5 shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedCase(null)}
+                className="absolute top-3 right-3 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
+              >
+                <X className="w-4 h-4 text-gray-600" />
+              </button>
+
+              {/* Content */}
+              <div className="pr-10">
+                {/* Icon & Title */}
+                <div className="flex items-center gap-3 mb-3">
+                  <div 
+                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${selectedCase.gradient} flex items-center justify-center shadow-md`}
+                  >
+                    <selectedCase.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-800">
+                      {selectedCase.title}
+                    </h3>
+                  </div>
+                </div>
+
+                {/* Description */}
+                <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+                  {selectedCase.description}
+                </p>
+
+                {/* CTA Button */}
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={handleNavigate}
+                  className={`w-full bg-gradient-to-r ${selectedCase.gradient} text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all`}
+                >
+                  Check Availability
+                  <ArrowRight className="w-5 h-5" />
+                </motion.button>
+              </div>
             </div>
           </motion.div>
         )}
