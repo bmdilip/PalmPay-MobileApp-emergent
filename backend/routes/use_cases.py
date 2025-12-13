@@ -72,11 +72,20 @@ SCHOOLS = {
     "bangalore": [
         {"id": "school-1", "name": "Bangalore International School", "type": "School", "services": ["attendance", "canteen", "fees"], "students": 1200},
         {"id": "college-1", "name": "IISc Bangalore", "type": "College", "services": ["attendance", "canteen", "library"], "students": 3500},
-        {"id": "school-2", "name": "Ryan International School", "type": "School", "services": ["attendance", "canteen", "fees", "transport"], "students": 800}
+        {"id": "school-2", "name": "Ryan International School", "type": "School", "services": ["attendance", "canteen", "fees", "transport"], "students": 800},
+        {"id": "school-3", "name": "DPS Whitefield", "type": "School", "services": ["attendance", "canteen", "fees", "sports"], "students": 1500},
+        {"id": "college-2", "name": "Christ University", "type": "College", "services": ["attendance", "canteen", "library", "gym"], "students": 4500}
     ],
     "mumbai": [
-        {"id": "school-3", "name": "Dhirubhai Ambani International School", "type": "School", "services": ["attendance", "canteen", "fees"], "students": 950},
-        {"id": "college-2", "name": "IIT Bombay", "type": "College", "services": ["attendance", "canteen", "library", "gym"], "students": 8000}
+        {"id": "school-4", "name": "Dhirubhai Ambani International School", "type": "School", "services": ["attendance", "canteen", "fees"], "students": 950},
+        {"id": "college-3", "name": "IIT Bombay", "type": "College", "services": ["attendance", "canteen", "library", "gym"], "students": 8000},
+        {"id": "school-5", "name": "Cathedral School", "type": "School", "services": ["attendance", "canteen", "fees"], "students": 600},
+        {"id": "college-4", "name": "NMIMS Mumbai", "type": "College", "services": ["attendance", "canteen", "library"], "students": 3000}
+    ],
+    "delhi": [
+        {"id": "school-6", "name": "The Shri Ram School", "type": "School", "services": ["attendance", "canteen", "fees"], "students": 1100},
+        {"id": "college-5", "name": "IIT Delhi", "type": "College", "services": ["attendance", "canteen", "library", "gym"], "students": 7000},
+        {"id": "school-7", "name": "Modern School", "type": "School", "services": ["attendance", "canteen", "fees", "transport"], "students": 1800}
     ]
 }
 
@@ -84,10 +93,18 @@ OFFICES = {
     "bangalore": [
         {"id": "office-1", "name": "Tech Park - Manyata", "company": "Multiple Tenants", "services": ["access", "canteen", "parking"], "employees": 5000},
         {"id": "office-2", "name": "Infosys Campus", "company": "Infosys", "services": ["access", "canteen", "parking", "gym"], "employees": 12000},
-        {"id": "office-3", "name": "Brigade Gateway", "company": "Mixed", "services": ["access", "canteen"], "employees": 3000}
+        {"id": "office-3", "name": "Brigade Gateway", "company": "Mixed", "services": ["access", "canteen"], "employees": 3000},
+        {"id": "office-4", "name": "Embassy Golf Links", "company": "Multiple Tenants", "services": ["access", "canteen", "parking", "gym"], "employees": 8000},
+        {"id": "office-5", "name": "RMZ Ecoworld", "company": "Multiple Tenants", "services": ["access", "canteen", "parking"], "employees": 15000}
     ],
     "mumbai": [
-        {"id": "office-4", "name": "BKC Corporate Tower", "company": "Multiple", "services": ["access", "canteen", "parking"], "employees": 4500}
+        {"id": "office-6", "name": "BKC Corporate Tower", "company": "Multiple", "services": ["access", "canteen", "parking"], "employees": 4500},
+        {"id": "office-7", "name": "One BKC", "company": "Multiple Tenants", "services": ["access", "canteen", "parking", "gym"], "employees": 6000},
+        {"id": "office-8", "name": "Jio World Centre", "company": "Reliance", "services": ["access", "canteen", "parking", "gym"], "employees": 3500}
+    ],
+    "delhi": [
+        {"id": "office-9", "name": "Cyber Hub Gurgaon", "company": "Multiple Tenants", "services": ["access", "canteen", "parking"], "employees": 10000},
+        {"id": "office-10", "name": "DLF Cyber City", "company": "Multiple Tenants", "services": ["access", "canteen", "parking", "gym"], "employees": 25000}
     ]
 }
 
