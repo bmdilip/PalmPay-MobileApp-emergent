@@ -187,7 +187,6 @@ const MetroTransit = () => {
     line.stations.map(s => ({ ...s, line: line.name, lineColor: line.color }))
   );
 
-  // Fare matrix (simplified)
   // Recent journeys mock data
   const recentJourneys = [
     { from: 'MG Road', to: 'Kempegowda', date: 'Today, 9:30 AM', fare: 25 },
