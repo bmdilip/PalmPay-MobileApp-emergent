@@ -396,8 +396,9 @@ metadata:
 
 test_plan:
   current_focus:
-    - "PalmPay Use-Case Hub - Circular Rotating UI & All Flows"
-  stuck_tasks: []
+    - "PalmPay Use-Case Hub - Enterprise-Grade Grid Layout & Palm Registration Check"
+  stuck_tasks: 
+    - "Authentication Integration Issue - Blocking UI Testing"
   test_all: false
   test_priority: "high_first"
 
