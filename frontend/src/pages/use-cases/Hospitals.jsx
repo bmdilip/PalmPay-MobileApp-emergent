@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { 
   Hospital, MapPin, Check, ChevronRight, ArrowLeft, Clock, Star, 
   Search, Calendar, User, FileText, Pill, TestTube, Video,
-  Phone, CreditCard, Heart, AlertCircle, ChevronDown, Filter
+  Phone, CreditCard, Heart, ChevronDown, Filter, Lock
 } from 'lucide-react';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import HoverCard3D from '../../components/premium/HoverCard3D';
+import PalmNFCIcon from '../../components/icons/PalmNFCIcon';
 
 const Hospitals = () => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState('hospitals'); // hospitals, appointments, records, pharmacy
+  const [selectedCity, setSelectedCity] = useState(null);
+  const [activeTab, setActiveTab] = useState('hospitals');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedHospital, setSelectedHospital] = useState(null);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
@@ -25,6 +27,22 @@ const Hospitals = () => {
   const [selectedSpecialty, setSelectedSpecialty] = useState('all');
   const [bookingSuccess, setBookingSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState('palm');
+
+  // Cities
+  const cities = {
+    active: [
+      { id: 'bangalore', name: 'Bangalore', state: 'Karnataka', hospitals: 45, palmPeHospitals: 28 },
+      { id: 'delhi', name: 'Delhi NCR', state: 'Delhi', hospitals: 68, palmPeHospitals: 42 },
+      { id: 'mumbai', name: 'Mumbai', state: 'Maharashtra', hospitals: 52, palmPeHospitals: 35 },
+      { id: 'chennai', name: 'Chennai', state: 'Tamil Nadu', hospitals: 38, palmPeHospitals: 22 }
+    ],
+    upcoming: [
+      { id: 'hyderabad', name: 'Hyderabad', state: 'Telangana', expected: 'Q1 2025' },
+      { id: 'pune', name: 'Pune', state: 'Maharashtra', expected: 'Q2 2025' },
+      { id: 'kolkata', name: 'Kolkata', state: 'West Bengal', expected: 'Q2 2025' }
+    ]
+  };
 
   // Hospitals data (based on real Bangalore hospitals)
   const hospitals = [
