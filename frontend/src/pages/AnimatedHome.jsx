@@ -734,75 +734,8 @@ const AnimatedHome = () => {
         </motion.div>
       </div>
 
-      {/* SECTION 6: Financial Services with Enhanced Cards */}
-      <div className="px-5 mb-6">
-        <motion.div 
-          className="flex items-center justify-between mb-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.1 }}
-        >
-          <h3 className="text-lg font-bold text-gray-800">Financial Services</h3>
-        </motion.div>
-        <motion.div 
-          className="grid grid-cols-2 gap-3"
-          variants={staggerContainer}
-          initial="initial"
-          animate="animate"
-        >
-          {financialServices.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <motion.div
-                key={service.id}
-                variants={staggerItem}
-                whileHover={{ scale: 1.03, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Card 
-                  className="p-4 cursor-pointer border-0 shadow-md relative overflow-hidden group"
-                  onClick={() => navigate(service.path)}
-                >
-                  {/* Glow border effect */}
-                  <motion.div
-                    className="absolute inset-0 rounded-lg"
-                    initial={{ opacity: 0 }}
-                    whileHover={{ 
-                      opacity: 1,
-                      boxShadow: `0 0 20px ${service.color}40`
-                    }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  
-                  {service.badge && (
-                    <motion.span 
-                      className="absolute top-2 right-2 px-2 py-0.5 bg-purple-500 text-white text-xs font-bold rounded-full shadow-lg"
-                      animate={{ scale: [1, 1.1, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      {service.badge}
-                    </motion.span>
-                  )}
-                  <div className="flex items-start gap-3 relative z-10">
-                    <motion.div 
-                      className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-                      style={{ backgroundColor: `${service.color}15` }}
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.6 }}
-                    >
-                      <Icon className="w-6 h-6" style={{ color: service.color }} />
-                    </motion.div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="text-sm font-bold text-gray-800 mb-0.5 truncate">{service.label}</h4>
-                      <p className="text-xs text-gray-600 line-clamp-2">{service.desc}</p>
-                    </div>
-                  </div>
-                </Card>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-      </div>
+      {/* SECTION 6: PalmPay Use-Case Hub - Circular Rotating UI */}
+      <CircularUseCaseHub />
 
       {/* SECTION 7: Recent Transactions with Staggered List */}
       <div className="px-5 mb-6">
