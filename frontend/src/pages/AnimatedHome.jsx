@@ -340,7 +340,7 @@ const AnimatedHome = () => {
                     </div>
                     
                     <motion.button
-                      onClick={() => navigate('/palm-enrollment')}
+                      onClick={() => navigate('/device-locator')}
                       className="w-full py-2 px-3 bg-[#00C8D6] hover:bg-[#00B8C6] text-white rounded-lg text-xs font-semibold flex items-center justify-center gap-2 transition-all"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}

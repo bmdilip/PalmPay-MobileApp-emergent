@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Train, MapPin, Check, ChevronRight, ArrowLeft, Sparkles } from 'lucide-react';
+import { Train, MapPin, Check, ChevronRight, ArrowLeft, Sparkles, Search } from 'lucide-react';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
+import { Input } from '../../components/ui/input';
 import HoverCard3D from '../../components/premium/HoverCard3D';
 import { LoadingSpinner } from '../../components/StateComponents';
 
@@ -16,6 +17,7 @@ const MetroTransit = () => {
   const [selectedCity, setSelectedCity] = useState(null);
   const [selectedTransport, setSelectedTransport] = useState('metro');
   const [success, setSuccess] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     fetchCities();
@@ -251,7 +253,7 @@ const MetroTransit = () => {
               ))}
             </div>
             <Button
-              onClick={handleRegister}
+              onClick={() => navigate('/device-locator', { state: { returnTo: '/use-cases/metro' } })}
               disabled={loading}
               className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 h-12"
             >
