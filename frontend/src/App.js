@@ -284,6 +284,28 @@ function App() {
               </ProtectedRoute>
             } />
             
+            {/* Use-Case Hub Routes */}
+            <Route path="/use-cases/metro" element={
+              <ProtectedRoute>
+                <MetroTransit />
+              </ProtectedRoute>
+            } />
+            <Route path="/use-cases/schools" element={
+              <ProtectedRoute>
+                <Schools />
+              </ProtectedRoute>
+            } />
+            <Route path="/use-cases/offices" element={
+              <ProtectedRoute>
+                <Offices />
+              </ProtectedRoute>
+            } />
+            <Route path="/use-cases/palm-circle" element={
+              <ProtectedRoute>
+                <PalmCircle />
+              </ProtectedRoute>
+            } />
+            
             {/* Service Routes - Coming Soon */}
             <Route path="/service/loan" element={<ComingSoon />} />
             <Route path="/services/loans" element={<ComingSoon />} />
