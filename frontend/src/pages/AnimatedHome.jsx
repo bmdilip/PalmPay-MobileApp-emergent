@@ -402,21 +402,23 @@ const AnimatedHome = () => {
                 <AnimatePresence>
                   {showWalletSelector && (
                     <>
-                      {/* Backdrop */}
+                      {/* Backdrop - Full Screen Overlay */}
                       <motion.div 
-                        className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[9998]"
+                        className="fixed inset-0 bg-black/50 backdrop-blur-sm"
+                        style={{ zIndex: 99999 }}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={() => setShowWalletSelector(false)}
                       />
                       
-                      {/* Dropdown - Larger and Clearer - FIXED POSITIONING */}
+                      {/* Dropdown Modal - Centered */}
                       <motion.div 
-                        className="fixed top-20 left-4 right-4 max-h-[calc(100vh-10rem)] overflow-y-auto bg-white rounded-2xl shadow-2xl border-2 border-[#586BFF] z-[9999]"
-                        initial={{ opacity: 0, y: -20, scale: 0.95 }}
+                        className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-md max-h-[70vh] overflow-y-auto bg-white rounded-2xl shadow-2xl border-2 border-[#586BFF]"
+                        style={{ zIndex: 100000 }}
+                        initial={{ opacity: 0, y: 20, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                        exit={{ opacity: 0, y: 20, scale: 0.95 }}
                         transition={{ duration: 0.3, type: 'spring' }}
                       >
                         <div className="px-5 py-4 border-b-2 border-gray-100">
