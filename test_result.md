@@ -396,8 +396,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "API Integration Testing for Top 5 Services"
-    - "Wallet Dropdown Functionality Testing"
+    - "PalmPay Use-Case Hub - Circular Rotating UI & All Flows"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
