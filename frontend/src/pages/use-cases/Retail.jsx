@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ShoppingBag, MapPin, Check, ChevronRight, ArrowLeft, Store, Percent } from 'lucide-react';
+import { ShoppingBag, MapPin, Check, ChevronRight, ArrowLeft, Store, Percent, Search } from 'lucide-react';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
+import { Input } from '../../components/ui/input';
 import HoverCard3D from '../../components/premium/HoverCard3D';
 
 const Retail = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [selectedRetail, setSelectedRetail] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const retailers = [
     { id: 'ret-1', name: 'Reliance Fresh', category: 'Supermarket', address: 'Koramangala, Bangalore', distance: '1.2 km', offers: ['5% cashback', 'Instant checkout'], palmPay: true },
     { id: 'ret-2', name: 'Phoenix Marketcity', category: 'Mall', address: 'Whitefield, Bangalore', distance: '3.5 km', offers: ['Mall-wide access', '10% off on brands'], palmPay: true },
     { id: 'ret-3', name: 'More Megastore', category: 'Supermarket', address: 'Indiranagar, Bangalore', distance: '2.8 km', offers: ['No queues', '3% rewards'], palmPay: true },
-    { id: 'ret-4', name: 'Orion Mall', category: 'Mall', address: 'Rajajinagar, Bangalore', distance: '5.1 km', offers: ['VIP parking', 'Fast-track billing'], palmPay: true }
+    { id: 'ret-4', name: 'Orion Mall', category: 'Mall', address: 'Rajajinagar, Bangalore', distance: '5.1 km', offers: ['VIP parking', 'Fast-track billing'], palmPay: true },
+    { id: 'ret-5', name: 'Big Bazaar', category: 'Supermarket', address: 'JP Nagar, Bangalore', distance: '4.2 km', offers: ['Festival deals', '2% cashback'], palmPay: true },
+    { id: 'ret-6', name: 'Forum Mall', category: 'Mall', address: 'Koramangala, Bangalore', distance: '1.8 km', offers: ['Premium brands', 'Lounge access'], palmPay: true }
   ];
 
   if (step === 3) {
@@ -50,9 +54,28 @@ const Retail = () => {
       <div className="p-5">
         {step === 1 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            {/* Search Bar */}
+            <div className="mb-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Input
+                  type="text"
+                  placeholder="Search stores, malls, or offers..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
+                />
+              </div>
+            </div>
+
             <h2 className="text-xl font-bold text-gray-800 mb-4">Partner Stores & Malls</h2>
             <div className="space-y-3">
-              {retailers.map((retail, idx) => (
+              {retailers.filter(retail =>
+                retail.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                retail.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                retail.address.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                retail.offers.some(o => o.toLowerCase().includes(searchQuery.toLowerCase()))
+              ).map((retail, idx) => (
                 <motion.div key={retail.id} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.05 }} onClick={() => { setSelectedRetail(retail); setStep(2); }}>
                   <HoverCard3D>
                     <Card className="p-4 cursor-pointer hover:shadow-xl border-green-300">
