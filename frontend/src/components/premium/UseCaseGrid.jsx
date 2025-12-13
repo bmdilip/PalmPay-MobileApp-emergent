@@ -84,8 +84,8 @@ const UseCaseGrid = () => {
     const isPalmRegistered = localStorage.getItem('palmRegistered') === 'true';
     
     if (!isPalmRegistered) {
-      // Redirect to MASTER Palm Registration page (single source of truth)
-      navigate('/palm-register', { state: { returnTo: useCase.path } });
+      // Redirect to MASTER Device Locator (Find PalmPe Devices)
+      navigate('/device-locator', { state: { returnTo: useCase.path } });
     } else {
       // Proceed to use case
       navigate(useCase.path);
