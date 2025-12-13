@@ -734,7 +734,7 @@ const AnimatedHome = () => {
         </motion.div>
       </div>
 
-      {/* SECTION 6: PalmPay Use-Case Hub - Grid Layout */}
+      {/* SECTION 6: PalmPe Use-Case Grid */}
       <UseCaseGrid />
 
       {/* SECTION 7: Recent Transactions with Staggered List */}
