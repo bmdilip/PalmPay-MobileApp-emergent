@@ -335,7 +335,7 @@ const Offices = () => {
 
             {/* Recent Access Log */}
             <Card className="p-5 shadow-lg">
-              <h3 className="font-semibold text-gray-800 mb-4">Today's Access Log</h3>
+              <h3 className="font-semibold text-gray-800 mb-4">Today&apos;s Access Log</h3>
               <div className="space-y-3">
                 {accessLogs.map((log, idx) => (
                   <div key={idx} className="flex items-center gap-3 py-2 border-b last:border-0">
