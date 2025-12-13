@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Hospital, MapPin, Check, ChevronRight, ArrowLeft, Clock, Star, Navigation } from 'lucide-react';
+import { Hospital, MapPin, Check, ChevronRight, ArrowLeft, Clock, Star, Navigation, Search } from 'lucide-react';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
+import { Input } from '../../components/ui/input';
 import HoverCard3D from '../../components/premium/HoverCard3D';
 import { LoadingSpinner } from '../../components/StateComponents';
 
@@ -13,6 +14,7 @@ const Hospitals = () => {
   const [loading, setLoading] = useState(false);
   const [selectedHospital, setSelectedHospital] = useState(null);
   const [userLocation, setUserLocation] = useState({ lat: 12.9716, lng: 77.5946 }); // Bangalore default
+  const [searchQuery, setSearchQuery] = useState('');
 
   // Mock hospitals with location data
   const hospitals = [
@@ -59,10 +61,34 @@ const Hospitals = () => {
       distance: '8.2 km',
       rating: 4.5,
       services: ['OPD', 'Surgery', 'Emergency', 'Pharmacy'],
-      palmPay: false,
+      palmPay: true,
       waitTime: '25 mins',
       lat: 12.8069,
       lng: 77.6806
+    },
+    {
+      id: 'hosp-5',
+      name: 'Columbia Asia Hospital',
+      address: 'Hebbal, Bangalore',
+      distance: '6.7 km',
+      rating: 4.6,
+      services: ['OPD', 'Orthopedics', 'Emergency', 'Lab'],
+      palmPay: true,
+      waitTime: '12 mins',
+      lat: 13.0359,
+      lng: 77.5970
+    },
+    {
+      id: 'hosp-6',
+      name: 'Sakra World Hospital',
+      address: 'Marathahalli, Bangalore',
+      distance: '5.3 km',
+      rating: 4.7,
+      services: ['OPD', 'Oncology', 'Pediatrics', 'ICU'],
+      palmPay: true,
+      waitTime: '18 mins',
+      lat: 12.9504,
+      lng: 77.7011
     }
   ];
 
@@ -123,6 +149,20 @@ const Hospitals = () => {
       <div className="p-5">
         {step === 1 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            {/* Search Bar */}
+            <div className="mb-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Input
+                  type="text"
+                  placeholder="Search hospitals, services, or areas..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:border-red-400 focus:ring-2 focus:ring-red-100"
+                />
+              </div>
+            </div>
+
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-bold text-gray-800">Nearby Hospitals</h2>
               <button className="flex items-center gap-1 text-sm text-red-600 font-medium">
@@ -131,7 +171,14 @@ const Hospitals = () => {
               </button>
             </div>
             <div className="space-y-3">
-              {hospitals.sort((a, b) => parseFloat(a.distance) - parseFloat(b.distance)).map((hospital, idx) => (
+              {hospitals
+                .filter(hospital =>
+                  hospital.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                  hospital.address.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                  hospital.services.some(s => s.toLowerCase().includes(searchQuery.toLowerCase()))
+                )
+                .sort((a, b) => parseFloat(a.distance) - parseFloat(b.distance))
+                .map((hospital, idx) => (
                 <motion.div key={hospital.id} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.05 }} onClick={() => handleHospitalSelect(hospital)}>
                   <HoverCard3D>
                     <Card className={`p-4 cursor-pointer hover:shadow-xl transition-all ${!hospital.palmPay ? 'opacity-60' : 'border-green-300'}`}>
@@ -186,7 +233,7 @@ const Hospitals = () => {
                 ))}
               </div>
             </Card>
-            <Button onClick={handleRegister} disabled={loading} className="w-full bg-red-600 hover:bg-red-700 h-12">
+            <Button onClick={() => navigate('/device-locator', { state: { returnTo: '/use-cases/hospitals' } })} disabled={loading} className="w-full bg-red-600 hover:bg-red-700 h-12">
               {loading ? 'Registering...' : 'Register Palm for Healthcare'}
               {!loading && <ChevronRight className="w-5 h-5 ml-2" />}
             </Button>
