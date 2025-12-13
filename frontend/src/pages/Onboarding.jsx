@@ -23,7 +23,7 @@ const Onboarding = () => {
   const slides = [
     {
       icon: PalmNFCIcon,
-      title: 'What is PalmPay?',
+      title: 'What is PalmPe?',
       description: 'Phone-less payments powered by PalmPe devices. Pay at stores without touching your phone. Your palm is your wallet.',
       color: '#586BFF',
       showPalmVein: true
