@@ -155,6 +155,11 @@ function App() {
                   <PalmRegister />
                 </ProtectedRoute>
               } />
+              <Route path="/palm-registration-info" element={
+                <ProtectedRoute>
+                  <PalmRegistrationInfo />
+                </ProtectedRoute>
+              } />
               <Route path="/palm-enrollment" element={
                 <ProtectedRoute>
                   <PalmEnrollment />
