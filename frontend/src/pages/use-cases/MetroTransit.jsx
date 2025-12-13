@@ -614,6 +614,9 @@ const MetroTransit = () => {
         {showStationPicker && (
           <StationPicker
             type={showStationPicker}
+            metroLines={metroLines}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
             onSelect={station => {
               if (showStationPicker === 'from') setFromStation(station);
               else setToStation(station);
