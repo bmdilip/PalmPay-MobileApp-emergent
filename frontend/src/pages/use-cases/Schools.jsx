@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { GraduationCap, MapPin, Check, ChevronRight, ArrowLeft, Users, BookOpen, Coffee, CreditCard } from 'lucide-react';
+import { GraduationCap, MapPin, Check, ChevronRight, ArrowLeft, Users, BookOpen, Coffee, CreditCard, Search } from 'lucide-react';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
@@ -21,6 +21,7 @@ const Schools = () => {
   const [userType, setUserType] = useState('student');
   const [studentId, setStudentId] = useState('');
   const [success, setSuccess] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     fetchCities();
@@ -136,11 +137,28 @@ const Schools = () => {
       </div>
 
       <div className="p-5">
+        {/* Search Bar */}
+        <div className="mb-4">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <Input
+              type="text"
+              placeholder="Search schools, colleges, or universities..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:border-purple-400 focus:ring-2 focus:ring-purple-100"
+            />
+          </div>
+        </div>
+
         {step === 1 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <h2 className="text-xl font-bold text-gray-800 mb-4">Select City</h2>
             <div className="grid grid-cols-2 gap-3">
-              {cities.map((city, idx) => (
+              {cities.filter(city =>
+                city.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                city.state.toLowerCase().includes(searchQuery.toLowerCase())
+              ).map((city, idx) => (
                 <motion.div key={city.id} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: idx * 0.1 }} onClick={() => { setSelectedCity(city); setStep(2); }}>
                   <HoverCard3D>
                     <Card className="p-5 cursor-pointer hover:shadow-xl">
@@ -180,7 +198,11 @@ const Schools = () => {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <h2 className="text-xl font-bold text-gray-800 mb-4">Select Institution</h2>
             <div className="space-y-3">
-              {institutions.map((inst, idx) => (
+              {institutions.filter(inst =>
+                inst.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                inst.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                inst.services.some(s => s.toLowerCase().includes(searchQuery.toLowerCase()))
+              ).map((inst, idx) => (
                 <motion.div key={inst.id} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.05 }} onClick={() => { setSelectedInstitution(inst); setStep(4); }}>
                   <HoverCard3D>
                     <Card className="p-4 cursor-pointer hover:shadow-xl">
@@ -229,7 +251,7 @@ const Schools = () => {
                 )}
               </div>
             </Card>
-            <Button onClick={handleRegister} disabled={loading || (userType !== 'staff' && !studentId)} className="w-full bg-purple-600 hover:bg-purple-700 h-12">
+            <Button onClick={() => navigate('/device-locator', { state: { returnTo: '/use-cases/schools' } })} disabled={loading || (userType !== 'staff' && !studentId)} className="w-full bg-purple-600 hover:bg-purple-700 h-12">
               {loading ? 'Registering...' : 'Register Palm'}
               {!loading && <ChevronRight className="w-5 h-5 ml-2" />}
             </Button>
