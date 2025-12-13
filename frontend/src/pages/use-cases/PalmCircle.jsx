@@ -773,171 +773,91 @@ const PalmCircle = () => {
               onClick={e => e.stopPropagation()}
               className="bg-white rounded-2xl w-full max-w-md overflow-hidden"
             >
-              {/* Intro Step */}
-              {palmRegistrationStep === 'intro' && (
-                <div className="p-6">
-                  <div className="text-center mb-6">
-                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center mx-auto mb-4">
-                      <PalmNFCIcon className="w-10 h-10" style={{ filter: 'brightness(0) invert(1)' }} />
+              {/* Registration Intro - Redirects to Device Locator */}
+              <div className="p-6">
+                <div className="text-center mb-6">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center mx-auto mb-4">
+                    <PalmNFCIcon className="w-10 h-10" style={{ filter: 'brightness(0) invert(1)' }} />
+                  </div>
+                  <h2 className="text-xl font-bold text-gray-800 mb-2">
+                    Register {showPalmRegisterModal.name}'s Palm
+                  </h2>
+                  <p className="text-sm text-gray-600">
+                    Link their palm to the <span className="font-semibold text-pink-600">Circle Wallet</span> for phone-free payments
+                  </p>
+                </div>
+
+                {/* How it works */}
+                <div className="space-y-3 mb-6">
+                  {[
+                    { icon: Fingerprint, text: "Scan palm at any PalmPe registration kiosk" },
+                    { icon: Link2, text: "Palm gets linked to Circle Wallet automatically" },
+                    { icon: Wallet, text: "Payments deducted from Circle balance" }
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+                      <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center flex-shrink-0">
+                        <item.icon className="w-5 h-5 text-pink-600" />
+                      </div>
+                      <p className="text-sm text-gray-700">{item.text}</p>
                     </div>
-                    <h2 className="text-xl font-bold text-gray-800 mb-2">
-                      Register {showPalmRegisterModal.name}'s Palm
-                    </h2>
-                    <p className="text-sm text-gray-600">
-                      Link their palm to the <span className="font-semibold text-pink-600">Circle Wallet</span> for phone-free payments
+                  ))}
+                </div>
+
+                {/* Hand Selection */}
+                <div className="mb-6">
+                  <Label className="text-sm font-medium text-gray-700 mb-2 block">Select Hand to Register</Label>
+                  <div className="grid grid-cols-2 gap-3">
+                    <button
+                      onClick={() => setSelectedHand('left')}
+                      className={`p-4 rounded-xl border-2 transition-all ${
+                        selectedHand === 'left' 
+                          ? 'border-pink-500 bg-pink-50' 
+                          : 'border-gray-200 hover:border-pink-300'
+                      }`}
+                    >
+                      <span className="text-3xl mb-2 block">🤚</span>
+                      <span className="text-sm font-semibold text-gray-700">Left Palm</span>
+                    </button>
+                    <button
+                      onClick={() => setSelectedHand('right')}
+                      className={`p-4 rounded-xl border-2 transition-all ${
+                        selectedHand === 'right' 
+                          ? 'border-pink-500 bg-pink-50' 
+                          : 'border-gray-200 hover:border-pink-300'
+                      }`}
+                    >
+                      <span className="text-3xl mb-2 block">🤚</span>
+                      <span className="text-sm font-semibold text-gray-700">Right Palm</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Info about redirection */}
+                <Card className="p-3 bg-blue-50 border-blue-200 mb-6">
+                  <div className="flex items-start gap-2">
+                    <Info className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <p className="text-xs text-blue-700">
+                      You'll be redirected to find nearby PalmPe registration kiosks where {showPalmRegisterModal.name} can complete palm registration.
                     </p>
                   </div>
+                </Card>
 
-                  {/* How it works */}
-                  <div className="space-y-3 mb-6">
-                    {[
-                      { icon: Fingerprint, text: "Scan palm at any PalmPe registration kiosk" },
-                      { icon: Link2, text: "Palm gets linked to Circle Wallet automatically" },
-                      { icon: Wallet, text: "Payments deducted from Circle balance" }
-                    ].map((item, idx) => (
-                      <div key={idx} className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
-                        <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center flex-shrink-0">
-                          <item.icon className="w-5 h-5 text-pink-600" />
-                        </div>
-                        <p className="text-sm text-gray-700">{item.text}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Hand Selection */}
-                  <div className="mb-6">
-                    <Label className="text-sm font-medium text-gray-700 mb-2 block">Select Hand to Register</Label>
-                    <div className="grid grid-cols-2 gap-3">
-                      <button
-                        onClick={() => setSelectedHand('left')}
-                        className={`p-4 rounded-xl border-2 transition-all ${
-                          selectedHand === 'left' 
-                            ? 'border-pink-500 bg-pink-50' 
-                            : 'border-gray-200 hover:border-pink-300'
-                        }`}
-                      >
-                        <span className="text-3xl mb-2 block">🤚</span>
-                        <span className="text-sm font-semibold text-gray-700">Left Palm</span>
-                      </button>
-                      <button
-                        onClick={() => setSelectedHand('right')}
-                        className={`p-4 rounded-xl border-2 transition-all ${
-                          selectedHand === 'right' 
-                            ? 'border-pink-500 bg-pink-50' 
-                            : 'border-gray-200 hover:border-pink-300'
-                        }`}
-                      >
-                        <span className="text-3xl mb-2 block">🤚</span>
-                        <span className="text-sm font-semibold text-gray-700">Right Palm</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-3">
-                    <Button 
-                      variant="outline" 
-                      className="flex-1"
-                      onClick={() => { setShowPalmRegisterModal(null); setPalmRegistrationStep('intro'); }}
-                    >
-                      Cancel
-                    </Button>
-                    <Button 
-                      className="flex-1 bg-pink-600 hover:bg-pink-700"
-                      onClick={startPalmScan}
-                    >
-                      Start Registration
-                    </Button>
-                  </div>
-                </div>
-              )}
-
-              {/* Scanning Step */}
-              {palmRegistrationStep === 'scanning' && (
-                <div className="p-6 text-center">
-                  <motion.div
-                    className="w-32 h-32 rounded-full bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center mx-auto mb-6"
-                    animate={{ 
-                      scale: [1, 1.1, 1],
-                      boxShadow: [
-                        '0 0 0 0 rgba(236, 72, 153, 0.4)',
-                        '0 0 0 20px rgba(236, 72, 153, 0)',
-                        '0 0 0 0 rgba(236, 72, 153, 0)'
-                      ]
-                    }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
-                    <PalmNFCIcon className="w-16 h-16" style={{ filter: 'brightness(0) invert(1)' }} />
-                  </motion.div>
-                  
-                  <h2 className="text-xl font-bold text-gray-800 mb-2">Scanning Palm...</h2>
-                  <p className="text-sm text-gray-600 mb-4">
-                    Ask {showPalmRegisterModal.name} to place their {selectedHand} palm on the scanner
-                  </p>
-                  
-                  <div className="flex items-center justify-center gap-2">
-                    <motion.div
-                      className="w-2 h-2 rounded-full bg-pink-500"
-                      animate={{ scale: [1, 1.5, 1] }}
-                      transition={{ duration: 0.5, repeat: Infinity, delay: 0 }}
-                    />
-                    <motion.div
-                      className="w-2 h-2 rounded-full bg-pink-500"
-                      animate={{ scale: [1, 1.5, 1] }}
-                      transition={{ duration: 0.5, repeat: Infinity, delay: 0.2 }}
-                    />
-                    <motion.div
-                      className="w-2 h-2 rounded-full bg-pink-500"
-                      animate={{ scale: [1, 1.5, 1] }}
-                      transition={{ duration: 0.5, repeat: Infinity, delay: 0.4 }}
-                    />
-                  </div>
-                </div>
-              )}
-
-              {/* Success Step */}
-              {palmRegistrationStep === 'success' && (
-                <div className="p-6 text-center">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", stiffness: 200 }}
-                    className="w-24 h-24 rounded-full bg-green-500 flex items-center justify-center mx-auto mb-6"
-                  >
-                    <CheckCircle className="w-12 h-12 text-white" />
-                  </motion.div>
-                  
-                  <h2 className="text-xl font-bold text-gray-800 mb-2">Palm Registered!</h2>
-                  <p className="text-sm text-gray-600 mb-6">
-                    {showPalmRegisterModal.name}'s {selectedHand} palm is now linked to the Circle Wallet
-                  </p>
-                  
-                  <Card className="p-4 bg-green-50 border-green-200 mb-6 text-left">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center">
-                        <Link2 className="w-5 h-5 text-white" />
-                      </div>
-                      <div>
-                        <p className="text-xs text-gray-500">Palm ID</p>
-                        <p className="font-mono font-bold text-green-700">
-                          PLM-{showPalmRegisterModal.name.toUpperCase().replace(' ', '-').slice(0, 6)}-2024-{selectedHand === 'left' ? 'L' : 'R'}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="text-xs text-gray-600 space-y-1">
-                      <p>✓ Linked to: <span className="font-semibold">{circleWallet.name}</span></p>
-                      <p>✓ Daily Limit: <span className="font-semibold">₹{showPalmRegisterModal.dailyLimit}</span></p>
-                      <p>✓ Hand: <span className="font-semibold">{selectedHand === 'left' ? 'Left' : 'Right'} Palm</span></p>
-                    </div>
-                  </Card>
-                  
+                <div className="flex gap-3">
                   <Button 
-                    className="w-full bg-pink-600 hover:bg-pink-700"
+                    variant="outline" 
+                    className="flex-1"
                     onClick={() => { setShowPalmRegisterModal(null); setPalmRegistrationStep('intro'); }}
                   >
-                    Done
+                    Cancel
+                  </Button>
+                  <Button 
+                    className="flex-1 bg-pink-600 hover:bg-pink-700"
+                    onClick={startPalmScan}
+                  >
+                    Find Registration Kiosk
                   </Button>
                 </div>
-              )}
+              </div>
             </motion.div>
           </motion.div>
         )}
