@@ -744,7 +744,7 @@ test_plan:
 
   - task: "Wallet Dropdown Functionality Testing"
     implemented: true
-    working: false
+    working: true
     file: "/app/frontend/src/pages/AnimatedHome.jsx"
     stuck_count: 1
     priority: "high"
@@ -753,6 +753,9 @@ test_plan:
       - working: false
         agent: "testing"
         comment: "❌ WALLET DROPDOWN TESTING BLOCKED - Unable to test wallet dropdown functionality due to authentication flow issues. The application consistently redirects to onboarding/auth pages even after attempting multiple authentication methods (email/password, mobile OTP, manual localStorage setup). The home page (/home) is not accessible, preventing testing of the wallet selector button. The authentication system appears to have integration issues that prevent reaching the actual home page where the wallet dropdown should be located. This is a critical blocker for testing the wallet functionality as described in the review request."
+      - working: true
+        agent: "testing"
+        comment: "✅ UPI WALLET DROPDOWN FIX FULLY FUNCTIONAL - Comprehensive testing completed successfully. MODAL FUNCTIONALITY: ✅ UPI Wallet button found at top of balance card, ✅ Modal opens with dark backdrop overlay (bg-black/50), ✅ 'Select Wallet' title with close button (X) properly displayed, ✅ All 3 wallets visible: UPI Wallet, e-Money Wallet, CBDC Wallet with balances displayed, ✅ Selected wallet shows checkmark (green dot), ✅ Wallet switching works correctly - successfully clicked e-Money Wallet and balance card updated, ✅ Modal closes properly on backdrop click. All requirements from review request P2 fix verified and working perfectly. The wallet dropdown functionality is fully operational with proper modal behavior, wallet selection, and balance updates."
 
   - task: "Mutual Funds & Digital Gold Functionality"
     implemented: true
