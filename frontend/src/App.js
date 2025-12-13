@@ -82,6 +82,9 @@ import MetroTransit from "./pages/use-cases/MetroTransit";
 import Schools from "./pages/use-cases/Schools";
 import Offices from "./pages/use-cases/Offices";
 import PalmCircle from "./pages/use-cases/PalmCircle";
+import Hospitals from "./pages/use-cases/Hospitals";
+import Retail from "./pages/use-cases/Retail";
+import SmartCity from "./pages/use-cases/SmartCity";
 
 const BottomNavigation = () => {
   const navigate = useNavigate();
