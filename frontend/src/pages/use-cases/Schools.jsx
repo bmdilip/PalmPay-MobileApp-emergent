@@ -452,7 +452,7 @@ const Schools = () => {
 
             {/* Menu */}
             <Card className="p-5 shadow-lg">
-              <h3 className="font-semibold text-gray-800 mb-4">Today's Menu</h3>
+              <h3 className="font-semibold text-gray-800 mb-4">Today&apos;s Menu</h3>
               <div className="space-y-3">
                 {['Meals', 'Snacks', 'Beverages'].map(category => (
                   <div key={category}>
