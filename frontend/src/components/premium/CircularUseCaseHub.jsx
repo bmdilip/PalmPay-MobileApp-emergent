@@ -91,68 +91,66 @@ const CircularUseCaseHub = () => {
 
       {/* Static 3D Circular Hub */}
       <div className="relative w-full h-[380px] flex items-center justify-center mb-6">
-        {/* Center Palm Device */}
+        {/* Center - PalmPay Logo with Frosted Glass Effect */}
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
-          animate={{ 
-            scale: 1, 
-            opacity: 1,
-            boxShadow: selectedCase ? '0 0 60px rgba(88, 107, 255, 0.6)' : '0 0 40px rgba(88, 107, 255, 0.4)'
-          }}
-          transition={{ duration: 0.8, type: 'spring' }}
-          className="absolute z-10"
-          style={{
-            width: centerSize,
-            height: centerSize,
-          }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.6, type: 'spring' }}
+          className="absolute z-20"
+          style={{ width: centerSize, height: centerSize }}
         >
-          <div className="relative w-full h-full rounded-full bg-gradient-to-br from-[#586BFF] via-[#7B8EFF] to-[#9B62FF] flex items-center justify-center shadow-2xl">
-            {/* Animated Glow Ring */}
+          {/* Frosted Glass Container */}
+          <div className="relative w-full h-full rounded-full bg-white/90 backdrop-blur-xl border border-white/40 flex items-center justify-center shadow-[0_8px_32px_rgba(88,107,255,0.3)]"
+            style={{
+              boxShadow: '0 8px 32px rgba(88, 107, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5)'
+            }}
+          >
+            {/* Subtle Breathing Glow */}
             <motion.div
               animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.5, 0.8, 0.5],
+                opacity: [0.3, 0.5, 0.3],
+                scale: [1, 1.05, 1]
               }}
               transition={{
-                duration: 2,
+                duration: 5,
                 repeat: Infinity,
                 ease: 'easeInOut'
               }}
-              className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 opacity-40 blur-xl"
+              className="absolute inset-0 rounded-full bg-gradient-to-br from-[#586BFF]/20 to-[#9B62FF]/20 blur-2xl"
             />
 
-            {/* Palm Hand Icon */}
-            <motion.div
-              animate={{
-                scale: isRotating ? [1, 1.05, 1] : 1,
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: 'easeInOut'
-              }}
-              className="relative z-10"
-            >
+            {/* PalmPay Logo */}
+            <div className="relative z-10 flex flex-col items-center">
               <svg
-                width="60"
-                height="60"
-                viewBox="0 0 24 24"
+                width="50"
+                height="50"
+                viewBox="0 0 100 100"
                 fill="none"
-                stroke="white"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
-                <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2" />
-                <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" />
-                <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
+                <defs>
+                  <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#586BFF" />
+                    <stop offset="100%" stopColor="#9B62FF" />
+                  </linearGradient>
+                </defs>
+                {/* Stylized P letter with palm concept */}
+                <path
+                  d="M30 20 L30 80 M30 20 C45 20, 55 30, 55 45 C55 60, 45 70, 30 70"
+                  stroke="url(#logoGradient)"
+                  strokeWidth="8"
+                  strokeLinecap="round"
+                  fill="none"
+                />
+                {/* Palm lines */}
+                <path
+                  d="M65 35 L75 25 M68 45 L80 45 M65 55 L75 65"
+                  stroke="url(#logoGradient)"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                />
               </svg>
-            </motion.div>
-
-            {/* Center Text */}
-            <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
-              <p className="text-xs font-bold text-gray-700">PalmPay Device</p>
+              <p className="text-[10px] font-bold text-gray-700 mt-1 tracking-wide">PALMPAY</p>
             </div>
           </div>
         </motion.div>
