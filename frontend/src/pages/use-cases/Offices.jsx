@@ -413,7 +413,7 @@ const Offices = () => {
                   {Array.from({ length: 24 }, (_, i) => {
                     const slotNum = `B2-${140 + i}`;
                     const isYours = slotNum === parkingInfo.allocated;
-                    const isOccupied = Math.random() > 0.4 && !isYours;
+                    const isOccupied = i % 3 === 0 || i % 5 === 0 ? !isYours : false;
                     return (
                       <div
                         key={i}
