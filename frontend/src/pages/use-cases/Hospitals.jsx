@@ -214,6 +214,123 @@ const Hospitals = () => {
     }, 2000);
   };
 
+  // CITY SELECTION SCREEN
+  if (!selectedCity) {
+    return (
+      <div className="min-h-screen bg-gray-50 pb-20">
+        <div className="bg-gradient-to-r from-red-600 to-rose-600 text-white p-5 pb-8">
+          <div className="flex items-center gap-3 mb-4">
+            <button onClick={() => navigate(-1)} className="p-2 hover:bg-white/20 rounded-full">
+              <ArrowLeft className="w-6 h-6" />
+            </button>
+            <div>
+              <h1 className="text-2xl font-bold">Healthcare</h1>
+              <p className="text-sm text-red-100">Hospitals • Doctors • Pharmacy</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="px-5 -mt-4">
+          {/* PalmPe Benefits */}
+          <Card className="p-4 mb-6 bg-gradient-to-r from-red-500 to-rose-600 text-white shadow-lg">
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center">
+                <PalmNFCIcon className="w-8 h-8" style={{ filter: 'brightness(0) invert(1)' }} />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-bold text-lg">Healthcare Without Queues</h3>
+                <p className="text-sm text-red-100">OPD Check-in • Pharmacy • Bill Pay - All with Palm</p>
+              </div>
+            </div>
+          </Card>
+
+          <h2 className="text-lg font-bold text-gray-800 mb-3">Select Your City</h2>
+          <div className="grid grid-cols-2 gap-3 mb-6">
+            {cities.active.map((city, idx) => (
+              <motion.div
+                key={city.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.1 }}
+              >
+                <Card 
+                  className="p-4 cursor-pointer hover:shadow-lg hover:border-red-400 transition-all"
+                  onClick={() => setSelectedCity(city)}
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-2xl">🏥</span>
+                    <div>
+                      <h3 className="font-bold text-gray-800">{city.name}</h3>
+                      <p className="text-xs text-gray-500">{city.state}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-gray-600">{city.hospitals} hospitals</span>
+                    <span className="flex items-center gap-1 text-red-600 font-semibold">
+                      <PalmNFCIcon className="w-3 h-3" style={{ filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg)' }} />
+                      {city.palmPeHospitals}
+                    </span>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          <h2 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
+            Coming Soon <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full">Upcoming</span>
+          </h2>
+          <div className="space-y-2">
+            {cities.upcoming.map((city) => (
+              <Card key={city.id} className="p-3 bg-gray-50 border-dashed opacity-75">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <Lock className="w-5 h-5 text-gray-400" />
+                    <div>
+                      <h3 className="font-semibold text-gray-600">{city.name}</h3>
+                      <p className="text-xs text-gray-400">{city.state}</p>
+                    </div>
+                  </div>
+                  <span className="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full">{city.expected}</span>
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          <Card className="p-5 mt-6 bg-gradient-to-br from-red-50 to-rose-50">
+            <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <PalmNFCIcon className="w-5 h-5" style={{ filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg)' }} />
+              PalmPe in Healthcare
+            </h3>
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { icon: '✓', title: 'OPD Check-in', desc: 'Skip registration queue' },
+                { icon: '💊', title: 'Pharmacy', desc: 'Collect meds with palm' },
+                { icon: '🧪', title: 'Lab Reports', desc: 'Instant access' },
+                { icon: '💳', title: 'Bill Payment', desc: 'Touch-free payments' }
+              ].map((item, idx) => (
+                <div key={idx} className="flex items-center gap-2 p-2 bg-white rounded-lg">
+                  <span className="text-lg">{item.icon}</span>
+                  <div>
+                    <p className="font-semibold text-gray-800 text-sm">{item.title}</p>
+                    <p className="text-xs text-gray-500">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Card>
+
+          <Button
+            onClick={() => navigate('/device-locator', { state: { returnTo: '/use-cases/hospitals' } })}
+            className="w-full mt-4 h-12 bg-gradient-to-r from-red-500 to-rose-600"
+          >
+            <PalmNFCIcon className="w-5 h-5 mr-2" style={{ filter: 'brightness(0) invert(1)' }} />
+            Register Palm for Healthcare
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
       {/* Header */}
