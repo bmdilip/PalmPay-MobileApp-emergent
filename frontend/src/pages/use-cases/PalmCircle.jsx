@@ -204,23 +204,22 @@ const PalmCircle = () => {
   };
 
   const startPalmScan = () => {
-    setPalmRegistrationStep('scanning');
-    // Simulate palm scanning process
-    setTimeout(() => {
-      setPalmRegistrationStep('success');
-      // Update member palm status
-      setMembers(prev => prev.map(m => 
-        m.id === showPalmRegisterModal.id 
-          ? { 
-              ...m, 
-              palmRegistered: true, 
-              palmId: `PLM-${m.name.toUpperCase().replace(' ', '-').slice(0, 6)}-2024-${selectedHand === 'left' ? 'L' : 'R'}`,
-              palmHand: selectedHand,
-              palmLinkedDate: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-            }
-          : m
-      ));
-    }, 3000);
+    // Close modal and navigate to Device Locator (master registration page)
+    // Pass context about who we're registering for
+    setShowPalmRegisterModal(null);
+    setPalmRegistrationStep('intro');
+    navigate('/device-locator', { 
+      state: { 
+        returnTo: '/use-cases/palm-circle',
+        registrationContext: {
+          type: 'palm-circle-member',
+          memberName: showPalmRegisterModal?.name,
+          memberId: showPalmRegisterModal?.id,
+          selectedHand: selectedHand,
+          circleWalletId: circleWallet.id
+        }
+      } 
+    });
   };
 
   const unlinkPalm = (memberId) => {
