@@ -4,19 +4,36 @@ import { useNavigate } from 'react-router-dom';
 import { 
   ShoppingBag, MapPin, Check, ChevronRight, ArrowLeft, Store, Percent,
   Search, QrCode, CreditCard, Gift, Tag, Star, Clock, Car, Navigation,
-  Coffee, Ticket, Heart, Bell
+  Coffee, Ticket, Heart, Bell, Lock
 } from 'lucide-react';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import HoverCard3D from '../../components/premium/HoverCard3D';
+import PalmNFCIcon from '../../components/icons/PalmNFCIcon';
 
 const Retail = () => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState('stores'); // stores, offers, loyalty, parking
+  const [selectedCity, setSelectedCity] = useState(null);
+  const [activeTab, setActiveTab] = useState('stores');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedStore, setSelectedStore] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
+
+  // Cities with PalmPe retail integration
+  const cities = {
+    active: [
+      { id: 'bangalore', name: 'Bangalore', state: 'Karnataka', malls: 8, palmPeStores: 320 },
+      { id: 'mumbai', name: 'Mumbai', state: 'Maharashtra', malls: 12, palmPeStores: 450 },
+      { id: 'delhi', name: 'Delhi NCR', state: 'Delhi', malls: 15, palmPeStores: 520 },
+      { id: 'hyderabad', name: 'Hyderabad', state: 'Telangana', malls: 6, palmPeStores: 180 }
+    ],
+    upcoming: [
+      { id: 'chennai', name: 'Chennai', state: 'Tamil Nadu', expected: 'Q1 2025' },
+      { id: 'pune', name: 'Pune', state: 'Maharashtra', expected: 'Q2 2025' },
+      { id: 'kolkata', name: 'Kolkata', state: 'West Bengal', expected: 'Q3 2025' }
+    ]
+  };
 
   // User loyalty data
   const loyaltyData = {
@@ -27,53 +44,94 @@ const Retail = () => {
     totalSaved: 12500
   };
 
-  // Malls data
-  const malls = [
-    {
-      id: 'phoenix',
-      name: 'Phoenix Marketcity',
-      address: 'Whitefield, Bangalore',
-      stores: 280,
-      rating: 4.6,
-      palmPe: true,
-      parking: { available: 450, total: 800 },
-      hours: '10 AM - 10 PM',
-      features: ['Multiplex', 'Food Court', 'Gaming Zone', 'Kids Play Area']
-    },
-    {
-      id: 'orion',
-      name: 'Orion Mall',
-      address: 'Rajajinagar, Bangalore',
-      stores: 150,
-      rating: 4.5,
-      palmPe: true,
-      parking: { available: 280, total: 500 },
-      hours: '10 AM - 10 PM',
-      features: ['Bowling Alley', 'Food Court', 'Supermarket']
-    },
-    {
-      id: 'forum',
-      name: 'Forum Mall',
-      address: 'Koramangala, Bangalore',
-      stores: 120,
-      rating: 4.4,
-      palmPe: true,
-      parking: { available: 150, total: 350 },
-      hours: '10 AM - 10 PM',
-      features: ['PVR Cinemas', 'Food Court', 'Premium Brands']
-    },
-    {
-      id: 'ub',
-      name: 'UB City',
-      address: 'Vittal Mallya Road, Bangalore',
-      stores: 80,
-      rating: 4.8,
-      palmPe: true,
-      parking: { available: 100, total: 200 },
-      hours: '11 AM - 9 PM',
-      features: ['Luxury Brands', 'Fine Dining', 'Art Gallery']
-    }
-  ];
+  // Malls data per city
+  const mallData = {
+    bangalore: [
+      {
+        id: 'phoenix',
+        name: 'Phoenix Marketcity',
+        address: 'Whitefield, Bangalore',
+        stores: 280,
+        rating: 4.6,
+        palmPe: true,
+        parking: { available: 450, total: 800 },
+        hours: '10 AM - 10 PM',
+        features: ['Multiplex', 'Food Court', 'Gaming Zone', 'Kids Play Area']
+      },
+      {
+        id: 'orion',
+        name: 'Orion Mall',
+        address: 'Rajajinagar, Bangalore',
+        stores: 150,
+        rating: 4.5,
+        palmPe: true,
+        parking: { available: 280, total: 500 },
+        hours: '10 AM - 10 PM',
+        features: ['Bowling Alley', 'Food Court', 'Supermarket']
+      },
+      {
+        id: 'forum',
+        name: 'Forum Mall',
+        address: 'Koramangala, Bangalore',
+        stores: 120,
+        rating: 4.4,
+        palmPe: true,
+        parking: { available: 150, total: 350 },
+        hours: '10 AM - 10 PM',
+        features: ['PVR Cinemas', 'Food Court', 'Premium Brands']
+      },
+      {
+        id: 'ub',
+        name: 'UB City',
+        address: 'Vittal Mallya Road, Bangalore',
+        stores: 80,
+        rating: 4.8,
+        palmPe: true,
+        parking: { available: 100, total: 200 },
+        hours: '11 AM - 9 PM',
+        features: ['Luxury Brands', 'Fine Dining', 'Art Gallery']
+      }
+    ],
+    mumbai: [
+      {
+        id: 'phoenix-mumbai',
+        name: 'Phoenix Palladium',
+        address: 'Lower Parel, Mumbai',
+        stores: 300,
+        rating: 4.7,
+        palmPe: true,
+        parking: { available: 500, total: 1000 },
+        hours: '11 AM - 10 PM',
+        features: ['Luxury Brands', 'IMAX', 'Fine Dining']
+      }
+    ],
+    delhi: [
+      {
+        id: 'dlf',
+        name: 'DLF Mall of India',
+        address: 'Noida, Delhi NCR',
+        stores: 350,
+        rating: 4.6,
+        palmPe: true,
+        parking: { available: 800, total: 1500 },
+        hours: '10 AM - 10 PM',
+        features: ['Snow World', 'IMAX', 'Food Court']
+      }
+    ],
+    hyderabad: [
+      {
+        id: 'inorbit',
+        name: 'Inorbit Mall',
+        address: 'Madhapur, Hyderabad',
+        stores: 200,
+        rating: 4.5,
+        palmPe: true,
+        parking: { available: 400, total: 700 },
+        hours: '10 AM - 10 PM',
+        features: ['Multiplex', 'Food Court', 'Hypermarket']
+      }
+    ]
+  };
 
   // Stores categories
   const categories = [
@@ -113,23 +171,155 @@ const Retail = () => {
     { store: 'Nike', amount: 8900, points: 89, date: 'Yesterday' }
   ];
 
+  const currentMalls = selectedCity ? mallData[selectedCity.id] || [] : [];
+
   const filteredStores = stores.filter(store => {
     const matchesSearch = store.name.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || store.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
+  // CITY SELECTION SCREEN
+  if (!selectedCity) {
+    return (
+      <div className="min-h-screen bg-gray-50 pb-20">
+        <div className="bg-gradient-to-r from-orange-500 to-amber-500 text-white p-5 pb-8">
+          <div className="flex items-center gap-3 mb-4">
+            <button onClick={() => navigate(-1)} className="p-2 hover:bg-white/20 rounded-full">
+              <ArrowLeft className="w-6 h-6" />
+            </button>
+            <div>
+              <h1 className="text-2xl font-bold">Retail & Shopping</h1>
+              <p className="text-sm text-orange-100">Phone-free payments at stores</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="px-5 -mt-4">
+          {/* PalmPe Benefits Banner */}
+          <Card className="p-4 mb-6 bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-lg">
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center">
+                <PalmNFCIcon className="w-8 h-8" style={{ filter: 'brightness(0) invert(1)' }} />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-bold text-lg">Shop Without Phone</h3>
+                <p className="text-sm text-orange-100">Wave palm at checkout • Instant rewards • 5% cashback</p>
+              </div>
+            </div>
+          </Card>
+
+          {/* Active Cities */}
+          <h2 className="text-lg font-bold text-gray-800 mb-3">Select Your City</h2>
+          <div className="grid grid-cols-2 gap-3 mb-6">
+            {cities.active.map((city, idx) => (
+              <motion.div
+                key={city.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.1 }}
+              >
+                <Card 
+                  className="p-4 cursor-pointer hover:shadow-lg hover:border-orange-400 transition-all"
+                  onClick={() => setSelectedCity(city)}
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-2xl">🛍️</span>
+                    <div>
+                      <h3 className="font-bold text-gray-800">{city.name}</h3>
+                      <p className="text-xs text-gray-500">{city.state}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-gray-600">{city.malls} malls</span>
+                    <span className="flex items-center gap-1 text-orange-600 font-semibold">
+                      <PalmNFCIcon className="w-3 h-3" style={{ filter: 'brightness(0) saturate(100%) invert(52%) sepia(89%) saturate(1095%) hue-rotate(360deg)' }} />
+                      {city.palmPeStores}+
+                    </span>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Upcoming Cities */}
+          <h2 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
+            Coming Soon
+            <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full">Upcoming</span>
+          </h2>
+          <div className="space-y-2">
+            {cities.upcoming.map((city) => (
+              <Card key={city.id} className="p-3 bg-gray-50 border-dashed opacity-75">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <Lock className="w-5 h-5 text-gray-400" />
+                    <div>
+                      <h3 className="font-semibold text-gray-600">{city.name}</h3>
+                      <p className="text-xs text-gray-400">{city.state}</p>
+                    </div>
+                  </div>
+                  <span className="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full">
+                    {city.expected}
+                  </span>
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          {/* How PalmPe Works */}
+          <Card className="p-5 mt-6 bg-gradient-to-br from-gray-50 to-white">
+            <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <PalmNFCIcon className="w-5 h-5" style={{ filter: 'brightness(0) saturate(100%) invert(52%) sepia(89%) saturate(1095%) hue-rotate(360deg)' }} />
+              How PalmPe Works at Stores
+            </h3>
+            <div className="space-y-3">
+              {[
+                { step: '1', title: 'Register Once', desc: 'Enroll palm at any PalmPe counter' },
+                { step: '2', title: 'Wave & Pay', desc: 'No wallet, cards, or phone needed' },
+                { step: '3', title: 'Instant Rewards', desc: 'Points credited automatically' }
+              ].map((item) => (
+                <div key={item.step} className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center font-bold text-sm">
+                    {item.step}
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-800 text-sm">{item.title}</p>
+                    <p className="text-xs text-gray-500">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Card>
+
+          {/* Register CTA */}
+          <Button
+            onClick={() => navigate('/device-locator', { state: { returnTo: '/use-cases/retail' } })}
+            className="w-full mt-4 h-12 bg-gradient-to-r from-orange-500 to-amber-500"
+          >
+            <PalmNFCIcon className="w-5 h-5 mr-2" style={{ filter: 'brightness(0) invert(1)' }} />
+            Register Palm for Shopping
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  // MAIN RETAIL INTERFACE (after city selection)
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
       {/* Header */}
       <div className="bg-gradient-to-r from-orange-500 to-amber-500 text-white p-5 pb-20">
         <div className="flex items-center gap-3 mb-4">
-          <button onClick={() => navigate(-1)} className="p-2 hover:bg-white/20 rounded-full transition-colors">
+          <button onClick={() => setSelectedCity(null)} className="p-2 hover:bg-white/20 rounded-full transition-colors">
             <ArrowLeft className="w-6 h-6" />
           </button>
-          <div>
+          <div className="flex-1">
             <h1 className="text-2xl font-bold">Retail & Shopping</h1>
-            <p className="text-sm text-orange-100">Malls • Stores • Offers</p>
+            <p className="text-sm text-orange-100">{selectedCity.name} • {selectedCity.malls} Malls</p>
+          </div>
+          <div className="flex items-center gap-1 bg-white/20 px-2 py-1 rounded-full text-xs">
+            <PalmNFCIcon className="w-3 h-3" style={{ filter: 'brightness(0) invert(1)' }} />
+            {selectedCity.palmPeStores}+ stores
           </div>
         </div>
 
@@ -195,7 +385,7 @@ const Retail = () => {
             <div className="mb-4">
               <h3 className="font-semibold text-gray-800 mb-3">Popular Malls</h3>
               <div className="flex gap-3 overflow-x-auto pb-2">
-                {malls.map(mall => (
+                {currentMalls.map(mall => (
                   <Card key={mall.id} className="flex-shrink-0 w-48 p-3 cursor-pointer hover:shadow-lg">
                     <div className="w-full h-20 bg-gradient-to-br from-orange-100 to-amber-100 rounded-xl mb-2 flex items-center justify-center text-3xl">
                       🏬
@@ -208,7 +398,8 @@ const Retail = () => {
                         {mall.rating}
                       </span>
                       {mall.palmPe && (
-                        <span className="px-1.5 py-0.5 bg-green-100 text-green-600 rounded-full text-[10px]">
+                        <span className="px-1.5 py-0.5 bg-green-100 text-green-600 rounded-full text-[10px] flex items-center gap-0.5">
+                          <PalmNFCIcon className="w-2.5 h-2.5" style={{ filter: 'brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg)' }} />
                           PalmPe
                         </span>
                       )}
@@ -238,7 +429,8 @@ const Retail = () => {
                           <div className="flex items-center justify-between">
                             <h4 className="font-semibold text-gray-800">{store.name}</h4>
                             {store.palmPe && (
-                              <span className="text-xs bg-green-100 text-green-600 px-2 py-0.5 rounded-full">
+                              <span className="text-xs bg-green-100 text-green-600 px-2 py-0.5 rounded-full flex items-center gap-1">
+                                <PalmNFCIcon className="w-3 h-3" style={{ filter: 'brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg)' }} />
                                 PalmPe
                               </span>
                             )}
@@ -261,8 +453,8 @@ const Retail = () => {
             {/* PalmPe CTA */}
             <Card className="p-4 mt-4 bg-gradient-to-r from-orange-50 to-amber-50 border-orange-200">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-2xl">
-                  👋
+                <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
+                  <PalmNFCIcon className="w-6 h-6" style={{ filter: 'brightness(0) saturate(100%) invert(52%) sepia(89%) saturate(1095%) hue-rotate(360deg)' }} />
                 </div>
                 <div className="flex-1">
                   <p className="font-semibold text-gray-800">Shop with PalmPe</p>
@@ -426,7 +618,7 @@ const Retail = () => {
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <p className="text-sm text-blue-100">Currently Parked</p>
-                  <p className="text-3xl font-bold">Phoenix Marketcity</p>
+                  <p className="text-3xl font-bold">{currentMalls[0]?.name || 'No Active'}</p>
                   <p className="text-sm text-blue-100">Level B1 • Slot 142</p>
                 </div>
                 <div className="text-right">
@@ -468,7 +660,7 @@ const Retail = () => {
             <Card className="p-5 shadow-lg">
               <h3 className="font-semibold text-gray-800 mb-4">Parking Availability</h3>
               <div className="space-y-3">
-                {malls.slice(0, 3).map(mall => (
+                {currentMalls.slice(0, 3).map(mall => (
                   <div key={mall.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
                     <div>
                       <p className="font-medium text-gray-800">{mall.name}</p>
