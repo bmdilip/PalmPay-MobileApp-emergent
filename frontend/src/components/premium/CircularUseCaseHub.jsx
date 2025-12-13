@@ -1,111 +1,77 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { 
   Train, 
   GraduationCap, 
   Briefcase, 
-  Hospital, 
-  ShoppingBag, 
   Users, 
-  Globe,
-  Sparkles
+  MoreHorizontal,
+  ArrowRight,
+  X
 } from 'lucide-react';
 
 const CircularUseCaseHub = () => {
   const navigate = useNavigate();
-  const [isRotating, setIsRotating] = useState(true);
   const [selectedCase, setSelectedCase] = useState(null);
-  const [hoveredCase, setHoveredCase] = useState(null);
 
-  const useCases = [
+  // Primary use-cases (always visible)
+  const primaryUseCases = [
     {
       id: 'metro',
       title: 'Metro & Transit',
+      shortTitle: 'Metro',
       icon: Train,
       color: '#0EA5E9',
       gradient: 'from-blue-500 to-cyan-500',
-      status: 'live',
       path: '/use-cases/metro',
-      description: 'Seamless commute payments'
+      description: 'Use PalmPay for metro entry and exit'
     },
     {
       id: 'schools',
-      title: 'Schools & Colleges',
+      title: 'Schools',
+      shortTitle: 'Schools',
       icon: GraduationCap,
       color: '#8B5CF6',
       gradient: 'from-purple-500 to-violet-500',
-      status: 'live',
       path: '/use-cases/schools',
-      description: 'Smart campus payments'
+      description: 'Smart campus payments & attendance'
     },
     {
       id: 'offices',
-      title: 'Offices & Workplaces',
+      title: 'Offices',
+      shortTitle: 'Offices',
       icon: Briefcase,
       color: '#10B981',
       gradient: 'from-green-500 to-emerald-500',
-      status: 'live',
       path: '/use-cases/offices',
-      description: 'Workplace authentication'
-    },
-    {
-      id: 'hospitals',
-      title: 'Hospitals',
-      icon: Hospital,
-      color: '#EF4444',
-      gradient: 'from-red-500 to-rose-500',
-      status: 'coming-soon',
-      path: '/use-cases/hospitals',
-      description: 'Healthcare payments'
-    },
-    {
-      id: 'retail',
-      title: 'Retail & Campuses',
-      icon: ShoppingBag,
-      color: '#F59E0B',
-      gradient: 'from-orange-500 to-amber-500',
-      status: 'coming-soon',
-      path: '/use-cases/retail',
-      description: 'Shop with your palm'
+      description: 'Secure workplace authentication'
     },
     {
       id: 'palm-circle',
       title: 'Palm Circle',
+      shortTitle: 'Family',
       icon: Users,
       color: '#EC4899',
       gradient: 'from-pink-500 to-rose-500',
-      status: 'live',
       path: '/use-cases/palm-circle',
-      description: 'Family wallet & limits'
-    },
-    {
-      id: 'smart-city',
-      title: 'Events & Smart City',
-      icon: Globe,
-      color: '#6366F1',
-      gradient: 'from-indigo-500 to-blue-500',
-      status: 'coming-soon',
-      path: '/use-cases/smart-city',
-      description: 'Future-ready solutions'
+      description: 'Family wallet with spending limits'
     }
   ];
 
-  const handleUseCaseClick = (useCase) => {
-    if (useCase.status === 'coming-soon') {
-      setSelectedCase(useCase.id);
-      setTimeout(() => setSelectedCase(null), 2000);
-      return;
-    }
-    setIsRotating(false);
-    setSelectedCase(useCase.id);
-    setTimeout(() => {
-      navigate(useCase.path);
-    }, 800);
+  const handleCardClick = (useCase) => {
+    setSelectedCase(useCase);
   };
 
-  const radius = 140; // Distance from center
-  const centerSize = 120; // Center circle size
+  const handleNavigate = () => {
+    if (selectedCase) {
+      navigate(selectedCase.path);
+    }
+  };
+
+  const radius = 130; // Distance from center
+  const centerSize = 100; // Center logo size
+  const cardSize = 80; // Use-case card size
 
   return (
     <div className="relative w-full py-8">
