@@ -6,17 +6,21 @@ import {
   GraduationCap, 
   Briefcase, 
   Users, 
-  MoreHorizontal,
+  Hospital,
+  ShoppingBag,
+  Building2,
   ArrowRight,
-  X
+  X,
+  MapPin
 } from 'lucide-react';
+import PalmNFCIcon from '../icons/PalmNFCIcon';
 
 const CircularUseCaseHub = () => {
   const navigate = useNavigate();
   const [selectedCase, setSelectedCase] = useState(null);
 
-  // Primary use-cases (always visible)
-  const primaryUseCases = [
+  // All use-cases - Enterprise-grade categorization
+  const useCases = [
     {
       id: 'metro',
       title: 'Metro & Transit',
@@ -25,37 +29,74 @@ const CircularUseCaseHub = () => {
       color: '#0EA5E9',
       gradient: 'from-blue-500 to-cyan-500',
       path: '/use-cases/metro',
-      description: 'Use PalmPay for metro entry and exit'
+      description: 'Tap and travel across metros, buses, and local trains',
+      status: 'live'
     },
     {
       id: 'schools',
-      title: 'Schools',
-      shortTitle: 'Schools',
+      title: 'Schools & Education',
+      shortTitle: 'Education',
       icon: GraduationCap,
       color: '#8B5CF6',
       gradient: 'from-purple-500 to-violet-500',
       path: '/use-cases/schools',
-      description: 'Smart campus payments & attendance'
+      description: 'Smart campus payments, attendance, and cafeteria access',
+      status: 'live'
     },
     {
       id: 'offices',
-      title: 'Offices',
-      shortTitle: 'Offices',
+      title: 'Corporate & Offices',
+      shortTitle: 'Corporate',
       icon: Briefcase,
       color: '#10B981',
       gradient: 'from-green-500 to-emerald-500',
       path: '/use-cases/offices',
-      description: 'Secure workplace authentication'
+      description: 'Secure workplace authentication and access control',
+      status: 'live'
+    },
+    {
+      id: 'hospitals',
+      title: 'Healthcare',
+      shortTitle: 'Healthcare',
+      icon: Hospital,
+      color: '#EF4444',
+      gradient: 'from-red-500 to-rose-500',
+      path: '/use-cases/hospitals',
+      description: 'Fast, secure payments for healthcare services',
+      status: 'live'
+    },
+    {
+      id: 'retail',
+      title: 'Retail & Shopping',
+      shortTitle: 'Retail',
+      icon: ShoppingBag,
+      color: '#F59E0B',
+      gradient: 'from-orange-500 to-amber-500',
+      path: '/use-cases/retail',
+      description: 'Shop at stores and malls with palm authentication',
+      status: 'live'
     },
     {
       id: 'palm-circle',
-      title: 'Palm Circle',
+      title: 'Family Circle',
       shortTitle: 'Family',
       icon: Users,
       color: '#EC4899',
       gradient: 'from-pink-500 to-rose-500',
       path: '/use-cases/palm-circle',
-      description: 'Family wallet with spending limits'
+      description: 'Shared family wallet with smart spending controls',
+      status: 'live'
+    },
+    {
+      id: 'smart-city',
+      title: 'Smart City',
+      shortTitle: 'Smart City',
+      icon: Building2,
+      color: '#6366F1',
+      gradient: 'from-indigo-500 to-blue-500',
+      path: '/use-cases/smart-city',
+      description: 'Connected urban services and event access',
+      status: 'live'
     }
   ];
 
@@ -69,123 +110,123 @@ const CircularUseCaseHub = () => {
     }
   };
 
-  const radius = 130; // Distance from center
-  const centerSize = 100; // Center logo size
-  const cardSize = 80; // Use-case card size
+  // Dynamic positioning for 7 use-cases in a circle
+  const getPosition = (index, total) => {
+    const angle = (index * 360 / total) - 90; // Start from top
+    const radius = 120;
+    const x = radius * Math.cos((angle * Math.PI) / 180);
+    const y = radius * Math.sin((angle * Math.PI) / 180);
+    return { x, y };
+  };
+
+  const cardSize = 65; // Smaller, more elegant
 
   return (
-    <div className="relative w-full py-8 px-5">
+    <div className="relative w-full py-6 px-4">
       {/* Section Title */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-8"
+        className="text-center mb-6"
       >
         <h2 className="text-xl font-bold text-gray-800 mb-1">
           PalmPay Use-Case Hub
         </h2>
-        <p className="text-sm text-gray-500">
-          Palm-based authentication across industries
+        <p className="text-xs text-gray-500">
+          Palm authentication across every touchpoint
         </p>
       </motion.div>
 
       {/* Static 3D Circular Hub */}
-      <div className="relative w-full h-[380px] flex items-center justify-center mb-6">
-        {/* Center - PalmPay Logo with Frosted Glass Effect */}
+      <div className="relative w-full h-[320px] flex items-center justify-center mb-6">
+        
+        {/* Subtle Background Rings */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <motion.div
+            animate={{ scale: [1, 1.05, 1], opacity: [0.1, 0.15, 0.1] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute w-64 h-64 rounded-full border-2 border-gray-200"
+          />
+          <motion.div
+            animate={{ scale: [1, 1.03, 1], opacity: [0.05, 0.1, 0.05] }}
+            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+            className="absolute w-80 h-80 rounded-full border border-gray-100"
+          />
+        </div>
+
+        {/* Center - PalmPe NFC Logo with Premium Glass Effect */}
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.6, type: 'spring' }}
-          className="absolute z-20"
-          style={{ width: centerSize, height: centerSize }}
+          transition={{ duration: 0.8, type: 'spring', stiffness: 200 }}
+          className="absolute z-30"
+          style={{ width: 90, height: 90 }}
         >
           {/* Frosted Glass Container */}
-          <div className="relative w-full h-full rounded-full bg-white/90 backdrop-blur-xl border border-white/40 flex items-center justify-center shadow-[0_8px_32px_rgba(88,107,255,0.3)]"
+          <div className="relative w-full h-full rounded-full bg-white/95 backdrop-blur-2xl border border-white/60 flex items-center justify-center"
             style={{
-              boxShadow: '0 8px 32px rgba(88, 107, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5)'
+              boxShadow: '0 8px 32px rgba(88, 107, 255, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.8)'
             }}
           >
             {/* Subtle Breathing Glow */}
             <motion.div
               animate={{
-                opacity: [0.3, 0.5, 0.3],
-                scale: [1, 1.05, 1]
+                opacity: [0.2, 0.4, 0.2],
+                scale: [1, 1.1, 1]
               }}
               transition={{
                 duration: 5,
                 repeat: Infinity,
                 ease: 'easeInOut'
               }}
-              className="absolute inset-0 rounded-full bg-gradient-to-br from-[#586BFF]/20 to-[#9B62FF]/20 blur-2xl"
+              className="absolute inset-0 rounded-full bg-gradient-to-br from-[#586BFF]/30 to-[#9B62FF]/30 blur-xl"
             />
 
-            {/* PalmPay Logo */}
-            <div className="relative z-10 flex flex-col items-center">
-              <svg
-                width="50"
-                height="50"
-                viewBox="0 0 100 100"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs>
-                  <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#586BFF" />
-                    <stop offset="100%" stopColor="#9B62FF" />
-                  </linearGradient>
-                </defs>
-                {/* Stylized P letter with palm concept */}
-                <path
-                  d="M30 20 L30 80 M30 20 C45 20, 55 30, 55 45 C55 60, 45 70, 30 70"
-                  stroke="url(#logoGradient)"
-                  strokeWidth="8"
-                  strokeLinecap="round"
-                  fill="none"
-                />
-                {/* Palm lines */}
-                <path
-                  d="M65 35 L75 25 M68 45 L80 45 M65 55 L75 65"
-                  stroke="url(#logoGradient)"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                />
-              </svg>
-              <p className="text-[10px] font-bold text-gray-700 mt-1 tracking-wide">PALMPAY</p>
-            </div>
+            {/* PalmPe NFC Logo */}
+            <motion.div
+              animate={{
+                y: [0, -2, 0]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+              className="relative z-10"
+            >
+              <PalmNFCIcon className="w-16 h-16" />
+            </motion.div>
           </div>
         </motion.div>
 
-        {/* Static 3D Positioned Use-Case Cards */}
-        {primaryUseCases.map((useCase, index) => {
-          const angle = (index * 90) - 45; // Position at 45°, 135°, 225°, 315°
-          const x = radius * Math.cos((angle * Math.PI) / 180);
-          const y = radius * Math.sin((angle * Math.PI) / 180);
-          
+        {/* Use-Case Cards - Positioned in Circle */}
+        {useCases.map((useCase, index) => {
+          const position = getPosition(index, useCases.length);
           const isSelected = selectedCase?.id === useCase.id;
 
           return (
             <motion.div
               key={useCase.id}
-              initial={{ scale: 0, opacity: 0, y: 20 }}
+              initial={{ scale: 0, opacity: 0 }}
               animate={{
                 scale: 1,
                 opacity: 1,
-                y: 0,
-                x: x,
-                y: y
+                x: position.x,
+                y: position.y
               }}
               whileHover={{ 
-                scale: 1.05,
-                y: y - 4
+                scale: 1.08,
+                y: position.y - 3,
+                transition: { type: 'spring', stiffness: 400, damping: 15 }
               }}
               whileTap={{ scale: 0.95 }}
               transition={{ 
                 type: 'spring',
-                stiffness: 260,
-                damping: 20,
-                delay: index * 0.1 
+                stiffness: 300,
+                damping: 25,
+                delay: index * 0.08
               }}
-              className="absolute cursor-pointer"
+              className="absolute cursor-pointer z-20"
               style={{ 
                 width: cardSize, 
                 height: cardSize,
@@ -193,103 +234,108 @@ const CircularUseCaseHub = () => {
               }}
               onClick={() => handleCardClick(useCase)}
             >
-              {/* Card with Depth */}
-              <div 
-                className={`relative w-full h-full rounded-2xl bg-gradient-to-br ${useCase.gradient} flex items-center justify-center transition-all duration-300 ${
-                  isSelected 
-                    ? 'shadow-[0_12px_40px_rgba(0,0,0,0.25)]' 
-                    : 'shadow-[0_8px_24px_rgba(0,0,0,0.15)]'
-                }`}
+              {/* Card with Glass Morphism */}
+              <motion.div 
+                className={`relative w-full h-full rounded-2xl bg-gradient-to-br ${useCase.gradient} flex items-center justify-center overflow-hidden`}
                 style={{
-                  transform: isSelected ? 'translateZ(20px)' : 'translateZ(10px)'
+                  boxShadow: isSelected 
+                    ? `0 10px 30px ${useCase.color}60, 0 0 0 3px white, 0 0 0 4px ${useCase.color}`
+                    : `0 6px 20px ${useCase.color}40`
+                }}
+                animate={{
+                  boxShadow: isSelected 
+                    ? `0 10px 30px ${useCase.color}60, 0 0 0 3px white, 0 0 0 4px ${useCase.color}`
+                    : `0 6px 20px ${useCase.color}40`
                 }}
               >
-                {/* Subtle Inner Glow */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/20 to-transparent" />
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/25 to-transparent" />
                 
                 {/* Icon */}
-                <useCase.icon className="w-10 h-10 text-white relative z-10" />
+                <motion.div
+                  whileHover={{ rotate: [0, -10, 10, 0] }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <useCase.icon className="w-8 h-8 text-white relative z-10 drop-shadow-lg" strokeWidth={2.5} />
+                </motion.div>
 
-                {/* Selected Indicator */}
-                {isSelected && (
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    className="absolute -top-2 -right-2 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-lg"
-                  >
-                    <div className="w-3 h-3 rounded-full bg-gradient-to-br from-[#586BFF] to-[#9B62FF]" />
-                  </motion.div>
-                )}
-              </div>
+                {/* Shimmer Effect on Hover */}
+                <motion.div
+                  className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity"
+                  style={{
+                    background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
+                    transform: 'translateX(-100%)'
+                  }}
+                  animate={{ x: ['translateX(-100%)', 'translateX(100%)'] }}
+                  transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
+                />
+              </motion.div>
 
               {/* Label - Below Card */}
-              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 text-center">
-                <p className="text-sm font-semibold text-gray-800 whitespace-nowrap">
+              <motion.div 
+                className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 text-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: index * 0.08 + 0.3 }}
+              >
+                <p className="text-[11px] font-semibold text-gray-700 whitespace-nowrap">
                   {useCase.shortTitle}
                 </p>
-              </div>
+              </motion.div>
             </motion.div>
           );
         })}
-
-        {/* More Option */}
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          whileHover={{ scale: 1.05, y: -4 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ delay: 0.5 }}
-          className="absolute cursor-pointer"
-          style={{
-            width: cardSize,
-            height: cardSize,
-            bottom: -radius,
-            left: '50%',
-            transform: 'translate(-50%, 50%)'
-          }}
-        >
-          <div className="relative w-full h-full rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center shadow-[0_8px_24px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.15)] transition-all">
-            <MoreHorizontal className="w-10 h-10 text-gray-600" />
-          </div>
-          <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 text-center">
-            <p className="text-sm font-semibold text-gray-600 whitespace-nowrap">More</p>
-          </div>
-        </motion.div>
       </div>
 
-      {/* Bottom Preview Panel */}
+      {/* Bottom Preview Panel - Premium Glass Design */}
       <AnimatePresence>
         {selectedCase && (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 30, scale: 0.95 }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             className="relative"
           >
-            {/* Frosted Glass Panel */}
-            <div className="relative bg-white/90 backdrop-blur-xl border border-gray-200 rounded-2xl p-5 shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
+            {/* Glass Morphism Panel */}
+            <div className="relative bg-white/95 backdrop-blur-2xl border border-white/60 rounded-3xl p-5 overflow-hidden"
+              style={{
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8)'
+              }}
+            >
+              {/* Gradient Background Accent */}
+              <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${selectedCase.gradient}`} />
+
               {/* Close Button */}
-              <button
+              <motion.button
+                whileHover={{ scale: 1.1, rotate: 90 }}
+                whileTap={{ scale: 0.9 }}
                 onClick={() => setSelectedCase(null)}
-                className="absolute top-3 right-3 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
+                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100/80 backdrop-blur-sm hover:bg-gray-200/80 flex items-center justify-center transition-all z-10"
               >
                 <X className="w-4 h-4 text-gray-600" />
-              </button>
+              </motion.button>
 
               {/* Content */}
               <div className="pr-10">
                 {/* Icon & Title */}
                 <div className="flex items-center gap-3 mb-3">
-                  <div 
-                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${selectedCase.gradient} flex items-center justify-center shadow-md`}
+                  <motion.div 
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ type: 'spring', stiffness: 200 }}
+                    className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${selectedCase.gradient} flex items-center justify-center shadow-lg`}
                   >
-                    <selectedCase.icon className="w-6 h-6 text-white" />
-                  </div>
+                    <selectedCase.icon className="w-7 h-7 text-white" strokeWidth={2.5} />
+                  </motion.div>
                   <div>
                     <h3 className="text-lg font-bold text-gray-800">
                       {selectedCase.title}
                     </h3>
+                    <div className="flex items-center gap-1 mt-0.5">
+                      <MapPin className="w-3 h-3 text-gray-400" />
+                      <span className="text-[10px] text-gray-500">Available in your city</span>
+                    </div>
                   </div>
                 </div>
 
@@ -298,14 +344,14 @@ const CircularUseCaseHub = () => {
                   {selectedCase.description}
                 </p>
 
-                {/* CTA Button */}
+                {/* CTA Button - Premium Gradient */}
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={{ scale: 1.02, boxShadow: `0 8px 20px ${selectedCase.color}40` }}
                   whileTap={{ scale: 0.98 }}
                   onClick={handleNavigate}
-                  className={`w-full bg-gradient-to-r ${selectedCase.gradient} text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all`}
+                  className={`w-full bg-gradient-to-r ${selectedCase.gradient} text-white font-semibold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-md transition-all`}
                 >
-                  Check Availability
+                  Explore {selectedCase.shortTitle}
                   <ArrowRight className="w-5 h-5" />
                 </motion.button>
               </div>
