@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Briefcase, MapPin, Check, ChevronRight, ArrowLeft, Building2, Shield } from 'lucide-react';
+import { Briefcase, MapPin, Check, ChevronRight, ArrowLeft, Building2, Shield, Search } from 'lucide-react';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
@@ -19,6 +19,7 @@ const Offices = () => {
   const [selectedOffice, setSelectedOffice] = useState(null);
   const [employeeId, setEmployeeId] = useState('');
   const [success, setSuccess] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     fetchCities();
@@ -116,11 +117,28 @@ const Offices = () => {
       </div>
 
       <div className="p-5">
+        {/* Search Bar */}
+        <div className="mb-4">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <Input
+              type="text"
+              placeholder="Search offices, companies, or campuses..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:border-green-400 focus:ring-2 focus:ring-green-100"
+            />
+          </div>
+        </div>
+
         {step === 1 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <h2 className="text-xl font-bold text-gray-800 mb-4">Select City</h2>
             <div className="grid grid-cols-2 gap-3">
-              {cities.map((city, idx) => (
+              {cities.filter(city =>
+                city.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                city.state.toLowerCase().includes(searchQuery.toLowerCase())
+              ).map((city, idx) => (
                 <motion.div key={city.id} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: idx * 0.1 }} onClick={() => { setSelectedCity(city); fetchOffices(city.id); }}>
                   <HoverCard3D>
                     <Card className="p-5 cursor-pointer hover:shadow-xl">
@@ -139,7 +157,11 @@ const Offices = () => {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <h2 className="text-xl font-bold text-gray-800 mb-4">Select Office/Campus</h2>
             <div className="space-y-3 mb-6">
-              {offices.map((office, idx) => (
+              {offices.filter(office =>
+                office.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                office.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                office.services.some(s => s.toLowerCase().includes(searchQuery.toLowerCase()))
+              ).map((office, idx) => (
                 <motion.div key={office.id} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.05 }}>
                   <HoverCard3D>
                     <Card className={`p-4 cursor-pointer hover:shadow-xl ${selectedOffice?.id === office.id ? 'border-2 border-green-500' : ''}`} onClick={() => setSelectedOffice(office)}>
@@ -171,7 +193,7 @@ const Offices = () => {
                     <Input value={employeeId} onChange={(e) => setEmployeeId(e.target.value)} placeholder="Enter your employee ID" className="mt-1" />
                   </div>
                 </Card>
-                <Button onClick={handleRegister} disabled={loading || !employeeId} className="w-full bg-green-600 hover:bg-green-700 h-12">
+                <Button onClick={() => navigate('/device-locator', { state: { returnTo: '/use-cases/offices' } })} disabled={loading || !employeeId} className="w-full bg-green-600 hover:bg-green-700 h-12">
                   {loading ? 'Registering...' : 'Register Palm for Access'}
                   {!loading && <ChevronRight className="w-5 h-5 ml-2" />}
                 </Button>
