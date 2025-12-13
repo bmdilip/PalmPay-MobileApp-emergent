@@ -85,6 +85,7 @@ import PalmCircle from "./pages/use-cases/PalmCircle";
 import Hospitals from "./pages/use-cases/Hospitals";
 import Retail from "./pages/use-cases/Retail";
 import SmartCity from "./pages/use-cases/SmartCity";
+import PalmRegistrationInfo from "./pages/PalmRegistrationInfo";
 
 const BottomNavigation = () => {
   const navigate = useNavigate();
