@@ -80,16 +80,9 @@ const UseCaseGrid = () => {
   ];
 
   const handleCardClick = (useCase) => {
-    // Check palm registration status
-    const isPalmRegistered = localStorage.getItem('palmRegistered') === 'true';
-    
-    if (!isPalmRegistered) {
-      // Redirect to MASTER Device Locator (Find PalmPe Devices)
-      navigate('/device-locator', { state: { returnTo: useCase.path } });
-    } else {
-      // Proceed to use case
-      navigate(useCase.path);
-    }
+    // Let users explore all use cases freely
+    // They can register palm later when they choose to
+    navigate(useCase.path);
   };
 
   return (
