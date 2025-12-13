@@ -91,12 +91,30 @@ const SmartCity = () => {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <Card className="p-5 mb-4">
               <h3 className="font-bold text-gray-800 mb-2">{selectedService.title}</h3>
-              <p className="text-sm text-gray-600">{selectedService.description}</p>
+              <p className="text-sm text-gray-600 mb-4">{selectedService.description}</p>
+              <div className="space-y-2">
+                {['Cashless transactions', 'Skip queues', 'Digital receipts', 'Real-time updates'].map((benefit, idx) => (
+                  <div key={idx} className="flex items-center gap-2 text-sm text-gray-700">
+                    <Check className="w-4 h-4 text-green-600" />
+                    {benefit}
+                  </div>
+                ))}
+              </div>
             </Card>
-            <Button onClick={() => setStep(3)} className="w-full bg-indigo-600 hover:bg-indigo-700 h-12">
-              Enable Service
-              <ChevronRight className="w-5 h-5 ml-2" />
-            </Button>
+            <div className="space-y-3">
+              <Button onClick={() => setStep(3)} className="w-full bg-indigo-600 hover:bg-indigo-700 h-12">
+                Enable Service (Demo)
+                <ChevronRight className="w-5 h-5 ml-2" />
+              </Button>
+              <Button 
+                onClick={() => navigate('/device-locator', { state: { returnTo: '/use-cases/smart-city' } })} 
+                variant="outline"
+                className="w-full border-indigo-400 text-indigo-600 hover:bg-indigo-50 h-12"
+              >
+                Register Palm for Smart City
+                <ChevronRight className="w-5 h-5 ml-2" />
+              </Button>
+            </div>
           </motion.div>
         )}
       </div>
