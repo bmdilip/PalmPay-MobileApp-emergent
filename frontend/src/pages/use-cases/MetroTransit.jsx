@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { 
@@ -11,7 +11,80 @@ import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import HoverCard3D from '../../components/premium/HoverCard3D';
-import { LoadingSpinner } from '../../components/StateComponents';
+
+// Station Picker Modal Component (defined outside main component)
+const StationPicker = ({ type, onSelect, onClose, metroLines, searchQuery, setSearchQuery }) => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-end"
+    onClick={onClose}
+  >
+    <motion.div
+      initial={{ y: '100%' }}
+      animate={{ y: 0 }}
+      exit={{ y: '100%' }}
+      className="bg-white rounded-t-3xl w-full max-h-[80vh] overflow-hidden"
+      onClick={e => e.stopPropagation()}
+    >
+      <div className="p-4 border-b sticky top-0 bg-white z-10">
+        <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-4" />
+        <h3 className="text-lg font-bold text-gray-800 mb-3">
+          Select {type === 'from' ? 'Origin' : 'Destination'} Station
+        </h3>
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <Input
+            placeholder="Search stations..."
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            className="pl-10"
+          />
+        </div>
+      </div>
+      <div className="overflow-y-auto max-h-[60vh] p-4">
+        {metroLines.map(line => (
+          <div key={line.id} className="mb-4">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-3 h-3 rounded-full" style={{ background: line.color }} />
+              <span className="text-sm font-semibold text-gray-600">{line.name}</span>
+            </div>
+            <div className="space-y-1">
+              {line.stations
+                .filter(s => s.name.toLowerCase().includes(searchQuery.toLowerCase()))
+                .map(station => (
+                  <button
+                    key={station.id}
+                    onClick={() => {
+                      onSelect({ ...station, line: line.name, lineColor: line.color });
+                      setSearchQuery('');
+                    }}
+                    className="w-full p-3 rounded-xl text-left hover:bg-gray-50 flex items-center justify-between transition-colors"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full" style={{ background: line.color }} />
+                      <span className="font-medium text-gray-800">{station.name}</span>
+                      {station.interchange && (
+                        <span className="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full">
+                          Interchange
+                        </span>
+                      )}
+                    </div>
+                    {station.palmPe && (
+                      <span className="text-xs bg-green-100 text-green-600 px-2 py-0.5 rounded-full flex items-center gap-1">
+                        <Sparkles className="w-3 h-3" /> PalmPe
+                      </span>
+                    )}
+                  </button>
+                ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  </motion.div>
+);
 
 const MetroTransit = () => {
   const navigate = useNavigate();
