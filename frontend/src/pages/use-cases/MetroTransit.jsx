@@ -106,7 +106,13 @@ const MetroTransit = () => {
   const [showRechargeModal, setShowRechargeModal] = useState(false);
   
   // Fare calculation
-  const [calculatedFare, setCalculatedFare] = useState(null);
+  const calculatedFare = useMemo(() => {
+    if (!fromStation || !toStation) return null;
+    const baseFare = Math.floor(fromStation.name.length + toStation.name.length) + 15;
+    let total = baseFare * passengers;
+    if (ticketType === 'return') total *= 1.9;
+    return { baseFare, total: Math.round(total), distance: Math.floor(baseFare / 3) + 3 };
+  }, [fromStation, toStation, ticketType, passengers]);
 
   // Metro lines and stations (based on Namma Metro Bangalore)
   const metroLines = [
