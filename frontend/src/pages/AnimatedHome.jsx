@@ -132,6 +132,103 @@ const AnimatedHome = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20 relative overflow-x-hidden">
+      {/* WALLET SELECTOR MODAL - At Top Level for Proper Z-Index */}
+      <AnimatePresence>
+        {showWalletSelector && (
+          <>
+            {/* Backdrop */}
+            <motion.div 
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm"
+              style={{ zIndex: 99999 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowWalletSelector(false)}
+            />
+            
+            {/* Wallet Selection Modal */}
+            <motion.div 
+              className="fixed inset-x-4 top-1/2 transform -translate-y-1/2 max-h-[70vh] overflow-y-auto bg-white rounded-2xl shadow-2xl border-2 border-[#586BFF]"
+              style={{ zIndex: 100000 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="px-5 py-4 border-b-2 border-gray-100 sticky top-0 bg-white rounded-t-2xl">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-lg font-bold text-gray-800">Select Wallet</p>
+                    <p className="text-sm text-gray-500">Choose your payment wallet</p>
+                  </div>
+                  <button 
+                    onClick={() => setShowWalletSelector(false)}
+                    className="p-2 hover:bg-gray-100 rounded-full"
+                  >
+                    <X className="w-5 h-5 text-gray-500" />
+                  </button>
+                </div>
+              </div>
+              <div className="p-4">
+                {wallets.map((wallet, index) => (
+                  <motion.button
+                    key={wallet.id}
+                    onClick={() => {
+                      switchWallet(wallet.id);
+                      setShowWalletSelector(false);
+                    }}
+                    className={`
+                      w-full px-4 py-4 mb-3 last:mb-0
+                      flex items-center gap-4 
+                      rounded-xl border-2
+                      transition-all duration-200
+                      ${selectedWallet.id === wallet.id 
+                        ? 'bg-[#00C8D6]/10 border-[#00C8D6]' 
+                        : 'bg-gray-50 border-gray-200 hover:border-[#586BFF]/50 hover:bg-gray-100'
+                      }
+                    `}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                  >
+                    <div className={`
+                      w-14 h-14 rounded-2xl flex items-center justify-center text-3xl
+                      ${selectedWallet.id === wallet.id ? 'bg-[#00C8D6]/20' : 'bg-gray-100'}
+                    `}>
+                      {wallet.icon}
+                    </div>
+                    <div className="flex-1 text-left">
+                      <div className="flex items-center gap-2">
+                        <p className="font-bold text-gray-800 text-base">{wallet.name}</p>
+                        {wallet.isSandbox && (
+                          <span className="px-2 py-0.5 bg-amber-100 text-amber-700 rounded text-xs font-bold">
+                            {wallet.badge}
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-lg font-bold text-[#586BFF]">
+                        ₹{wallet.balance.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+                      </p>
+                    </div>
+                    {selectedWallet.id === wallet.id && (
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        className="w-8 h-8 rounded-full bg-[#00C8D6] flex items-center justify-center"
+                      >
+                        <Check className="w-5 h-5 text-white" />
+                      </motion.div>
+                    )}
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
       {/* SECTION 1: Background Layers */}
       <MeshGradientBackground />
       <DotGridBackground />
