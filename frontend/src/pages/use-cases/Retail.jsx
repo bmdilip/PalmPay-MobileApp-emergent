@@ -107,11 +107,29 @@ const Retail = () => {
             <Card className="p-5 mb-4">
               <h3 className="font-bold text-gray-800 mb-3">{selectedRetail.name}</h3>
               <p className="text-sm text-gray-600 mb-4">Start shopping with palm authentication. Enjoy faster checkout and exclusive member benefits.</p>
+              <div className="space-y-2 mb-4">
+                {['Skip checkout queues', 'Instant payments', 'Exclusive discounts', 'Loyalty points'].map((benefit, idx) => (
+                  <div key={idx} className="flex items-center gap-2 text-sm text-gray-700">
+                    <Check className="w-4 h-4 text-green-600" />
+                    {benefit}
+                  </div>
+                ))}
+              </div>
             </Card>
-            <Button onClick={() => setStep(3)} className="w-full bg-orange-600 hover:bg-orange-700 h-12">
-              Start Shopping
-              <ChevronRight className="w-5 h-5 ml-2" />
-            </Button>
+            <div className="space-y-3">
+              <Button onClick={() => setStep(3)} className="w-full bg-orange-600 hover:bg-orange-700 h-12">
+                Start Shopping (Demo)
+                <ChevronRight className="w-5 h-5 ml-2" />
+              </Button>
+              <Button 
+                onClick={() => navigate('/device-locator', { state: { returnTo: '/use-cases/retail' } })} 
+                variant="outline"
+                className="w-full border-orange-400 text-orange-600 hover:bg-orange-50 h-12"
+              >
+                Register Palm for Retail
+                <ChevronRight className="w-5 h-5 ml-2" />
+              </Button>
+            </div>
           </motion.div>
         )}
       </div>
