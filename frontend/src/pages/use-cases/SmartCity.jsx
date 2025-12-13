@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Building2, Calendar, Check, ChevronRight, ArrowLeft, Ticket, MapPin } from 'lucide-react';
+import { Building2, Calendar, Check, ChevronRight, ArrowLeft, Ticket, MapPin, Search, Car, Library, Landmark } from 'lucide-react';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
+import { Input } from '../../components/ui/input';
 import HoverCard3D from '../../components/premium/HoverCard3D';
 
 const SmartCity = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [selectedService, setSelectedService] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const services = [
-    { id: 'ev-1', title: 'Smart Parking', icon: MapPin, description: 'Find and pay for parking with palm', color: 'blue', gradient: 'from-blue-500 to-cyan-500' },
+    { id: 'ev-1', title: 'Smart Parking', icon: Car, description: 'Find and pay for parking with palm', color: 'blue', gradient: 'from-blue-500 to-cyan-500' },
     { id: 'ev-2', title: 'Event Ticketing', icon: Ticket, description: 'Concerts, sports, and exhibitions', color: 'purple', gradient: 'from-purple-500 to-violet-500' },
-    { id: 'ev-3', title: 'Public Amenities', icon: Building2, description: 'Libraries, museums, and community centers', color: 'green', gradient: 'from-green-500 to-emerald-500' },
-    { id: 'ev-4', title: 'City Services', icon: Calendar, description: 'Municipal payments and bookings', color: 'indigo', gradient: 'from-indigo-500 to-blue-500' }
+    { id: 'ev-3', title: 'Public Libraries', icon: Library, description: 'Libraries and community resources', color: 'green', gradient: 'from-green-500 to-emerald-500' },
+    { id: 'ev-4', title: 'City Services', icon: Calendar, description: 'Municipal payments and bookings', color: 'indigo', gradient: 'from-indigo-500 to-blue-500' },
+    { id: 'ev-5', title: 'Museums & Parks', icon: Landmark, description: 'Cultural venues and recreation', color: 'amber', gradient: 'from-amber-500 to-orange-500' },
+    { id: 'ev-6', title: 'Community Centers', icon: Building2, description: 'Sports and recreation facilities', color: 'teal', gradient: 'from-teal-500 to-cyan-500' }
   ];
 
   if (step === 3) {
@@ -50,9 +54,26 @@ const SmartCity = () => {
       <div className="p-5">
         {step === 1 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            {/* Search Bar */}
+            <div className="mb-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Input
+                  type="text"
+                  placeholder="Search city services..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
+                />
+              </div>
+            </div>
+
             <h2 className="text-xl font-bold text-gray-800 mb-4">Available Services</h2>
             <div className="grid grid-cols-2 gap-3">
-              {services.map((service, idx) => (
+              {services.filter(service =>
+                service.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                service.description.toLowerCase().includes(searchQuery.toLowerCase())
+              ).map((service, idx) => (
                 <motion.div key={service.id} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: idx * 0.1 }} onClick={() => { setSelectedService(service); setStep(2); }}>
                   <HoverCard3D>
                     <Card className={`p-5 cursor-pointer hover:shadow-xl h-32 flex flex-col items-center justify-center text-center bg-gradient-to-br ${service.gradient}`}>
