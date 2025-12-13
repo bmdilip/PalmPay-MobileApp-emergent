@@ -155,134 +155,105 @@ const CircularUseCaseHub = () => {
           </div>
         </motion.div>
 
-        {/* Rotating Use Case Icons */}
-        <motion.div
-          animate={isRotating ? { rotate: 360 } : {}}
-          transition={isRotating ? { 
-            duration: 30, 
-            repeat: Infinity, 
-            ease: 'linear' 
-          } : {}}
-          className="absolute"
-          style={{ width: radius * 2, height: radius * 2 }}
-        >
-          {useCases.map((useCase, index) => {
-            const angle = (index * 360) / useCases.length;
-            const x = radius * Math.cos((angle * Math.PI) / 180);
-            const y = radius * Math.sin((angle * Math.PI) / 180);
-            
-            const isSelected = selectedCase === useCase.id;
-            const isHovered = hoveredCase === useCase.id;
-            const isDimmed = (selectedCase || hoveredCase) && !isSelected && !isHovered;
+        {/* Static 3D Positioned Use-Case Cards */}
+        {primaryUseCases.map((useCase, index) => {
+          const angle = (index * 90) - 45; // Position at 45°, 135°, 225°, 315°
+          const x = radius * Math.cos((angle * Math.PI) / 180);
+          const y = radius * Math.sin((angle * Math.PI) / 180);
+          
+          const isSelected = selectedCase?.id === useCase.id;
 
-            return (
-              <motion.div
-                key={useCase.id}
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{
-                  scale: isSelected || isHovered ? 1.3 : 1,
-                  opacity: isDimmed ? 0.4 : 1,
-                  x: radius + x - 40,
-                  y: radius + y - 40,
-                }}
-                transition={{ 
-                  type: 'spring', 
-                  stiffness: 300, 
-                  damping: 20,
-                  delay: index * 0.1 
-                }}
-                className="absolute cursor-pointer"
-                style={{ 
-                  width: 80, 
-                  height: 80,
-                }}
-                onClick={() => handleUseCaseClick(useCase)}
-                onMouseEnter={() => {
-                  setIsRotating(false);
-                  setHoveredCase(useCase.id);
-                }}
-                onMouseLeave={() => {
-                  if (!selectedCase) setIsRotating(true);
-                  setHoveredCase(null);
+          return (
+            <motion.div
+              key={useCase.id}
+              initial={{ scale: 0, opacity: 0, y: 20 }}
+              animate={{
+                scale: 1,
+                opacity: 1,
+                y: 0,
+                x: x,
+                y: y
+              }}
+              whileHover={{ 
+                scale: 1.05,
+                y: y - 4
+              }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ 
+                type: 'spring',
+                stiffness: 260,
+                damping: 20,
+                delay: index * 0.1 
+              }}
+              className="absolute cursor-pointer"
+              style={{ 
+                width: cardSize, 
+                height: cardSize,
+                transform: `translate(-50%, -50%)`
+              }}
+              onClick={() => handleCardClick(useCase)}
+            >
+              {/* Card with Depth */}
+              <div 
+                className={`relative w-full h-full rounded-2xl bg-gradient-to-br ${useCase.gradient} flex items-center justify-center transition-all duration-300 ${
+                  isSelected 
+                    ? 'shadow-[0_12px_40px_rgba(0,0,0,0.25)]' 
+                    : 'shadow-[0_8px_24px_rgba(0,0,0,0.15)]'
+                }`}
+                style={{
+                  transform: isSelected ? 'translateZ(20px)' : 'translateZ(10px)'
                 }}
               >
-                {/* Rotating Counter-Animation for Icons */}
-                <motion.div
-                  animate={isRotating ? { rotate: -360 } : {}}
-                  transition={isRotating ? { 
-                    duration: 30, 
-                    repeat: Infinity, 
-                    ease: 'linear' 
-                  } : {}}
-                  className="w-full h-full"
-                >
-                  <div className={`relative w-full h-full rounded-full bg-gradient-to-br ${useCase.gradient} flex items-center justify-center shadow-lg hover:shadow-2xl transition-all`}>
-                    {/* Glow Effect on Hover */}
-                    {(isHovered || isSelected) && (
-                      <motion.div
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1.4, opacity: 0 }}
-                        transition={{ 
-                          duration: 1, 
-                          repeat: Infinity,
-                          ease: 'easeOut'
-                        }}
-                        className="absolute inset-0 rounded-full"
-                        style={{ 
-                          backgroundColor: useCase.color,
-                          filter: 'blur(20px)'
-                        }}
-                      />
-                    )}
+                {/* Subtle Inner Glow */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/20 to-transparent" />
+                
+                {/* Icon */}
+                <useCase.icon className="w-10 h-10 text-white relative z-10" />
 
-                    <useCase.icon className="w-8 h-8 text-white relative z-10" />
+                {/* Selected Indicator */}
+                {isSelected && (
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="absolute -top-2 -right-2 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-lg"
+                  >
+                    <div className="w-3 h-3 rounded-full bg-gradient-to-br from-[#586BFF] to-[#9B62FF]" />
+                  </motion.div>
+                )}
+              </div>
 
-                    {/* Status Badge */}
-                    {useCase.status === 'live' && (
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
-                      >
-                        <Sparkles className="w-3 h-3 text-white" />
-                      </motion.div>
-                    )}
+              {/* Label - Below Card */}
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 text-center">
+                <p className="text-sm font-semibold text-gray-800 whitespace-nowrap">
+                  {useCase.shortTitle}
+                </p>
+              </div>
+            </motion.div>
+          );
+        })}
 
-                    {useCase.status === 'coming-soon' && (
-                      <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 px-2 py-0.5 bg-gray-800 text-white text-[8px] font-bold rounded-full whitespace-nowrap">
-                        Soon
-                      </div>
-                    )}
-                  </div>
-                </motion.div>
-
-                {/* Label - Counter-rotates to stay upright */}
-                <motion.div
-                  animate={isRotating ? { rotate: -360 } : {}}
-                  transition={isRotating ? { 
-                    duration: 30, 
-                    repeat: Infinity, 
-                    ease: 'linear' 
-                  } : {}}
-                  className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 text-center"
-                  style={{ width: '120px' }}
-                >
-                  <p className="text-xs font-bold text-gray-800 whitespace-nowrap">
-                    {useCase.title}
-                  </p>
-                  {(isHovered || isSelected) && (
-                    <motion.p
-                      initial={{ opacity: 0, y: -5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="text-[10px] text-gray-500 mt-1"
-                    >
-                      {useCase.description}
-                    </motion.p>
-                  )}
-                </motion.div>
-              </motion.div>
-            );
-          })}
+        {/* More Option */}
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          whileHover={{ scale: 1.05, y: -4 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ delay: 0.5 }}
+          className="absolute cursor-pointer"
+          style={{
+            width: cardSize,
+            height: cardSize,
+            bottom: -radius,
+            left: '50%',
+            transform: 'translate(-50%, 50%)'
+          }}
+        >
+          <div className="relative w-full h-full rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center shadow-[0_8px_24px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.15)] transition-all">
+            <MoreHorizontal className="w-10 h-10 text-gray-600" />
+          </div>
+          <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 text-center">
+            <p className="text-sm font-semibold text-gray-600 whitespace-nowrap">More</p>
+          </div>
         </motion.div>
       </div>
 
