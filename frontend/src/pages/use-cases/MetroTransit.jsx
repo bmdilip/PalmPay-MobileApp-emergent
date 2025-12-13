@@ -188,20 +188,6 @@ const MetroTransit = () => {
   );
 
   // Fare matrix (simplified)
-  const calculateFare = (from, to, type, count) => {
-    if (!from || !to) return null;
-    const baseFare = Math.floor(Math.random() * 30) + 15; // ₹15-45 based on distance
-    let total = baseFare * count;
-    if (type === 'return') total *= 1.9; // 5% discount on return
-    return { baseFare, total: Math.round(total), distance: Math.floor(Math.random() * 15) + 3 };
-  };
-
-  useEffect(() => {
-    if (fromStation && toStation) {
-      setCalculatedFare(calculateFare(fromStation, toStation, ticketType, passengers));
-    }
-  }, [fromStation, toStation, ticketType, passengers]);
-
   // Recent journeys mock data
   const recentJourneys = [
     { from: 'MG Road', to: 'Kempegowda', date: 'Today, 9:30 AM', fare: 25 },
@@ -228,85 +214,6 @@ const MetroTransit = () => {
       setLoading(false);
     }, 1500);
   };
-
-  const filteredStations = allStations.filter(s =>
-    s.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    s.line.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  // Station Picker Modal
-  const StationPicker = ({ type, onSelect, onClose }) => (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-end"
-      onClick={onClose}
-    >
-      <motion.div
-        initial={{ y: '100%' }}
-        animate={{ y: 0 }}
-        exit={{ y: '100%' }}
-        className="bg-white rounded-t-3xl w-full max-h-[80vh] overflow-hidden"
-        onClick={e => e.stopPropagation()}
-      >
-        <div className="p-4 border-b sticky top-0 bg-white z-10">
-          <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-4" />
-          <h3 className="text-lg font-bold text-gray-800 mb-3">
-            Select {type === 'from' ? 'Origin' : 'Destination'} Station
-          </h3>
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <Input
-              placeholder="Search stations..."
-              value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
-              className="pl-10"
-            />
-          </div>
-        </div>
-        <div className="overflow-y-auto max-h-[60vh] p-4">
-          {metroLines.map(line => (
-            <div key={line.id} className="mb-4">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-3 h-3 rounded-full" style={{ background: line.color }} />
-                <span className="text-sm font-semibold text-gray-600">{line.name}</span>
-              </div>
-              <div className="space-y-1">
-                {line.stations
-                  .filter(s => s.name.toLowerCase().includes(searchQuery.toLowerCase()))
-                  .map(station => (
-                    <button
-                      key={station.id}
-                      onClick={() => {
-                        onSelect({ ...station, line: line.name, lineColor: line.color });
-                        setSearchQuery('');
-                      }}
-                      className="w-full p-3 rounded-xl text-left hover:bg-gray-50 flex items-center justify-between transition-colors"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full" style={{ background: line.color }} />
-                        <span className="font-medium text-gray-800">{station.name}</span>
-                        {station.interchange && (
-                          <span className="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full">
-                            Interchange
-                          </span>
-                        )}
-                      </div>
-                      {station.palmPe && (
-                        <span className="text-xs bg-green-100 text-green-600 px-2 py-0.5 rounded-full flex items-center gap-1">
-                          <Sparkles className="w-3 h-3" /> PalmPe
-                        </span>
-                      )}
-                    </button>
-                  ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </motion.div>
-    </motion.div>
-  );
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
