@@ -336,12 +336,16 @@ const Hospitals = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-red-600 to-rose-600 text-white p-5 pb-20">
         <div className="flex items-center gap-3 mb-4">
-          <button onClick={() => navigate(-1)} className="p-2 hover:bg-white/20 rounded-full transition-colors">
+          <button onClick={() => setSelectedCity(null)} className="p-2 hover:bg-white/20 rounded-full transition-colors">
             <ArrowLeft className="w-6 h-6" />
           </button>
-          <div>
+          <div className="flex-1">
             <h1 className="text-2xl font-bold">Healthcare</h1>
-            <p className="text-sm text-red-100">Hospitals • Doctors • Pharmacy</p>
+            <p className="text-sm text-red-100">{selectedCity.name} • {selectedCity.hospitals} Hospitals</p>
+          </div>
+          <div className="flex items-center gap-1 bg-white/20 px-2 py-1 rounded-full text-xs">
+            <PalmNFCIcon className="w-3 h-3" style={{ filter: 'brightness(0) invert(1)' }} />
+            {selectedCity.palmPeHospitals}
           </div>
         </div>
 
